@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://www.xuanxuan.site/article/Leetcode%E9%9D%A2%E8%AF%95%E7%B2%BE%E9%80%89%E9%A2%98%E8%A7%A3/</loc>
+        <lastmod>2019-02-28T06:59:43.867Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://www.xuanxuan.site/article/python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</loc>
         <lastmod>2019-02-28T03:25:11.030Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -57,14 +65,6 @@
     <url>
         <loc>http://www.xuanxuan.site/article/java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</loc>
         <lastmod>2019-02-28T03:04:22.511Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://www.xuanxuan.site/article/Leetcode%E9%9D%A2%E8%AF%95%E7%B2%BE%E9%80%89%E9%A2%98%E8%A7%A3/</loc>
-        <lastmod>2019-02-28T02:57:33.017Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

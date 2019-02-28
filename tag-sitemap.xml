@@ -2,13 +2,6 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>http://www.xuanxuan.site/tags/%E7%AE%97%E6%B3%95/</loc>
-        <lastmod>2019-02-28T02:57:33.017Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://www.xuanxuan.site/tags/java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</loc>
         <lastmod>2019-02-28T03:04:22.511Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -32,6 +25,13 @@
     <url>
         <loc>http://www.xuanxuan.site/tags/python%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</loc>
         <lastmod>2019-02-28T03:25:11.030Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.xuanxuan.site/tags/%E7%AE%97%E6%B3%95/</loc>
+        <lastmod>2019-02-28T06:59:43.867Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
