@@ -216,21 +216,17 @@
 <h3 id="1概念">1.概念</h3>
 <p>哈希表是使用<code>哈希函数</code>组织的数据结构,能够支持快速的查找和插入操作.</p>
 <p>哈希表通常有两种:</p>
-<ol>
-<li>
-<p>哈希集合:java的<code>util</code>包中提供了<code>HashSet</code>的实现</p>
-</li>
-<li>
-<p>哈希映射:java的<code>util</code>包中提供了<code>HashMap</code>的实现</p>
-</li>
-</ol>
+<blockquote>
+<p>1.哈希集合:java的<code>util</code>包中提供了<code>HashSet</code>的实现</p>
+</blockquote>
+<blockquote>
+<p>2.哈希映射:java的<code>util</code>包中提供了<code>HashMap</code>的实现</p>
+</blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;?&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">Map&lt;?,?&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br></pre></td></tr></table></figure>
 <h3 id="2哈希表的原理">2.哈希表的原理</h3>
 <p>哈希表的关键思想是使用哈希函数<code>将键映射到存储桶(Bucket)</code>。更确切地说，</p>
-<ol>
-<li>当我们插入一个新的键时，<strong>哈希函数</strong>将决定该键应该分配到哪个桶中，并将该键存储在相应的桶中；</li>
-<li>当我们想要搜索一个键时，哈希表将<strong>使用相同的哈希函数</strong>来查找对应的桶，并只在特定的桶中进行搜索。</li>
-</ol>
+<p>1.当我们插入一个新的键时，<strong>哈希函数</strong>将决定该键应该分配到哪个桶中，并将该键存储在相应的桶中</p>
+<p>2.当我们想要搜索一个键时，哈希表将<strong>使用相同的哈希函数</strong>来查找对应的桶，并只在特定的桶中进行搜索。</p>
 <p>下面可以看一个很简单的例子</p>
 <p><img src="https://i.loli.net/2019/02/20/5c6cda7700b5c.png" alt=""></p>
 <p>在示例中，我们使用 <code>y = x ％ 5</code> 作为哈希函数。让我们使用这个例子来完成插入和搜索策略：</p>
