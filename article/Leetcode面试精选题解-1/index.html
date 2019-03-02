@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Leetcode面试精选题解 - 陈志轩 | Blog
+          Leetcode面试精选题解-热身题 - 陈志轩 | Blog
         
     </title>
 
-    <link rel="canonical" href="http://www.xuanxuan.site/article/Leetcode面试精选题解/">
+    <link rel="canonical" href="http://www.xuanxuan.site/article/Leetcode面试精选题解-1/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -91,7 +91,7 @@
                               <a class="tag" href="/tags/#算法" title="算法">算法</a>
                             
                         </div>
-                        <h1>Leetcode面试精选题解</h1>
+                        <h1>Leetcode面试精选题解-热身题</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by PualrDwade on
@@ -213,6 +213,28 @@
                 post-container">
 
                 <h1 id="leetcode面试精选题解1">Leetcode面试精选题解(1)</h1>
+<p>互联网公司面试常见考点:</p>
+<p><img src="https://aliyun-lc-upload.oss-cn-hangzhou.aliyuncs.com/LCCN-Articles/explore/2018%20%E9%9D%A2%E8%AF%95%E6%B1%87%E6%80%BB/lc_sum.png" alt=""></p>
+<p>面试主题考点总结:</p>
+<h2 id="算法-algorithms"><strong>算法 - Algorithms</strong></h2>
+<ol>
+<li>排序算法：快速排序、归并排序、计数排序</li>
+<li>搜索算法：回溯、递归、剪枝技巧</li>
+<li>图论：最短路、最小生成树、网络流建模</li>
+<li>动态规划：背包问题、最长子序列、计数问题</li>
+<li>基础技巧：分治、倍增、二分、贪心</li>
+</ol>
+<h2 id="数据结构-data-structures"><strong>数据结构 - Data Structures</strong></h2>
+<ol>
+<li>数组与链表：单 / 双向链表、跳舞链</li>
+<li>栈与队列</li>
+<li>树与图：最近公共祖先、并查集</li>
+<li>哈希表</li>
+<li>堆：大 / 小根堆、可并堆</li>
+<li>字符串：字典树、后缀树</li>
+</ol>
+<hr>
+<h2 id="热身题专题训练">热身题专题训练:</h2>
 <h2 id="1只出现一次的数字">1.只出现一次的数字</h2>
 <p>给定一个<strong>非空</strong>整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。</p>
 <p><strong>说明：</strong></p>
@@ -268,6 +290,24 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span> m, <span class="keyword">int</span>[] nums2, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//直接将nums2赋值到nums1(O(n))</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">            nums1[m+i]=nums2[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//随后归并排序(nlogn)</span></span><br><span class="line">        Arrays.sort(nums1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>2.使用双指针,可以在一遍循环中得到答案,时间复杂度为<code>O((n+m))</code>,由于已经排序了,可以从尾部找寻较大的值填入空余位置.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="comment">//双指针,从后往前插入</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span> m, <span class="keyword">int</span>[] nums2, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i= m-<span class="number">1</span>, j = n-<span class="number">1</span>, k = m+n-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(j &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="comment">//判断大小,需要判断i是否为-1,为-1时表示nums1没有元素了,但位置还未填充</span></span><br><span class="line">            <span class="keyword">if</span>(i==-<span class="number">1</span>||nums1[i] &lt;= nums2[j])&#123;</span><br><span class="line">                <span class="comment">//k位置填充</span></span><br><span class="line">                nums1[k] = nums2[j];</span><br><span class="line">                j--;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">//K位置交换</span></span><br><span class="line">                nums1[k] = nums1[i];</span><br><span class="line">                nums1[i] = <span class="number">0</span>;</span><br><span class="line">                i--;</span><br><span class="line">            &#125;</span><br><span class="line">            k--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5鸡蛋掉落">5.鸡蛋掉落</h2>
+<p>你将获得 <code>K</code> 个鸡蛋，并可以使用一栋从 <code>1</code> 到 <code>N</code>  共有 <code>N</code> 层楼的建筑。</p>
+<p>每个蛋的功能都是一样的，如果一个蛋碎了，你就不能再把它掉下去。</p>
+<p>你知道存在楼层 <code>F</code> ，满足 <code>0 &lt;= F &lt;= N</code> 任何从高于 <code>F</code> 的楼层落下的鸡蛋都会碎，从 <code>F</code> 楼层或比它低的楼层落下的鸡蛋都不会破。</p>
+<p>每次<em>移动</em>，你可以取一个鸡蛋（如果你有完整的鸡蛋）并把它从任一楼层 <code>X</code> 扔下（满足 <code>1 &lt;= X &lt;= N</code>）。</p>
+<p>你的目标是<strong>确切地</strong>知道 <code>F</code> 的值是多少。</p>
+<p>无论 <code>F</code> 的初始值如何，你确定 <code>F</code> 的值的最小移动次数是多少？</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：K = 1, N = 2</span><br><span class="line">输出：2</span><br><span class="line">解释：</span><br><span class="line">鸡蛋从 1 楼掉落。如果它碎了，我们肯定知道 F = 0 。</span><br><span class="line">否则，鸡蛋从 2 楼掉落。如果它碎了，我们肯定知道 F = 1 。</span><br><span class="line">如果它没碎，那么我们肯定知道 F = 2 。</span><br><span class="line">因此，在最坏的情况下我们需要移动 2 次以确定 F 是多少。</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：K = 2, N = 6</span><br><span class="line">输出：3</span><br></pre></td></tr></table></figure>
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：K = 3, N = 14</span><br><span class="line">输出：4</span><br></pre></td></tr></table></figure>
+<p><strong>解答:</strong><br>
+1.动规暴力法,没有利用到二分的特点</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="comment">//使用动态规划的方法,保存中间结果值,以空间换时间</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">superEggDrop</span><span class="params">(<span class="keyword">int</span> K, <span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[][] middleResult = <span class="keyword">new</span> <span class="keyword">int</span>[K+<span class="number">1</span>][N+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= N;++i)&#123;</span><br><span class="line">            middleResult[<span class="number">1</span>][i] = i;</span><br><span class="line">            middleResult[<span class="number">0</span>][i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">2</span>;k &lt;= K;++k)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> n = <span class="number">1</span>;n &lt;= N;++n)&#123;</span><br><span class="line">                <span class="comment">//循环计算有k个鸡蛋n层楼的最少步数</span></span><br><span class="line">                <span class="keyword">int</span> result = N * N;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> x = <span class="number">1</span>;x &lt;= n;++x)&#123;</span><br><span class="line">                    <span class="comment">//根据状态转移公式计算比较结果</span></span><br><span class="line">                    <span class="keyword">int</span> compare = <span class="number">1</span> + Math.max(middleResult[k-<span class="number">1</span>][x-<span class="number">1</span>],middleResult[k][n-x]);</span><br><span class="line">                    <span class="comment">//取得最小值</span></span><br><span class="line">                    result = Math.min(compare,result);   </span><br><span class="line">                &#125;</span><br><span class="line">                middleResult[k][n] = result;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> middleResult[K][N];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.动规+二分法,利用二分特点,可以有效减少无必要的路径</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">superEggDrop</span><span class="params">(<span class="keyword">int</span> K, <span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[K + <span class="number">1</span>][N + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> m = <span class="number">1</span>; m &lt;= N; m++) &#123;</span><br><span class="line">            dp[<span class="number">0</span>][m] = <span class="number">0</span>; <span class="comment">// zero egg</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= K; k++) &#123;</span><br><span class="line">                dp[k][m] = dp[k][m - <span class="number">1</span>] + dp[k - <span class="number">1</span>][m - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (dp[k][m] &gt;= N) &#123;</span><br><span class="line">                    <span class="keyword">return</span> m;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> N;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
                 
 

@@ -7,6 +7,30 @@
     </url>
 
     <url>
+        <loc>http://www.xuanxuan.site/article/Leetcode%E9%9D%A2%E8%AF%95%E7%B2%BE%E9%80%89%E9%A2%98%E8%A7%A3-2/</loc>
+        <lastmod>2019-03-02T12:38:14.766Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.xuanxuan.site/article/Leetcode%E9%9D%A2%E8%AF%95%E7%B2%BE%E9%80%89%E9%A2%98%E8%A7%A3-1/</loc>
+        <lastmod>2019-03-02T08:47:19.155Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.xuanxuan.site/article/golang%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7-1/</loc>
+        <lastmod>2019-03-01T01:21:44.282Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://www.xuanxuan.site/article/SpringMVC%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-1/</loc>
         <lastmod>2019-02-28T09:14:18.521Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -57,14 +81,6 @@
     <url>
         <loc>http://www.xuanxuan.site/article/python%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</loc>
         <lastmod>2019-02-28T09:09:17.220Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://www.xuanxuan.site/article/Leetcode%E9%9D%A2%E8%AF%95%E7%B2%BE%E9%80%89%E9%A2%98%E8%A7%A3/</loc>
-        <lastmod>2019-02-28T09:09:09.976Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

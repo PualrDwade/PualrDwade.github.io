@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          python学习笔记(1) - 陈志轩 | Blog
+          golang核心特性-1 - 陈志轩 | Blog
         
     </title>
 
-    <link rel="canonical" href="http://www.xuanxuan.site/article/python的for循环迭代/">
+    <link rel="canonical" href="http://www.xuanxuan.site/article/golang核心特性-1/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -88,14 +88,12 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#python程序设计" title="python程序设计">python程序设计</a>
-                            
                         </div>
-                        <h1>python学习笔记(1)</h1>
+                        <h1>golang核心特性-1</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by PualrDwade on
-                            2018-12-10
+                            2019-03-01
                         </span>
                     </div>
                 
@@ -212,25 +210,7 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="python学习笔记1">python学习笔记(1)</h1>
-<h4 id="python的for循环迭代">python的for循环迭代</h4>
-<h4 id="interator">Interator</h4>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">表示迭代器,使用生成器可以生成一个迭代器,生成器的基本用法和生成式很像</span><br><span class="line">ex:</span><br><span class="line"><span class="comment">#生成器:(与list生成器的区别是[]改为())</span></span><br><span class="line">g = (x * x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>))</span><br><span class="line"><span class="comment">#判断类型是迭代器</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Iterable</span><br><span class="line">isinstance((x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)), Iterable)</span><br><span class="line">&gt;&gt;<span class="keyword">True</span></span><br></pre></td></tr></table></figure>
-<h4 id="iterable">Iterable</h4>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">表示一个可迭代对象,可以使用<span class="keyword">for</span>进行遍历</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> collections <span class="keyword">import</span> Iterable</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance([], Iterable)</span><br><span class="line"><span class="keyword">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(&#123;&#125;, Iterable)</span><br><span class="line"><span class="keyword">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(<span class="string">'abc'</span>, Iterable)</span><br><span class="line"><span class="keyword">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance((x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)), Iterable)</span><br><span class="line"><span class="keyword">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(<span class="number">100</span>, Iterable)</span><br><span class="line"><span class="keyword">False</span></span><br><span class="line"><span class="comment">#list,tuple,dict,str是常见的可迭代对象</span></span><br></pre></td></tr></table></figure>
-<h3 id="小结">小结</h3>
-<ol>
-<li>Python的<code>Iterator</code>对象表示的是一个数据流，<code>Iterator</code>对象可以被<code>next()</code>函数调用并不断返回下一个数据，直到没有数据时抛出<code>StopIteration</code>错误。可以把这个数据流看做是一个有序序列，但我们却不能提前知道序列的长度，只能不断通过<code>next()</code>函数实现按需计算下一个数据，所以<code>Iterator</code>的计算是惰性的，只有在需要返回下一个数据时它才会计算。<br>
-<code>Iterator</code>甚至可以表示一个无限大的数据流，例如全体自然数。而使用<code>list</code>是永远不可能存储全体自然数的。</li>
-<li>特征比较<br>
-凡是可作用于<code>for</code>循环的对象都是<code>Iterable</code>类型；<br>
-凡是可作用于<code>next()</code>函数的对象都是<code>Iterator</code>类型，它们表示一个惰性计算的序列；<br>
-集合数据类型如<code>list</code>、<code>dict</code>、<code>str</code>等是<code>Iterable</code>但不是<code>Iterator</code>，不过可以通过iter()函数获得一个<code>Iterator</code>对象。<br>
-Python的<code>for</code>循环本质上就是通过不断调用next()函数实现的，例如：</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<p>实际上完全等价于:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 首先获得Iterator对象:</span></span><br><span class="line">it = iter([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])</span><br><span class="line"><span class="comment"># 循环:</span></span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># 获得下一个值:</span></span><br><span class="line">        x = next(it)</span><br><span class="line">    <span class="keyword">except</span> StopIteration:</span><br><span class="line">        <span class="comment"># 遇到StopIteration就退出循环</span></span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+                <h1 id="golang核心特性1">Golang核心特性(1)</h1>
 
                 
 
@@ -238,13 +218,9 @@ Python的<code>for</code>循环本质上就是通过不断调用next()函数实�
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/python高阶函数式编程/" data-toggle="tooltip" data-placement="top" title="python学习笔记(3)">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/Leetcode面试精选题解-1/" data-toggle="tooltip" data-placement="top" title="Leetcode面试精选题解-热身题">Next Post &rarr;</a>
+                            <a href="/article/数据结构内部原理-1/" data-toggle="tooltip" data-placement="top" title="数据结构内部原理(1)-哈希表">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -296,6 +272,24 @@ Python的<code>for</code>循环本质上就是通过不断调用next()函数实�
             <!-- Tabe of Content -->
             <!-- Table of Contents -->
 
+  
+    <style>
+      span.toc-nav-number{
+        display: none
+      }
+    </style>
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#golang核心特性1"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Golang&#x6838;&#x5FC3;&#x7279;&#x6027;(1)</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
                 
             <!-- Sidebar Container -->
             <div class="
@@ -310,8 +304,6 @@ Python的<code>for</code>循环本质上就是通过不断调用next()函数实�
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#python程序设计" title="python程序设计">python程序设计</a>
-                        
                     </div>
                 </section>
                 
