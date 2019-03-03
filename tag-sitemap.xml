@@ -9,13 +9,6 @@
     </url>
 
     <url>
-        <loc>http://www.xuanxuan.site/tags/java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</loc>
-        <lastmod>2019-02-28T09:09:30.404Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://www.xuanxuan.site/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
         <lastmod>2019-02-28T09:13:53.285Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -32,6 +25,20 @@
     <url>
         <loc>http://www.xuanxuan.site/tags/%E7%AE%97%E6%B3%95/</loc>
         <lastmod>2019-03-03T03:40:56.244Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.xuanxuan.site/tags/java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</loc>
+        <lastmod>2019-03-03T04:01:33.979Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.xuanxuan.site/tags/golang/</loc>
+        <lastmod>2019-03-03T04:02:22.866Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

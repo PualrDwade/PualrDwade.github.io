@@ -7,6 +7,22 @@
     </url>
 
     <url>
+        <loc>http://www.xuanxuan.site/article/golang%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7-1/</loc>
+        <lastmod>2019-03-03T04:02:22.866Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.xuanxuan.site/article/java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</loc>
+        <lastmod>2019-03-03T04:01:33.979Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://www.xuanxuan.site/article/Leetcode%E9%9D%A2%E8%AF%95%E7%B2%BE%E9%80%89%E9%A2%98%E8%A7%A3-2/</loc>
         <lastmod>2019-03-03T03:40:56.244Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -17,14 +33,6 @@
     <url>
         <loc>http://www.xuanxuan.site/article/Leetcode%E9%9D%A2%E8%AF%95%E7%B2%BE%E9%80%89%E9%A2%98%E8%A7%A3-1/</loc>
         <lastmod>2019-03-02T08:47:19.155Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://www.xuanxuan.site/article/golang%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7-1/</loc>
-        <lastmod>2019-03-01T01:21:44.282Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -47,15 +55,7 @@
     </url>
 
     <url>
-        <loc>http://www.xuanxuan.site/article/java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</loc>
-        <lastmod>2019-02-28T09:09:30.404Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://www.xuanxuan.site/article/python%E7%9A%84for%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/</loc>
+        <loc>http://www.xuanxuan.site/article/Spring%E6%B2%89%E6%80%9D%E5%BD%95-1/</loc>
         <lastmod>2019-02-28T09:09:17.221Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -63,7 +63,7 @@
     </url>
 
     <url>
-        <loc>http://www.xuanxuan.site/article/Spring%E6%B2%89%E6%80%9D%E5%BD%95-1/</loc>
+        <loc>http://www.xuanxuan.site/article/python%E7%9A%84for%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/</loc>
         <lastmod>2019-02-28T09:09:17.221Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
