@@ -23,15 +23,8 @@
     </url>
 
     <url>
-        <loc>http://www.xuanxuan.site/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-        <lastmod>2019-03-03T06:12:49.162Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://www.xuanxuan.site/tags/%E7%AE%97%E6%B3%95/</loc>
-        <lastmod>2019-03-05T06:01:41.025Z</lastmod>
+        <lastmod>2019-03-04T14:54:26.240Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -39,6 +32,13 @@
     <url>
         <loc>http://www.xuanxuan.site/tags/java/</loc>
         <lastmod>2019-03-05T07:16:09.408Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.xuanxuan.site/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+        <lastmod>2019-03-05T15:19:55.593Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
