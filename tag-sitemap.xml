@@ -23,15 +23,22 @@
     </url>
 
     <url>
-        <loc>http://www.xuanxuan.site/tags/java/</loc>
-        <lastmod>2019-03-06T08:42:19.705Z</lastmod>
+        <loc>http://www.xuanxuan.site/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+        <lastmod>2019-03-08T01:29:29.014Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.xuanxuan.site/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-        <lastmod>2019-03-07T13:07:23.296Z</lastmod>
+        <loc>http://www.xuanxuan.site/tags/java/</loc>
+        <lastmod>2019-03-08T02:07:08.418Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.xuanxuan.site/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
+        <lastmod>2019-03-08T04:44:06.713Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
