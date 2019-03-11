@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          数据结构内部原理(1)-哈希表 - 陈志轩 | Blog
+          计算机网络重要知识点 - 陈志轩 | Blog
         
     </title>
 
-    <link rel="canonical" href="http://www.xuanxuan.site/article/数据结构内部原理-1/">
+    <link rel="canonical" href="http://www.xuanxuan.site/article/计算机网络重要知识点/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -88,14 +88,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
+                              <a class="tag" href="/tags/#计算机网络原理" title="计算机网络原理">计算机网络原理</a>
                             
                         </div>
-                        <h1>数据结构内部原理(1)-哈希表</h1>
-                        <h2 class="subheading"></h2>
+                        <h1>计算机网络重要知识点</h1>
+                        <h2 class="subheading">一文清点计算机网络重点知识</h2>
                         <span class="meta">
                             Posted by PualrDwade on
-                            2019-01-10
+                            2019-03-11
                         </span>
                     </div>
                 
@@ -212,53 +212,68 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="哈希表">哈希表</h2>
-<h3 id="1概念">1.概念</h3>
-<p>哈希表是使用<code>哈希函数</code>组织的数据结构,能够支持快速的查找和插入操作.</p>
-<p>哈希表通常有两种:</p>
+                <h1 id="计算机网络重要知识点">计算机网络重要知识点</h1>
 <blockquote>
-<p>1.哈希集合:java的<code>util</code>包中提供了<code>HashSet</code>的实现</p>
+<p>本文图片来自<code>github</code>的<code>CS-NOTE</code>,在此感谢作者CYC的开源精神</p>
 </blockquote>
+<h2 id="一-互联网">一. 互联网</h2>
+<h3 id="11-基本概念">1.1 基本概念</h3>
+<p>网络是多个终端(主机)互相连接起来,而互联网则是将网络联系起来,<strong>互联网是网络的网络</strong></p>
+<p><img src="https://i.loli.net/2019/03/11/5c85c8a41e6af.png" alt=""></p>
+<h3 id="12-主机之间的常见通信方式">1.2 主机之间的常见通信方式:</h3>
+<ul>
+<li>客户机服务器模式:(<code>C/S</code>),拓扑结构呈放射状</li>
+</ul>
+<p><img src="https://i.loli.net/2019/03/11/5c85c90631975.png" alt=""></p>
+<ul>
+<li>点对点模式(不区分客户机和服务器,公平通信):(<code>P2P</code>),拓扑结构呈网状</li>
+</ul>
+<p><img src="https://i.loli.net/2019/03/11/5c85c91365a36.png" alt=""></p>
+<h3 id="13-计算机网络体系结构">1.3 计算机网络体系结构</h3>
+<p><img src="https://i.loli.net/2019/03/11/5c85c9c7a0f86.png" alt=""></p>
+<p><strong>数据工作流:</strong></p>
+<p>应用层:HTTP等协议数据—&gt;传输层:TCP/UDP数据报,面向进程—&gt;网络层:传输层数据报封装成组:面向主机</p>
+<p>—&gt;数据链路层:将网络层的数据组封装成帧:面向主机之间的链路–&gt;物理层:传输比特流,单位为<code>bit</code>.</p>
 <blockquote>
-<p>2.哈希映射:java的<code>util</code>包中提供了<code>HashMap</code>的实现</p>
+<p>总之,底层为高层提供服务,数据从高层不断拆箱成比特流数据到另一个主机,而后反过来不断装箱,提供应用层使用,这便是网络数据的工作流,HTTP-&gt;成数据报-&gt;成组-&gt;成帧-&gt;成比特-&gt;帧-&gt;分组-&gt;数据报-&gt;HTTP</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;?&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">Map&lt;?,?&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br></pre></td></tr></table></figure>
-<h3 id="2哈希表的原理">2.哈希表的原理</h3>
-<p>哈希表的关键思想是使用哈希函数<code>将键映射到存储桶(Bucket)</code>。更确切地说，</p>
-<p>1.当我们插入一个新的键时，<strong>哈希函数</strong>将决定该键应该分配到哪个桶中，并将该键存储在相应的桶中</p>
-<p>2.当我们想要搜索一个键时，哈希表将<strong>使用相同的哈希函数</strong>来查找对应的桶，并只在特定的桶中进行搜索。</p>
-<p>下面可以看一个很简单的例子</p>
-<p><img src="https://i.loli.net/2019/02/20/5c6cda7700b5c.png" alt=""></p>
-<p>在示例中，我们使用 <code>y = x ％ 5</code> 作为哈希函数。让我们使用这个例子来完成插入和搜索策略：</p>
-<ol>
-<li>插入：我们通过哈希函数解析键，将它们映射到相应的桶中。
-<ul>
-<li>例如，1987 分配给桶 2，而 24 分配给桶 4。</li>
-</ul>
-</li>
-<li>搜索：我们通过相同的哈希函数解析键，并仅在特定存储桶中搜索。
-<ul>
-<li>如果我们搜索 1987，我们将使用相同的哈希函数将1987 映射到 2。因此我们在桶 2 中搜索，我们在那个桶中成功找到了 1987。</li>
-<li>例如，如果我们搜索 23，将映射 23 到 3，并在桶 3 中搜索。我们发现 23 不在桶 3 中，这意味着 23 不在哈希表中。</li>
-</ul>
-</li>
-</ol>
-<h3 id="3设计哈希表的关键">3.设计哈希表的关键</h3>
-<h4 id="哈希函数key-gt桶索引"><strong>哈希函数</strong>(key-&gt;桶索引)</h4>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">好的哈希函数总是尽可能将key分布到桶中,而不浪费桶,完美的哈希是指key-&gt;桶一一对应</span><br></pre></td></tr></table></figure>
-<p>哈希函数是哈希表中最重要的组件，该哈希表用于将键映射到特定的桶。在上一篇文章中的示例中，我们使用 <code>y = x % 5</code> 作为散列函数，其中 <code>x</code> 是键值，<code>y</code> 是分配的桶的索引。</p>
-<p>!!!散列函数将取决于<code>键值的范围</code>和<code>桶的数量。</code>:red_circle:</p>
-<p>下面是一些哈希函数的示例：</p>
-<p><img src="https://aliyun-lc-upload.oss-cn-hangzhou.aliyuncs.com/aliyun-lc-upload/uploads/2018/05/04/screen-shot-2018-05-04-at-145454.png" alt="img"></p>
-<p>哈希函数的设计是一个开放的问题。其思想是尽可能将键分配到桶中，理想情况下，完美的哈希函数将是键和桶之间的一对一映射。然而，在大多数情况下，哈希函数并不完美，它需要在桶的数量和桶的容量之间进行权衡。</p>
-<h4 id="冲突解决">冲突解决</h4>
-<p>对于完美哈希,<strong>显然不会冲突</strong>,但是这是很难的.在前面介绍哈希的过程中,我们可以看到对于不同的key,我们可能将其<strong>分配到了同一个桶对象</strong>中,比如<code>2</code>和<code>1987</code>,<code>%5</code>之后都为<code>2</code>,所以都分配给了2号桶,那么该如何解决这种冲突呢?</p>
-<p>冲突解决算法应该解决以下几个问题：</p>
-<ol>
-<li>如何组织在同一个桶中的值？-&gt;(<code>使用何种数据结构</code>)</li>
-<li>如果为同一个桶分配了太多的值，该怎么办？-&gt;(<code>如何平衡桶元素数量</code>)</li>
-<li>如何在特定的桶中搜索目标值？-&gt;(<code>如何提高搜索效率</code>)</li>
-</ol>
+<hr>
+<h2 id="2-物理层">2. 物理层</h2>
+<p>物理层进行二进制的比特流传输.重点是通信方式,主要有3种通信方式</p>
+<p><strong>1. 单工通信</strong>:数据固定由一端传输到另一端</p>
+<p><strong>2. 半双工通信</strong>:数据可以双向传输,但是不可以同时在两端传递,只能交替传输</p>
+<p><strong>3. 全双工通信</strong>:数据可以同时在两端传递</p>
+<hr>
+<h2 id="3-数据链路层">3. 数据链路层</h2>
+<p>主要功能是报文分组之后的成帧传输,面向链路服务</p>
+<h3 id="31-成帧">3.1 成帧</h3>
+<p>将网络层传下来的报文分组添加首部和尾部,用于标记帧的开始和结束</p>
+<p><img src="https://i.loli.net/2019/03/11/5c85cf5502a3e.png" alt=""></p>
+<h3 id="32-差错检验">3.2 差错检验</h3>
+<p>数据链路层广泛使用了循环冗余检验（<code>CRC</code>）来检查比特差错</p>
+<h3 id="33-信道">3.3 信道</h3>
+<p><strong>1. 广播信道</strong>:一对多通信,所有节点在同一个广播信道发送数据,因此可能产生碰撞,需要使用算法来规避.</p>
+<p>主要有两种控制方法进行,一个是使用<strong>信道复用技术</strong>,一是使用<code>CSMA/CD</code>协议</p>
+<p><strong>2.  点对点信道</strong>:<code>PPP</code>协议控制,不会冲突,过程简单</p>
+<h3 id="34-信道复用技术">3.4 信道复用技术</h3>
+<p><strong>1. 频分复用</strong></p>
+<p>频分复用的所有主机在相同的时间占用不同的频率带宽资源</p>
+<p><img src="https://i.loli.net/2019/03/11/5c85d112ea0be.png" alt=""></p>
+<p><strong>2. 时分复用</strong></p>
+<p><img src="https://i.loli.net/2019/03/11/5c85d19759821.png" alt=""></p>
+<h3 id="35-mac地址">3.5 MAC地址</h3>
+<p>MAC 地址是链路层地址,长度为6字节(48 位),用于唯一标识网络适配器(网卡)</p>
+<p>一台主机拥有多少个网络适配器就有多少个 MAC 地址.例如笔记本电脑普遍存在无线网络适配器和有线网络适配器,因此就有两个 MAC 地址</p>
+<hr>
+<h2 id="4-网络层">4. 网络层</h2>
+<p>网络层的主要作用是报文的分组和数据传输,路由的寻址算法,是整个互联网的核心</p>
+<p>使用 IP 协议，可以把异构的物理网络连接起来，使得在网络层看起来好像是一个统一的网络</p>
+<p>​	<img src="https://i.loli.net/2019/03/11/5c85d3fc71f95.png" alt=""></p>
+<hr>
+<h2 id="5-传输层">5. 传输层</h2>
+<p>网络层只把分组发送到目的主机，但是真正通信的并不是主机而是主机中的进程。传输层提供了进程间的逻辑通信，传输层向高层用户屏蔽了下面网络层的核心细节，使应用程序看起来像是在两个传输层实体之间有一条端到端的逻辑通信信道</p>
+<h3 id="51-tcp和udp">5.1 TCP和UDP</h3>
+<h2 id="6-应用层">6. 应用层</h2>
 
                 
 
@@ -266,13 +281,9 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/Leetcode面试精选题解-1/" data-toggle="tooltip" data-placement="top" title="Leetcode面试精选题解-1">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/java多线程核心概念/" data-toggle="tooltip" data-placement="top" title="Java多线程学习笔记">Next Post &rarr;</a>
+                            <a href="/article/详解进程间通信IPC原理/" data-toggle="tooltip" data-placement="top" title="详解进程间通信IPC原理">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -316,6 +327,24 @@
             <!-- Tabe of Content -->
             <!-- Table of Contents -->
 
+  
+    <style>
+      span.toc-nav-number{
+        display: none
+      }
+    </style>
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#计算机网络重要知识点"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x8BA1;&#x7B97;&#x673A;&#x7F51;&#x7EDC;&#x91CD;&#x8981;&#x77E5;&#x8BC6;&#x70B9;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一-互联网"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x4E00;. &#x4E92;&#x8054;&#x7F51;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#11-基本概念"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">1.1 &#x57FA;&#x672C;&#x6982;&#x5FF5;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#12-主机之间的常见通信方式"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text">1.2 &#x4E3B;&#x673A;&#x4E4B;&#x95F4;&#x7684;&#x5E38;&#x89C1;&#x901A;&#x4FE1;&#x65B9;&#x5F0F;:</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#13-计算机网络体系结构"><span class="toc-nav-number">1.1.3.</span> <span class="toc-nav-text">1.3 &#x8BA1;&#x7B97;&#x673A;&#x7F51;&#x7EDC;&#x4F53;&#x7CFB;&#x7ED3;&#x6784;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2-物理层"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">2. &#x7269;&#x7406;&#x5C42;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-数据链路层"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">3. &#x6570;&#x636E;&#x94FE;&#x8DEF;&#x5C42;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#31-成帧"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">3.1 &#x6210;&#x5E27;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#32-差错检验"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">3.2 &#x5DEE;&#x9519;&#x68C0;&#x9A8C;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#33-信道"><span class="toc-nav-number">1.3.3.</span> <span class="toc-nav-text">3.3 &#x4FE1;&#x9053;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#34-信道复用技术"><span class="toc-nav-number">1.3.4.</span> <span class="toc-nav-text">3.4 &#x4FE1;&#x9053;&#x590D;&#x7528;&#x6280;&#x672F;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#35-mac地址"><span class="toc-nav-number">1.3.5.</span> <span class="toc-nav-text">3.5 MAC&#x5730;&#x5740;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#4-网络层"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">4. &#x7F51;&#x7EDC;&#x5C42;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#5-传输层"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">5. &#x4F20;&#x8F93;&#x5C42;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#51-tcp和udp"><span class="toc-nav-number">1.5.1.</span> <span class="toc-nav-text">5.1 TCP&#x548C;UDP</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#6-应用层"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">6. &#x5E94;&#x7528;&#x5C42;</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
                 
             <!-- Sidebar Container -->
             <div class="
@@ -330,7 +359,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
+                          <a class="tag" href="/tags/#计算机网络原理" title="计算机网络原理">计算机网络原理</a>
                         
                     </div>
                 </section>
