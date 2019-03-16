@@ -134,13 +134,6 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -149,6 +142,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -208,6 +208,37 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/article/java常见IO重点知识清点/">
+        <h2 class="post-title">
+            java常见IO重点知识清点
+        </h2>
+        <h3 class="post-subtitle">
+            IO流模型详解
+        </h3>
+        <div class="post-content-preview">
+            java常见IO重点知识清点
+磁盘操作
+使用File类进行操作,File表示文件和目录的基本信息,并不表示真正的操作,通过磁盘操作可以实现一些文件级别的控制程序,如文件管理程序
+123456789101112public static void listAllFiles(File dir) &#123;    if (dir == null || !dir.exists()) &#123; ......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-03-16
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#java" title="java">java</a>
+            
+        </div>
+    
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -333,13 +364,17 @@
         </h3>
         <div class="post-content-preview">
             java虚拟机核心概念
+JVM内存模型
+
+
+需要注意的是,运行时常量池是位于方法区内部的
+
 java堆
 java堆是GC的主要工作区域,是被所有线程共享的一块内存区域,在虚拟机启动时创建,唯一目的就是存放对象的实例
 方法区
 与java堆区一样,都是所有线程共享的,主要存放类加载信息,常量,静态变量,静态方法等…,常量池属于方法区
 对象创建的顺序
-1.首先进行类加载检查(参数是否能在常量池中找到类符号的引用,如果找不到说明还没有进行加载)
-2.在类加载过程中确......
+1.首先进行类加载检查(参数是否能在常量池中找......
         </div>
     </a>
     
@@ -465,41 +500,6 @@ r：0001
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/article/Leetcode面试精选题解-2/">
-        <h2 class="post-title">
-            Leetcode面试精选题解-2
-        </h2>
-        <h3 class="post-subtitle">
-            字符串专题
-        </h3>
-        <div class="post-content-preview">
-            Leetcode面试精选题解-字符串专题
-1.验证回文串
-给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。
-**说明：**本题中，我们将空字符串定义为有效的回文串。
-示例 1:
-12输入: &quot;A man, a plan, a canal: Panama&quot;输出: true
-示例 2:
-12输入: &quot;race a car&quot;输......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-02-01
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#算法" title="算法">算法</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -553,11 +553,11 @@ r：0001
             
         
             
-            <a href="/tags/#python程序设计" title="python程序设计" rel="3">python程序设计</a>
+            <a href="/tags/#java" title="java" rel="4">java</a>
             
         
             
-            <a href="/tags/#java" title="java" rel="3">java</a>
+            <a href="/tags/#python程序设计" title="python程序设计" rel="3">python程序设计</a>
             
         
             
@@ -639,6 +639,10 @@ r：0001
     <ul>
       
         <li>
+          <a href="/article/java常见IO重点知识清点/">java常见IO重点知识清点</a>
+        </li>
+      
+        <li>
           <a href="/article/计算机网络重要知识点/">计算机网络重要知识点</a>
         </li>
       
@@ -654,10 +658,6 @@ r：0001
           <a href="/article/java虚拟机核心概念/">java虚拟机核心概念</a>
         </li>
       
-        <li>
-          <a href="/article/Leetcode面试精选题解-5/">Leetcode面试精选题解-5</a>
-        </li>
-      
     </ul>
   </div>
 
@@ -670,7 +670,7 @@ r：0001
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>

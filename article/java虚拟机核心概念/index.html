@@ -142,13 +142,6 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -157,6 +150,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -213,6 +213,11 @@
                 post-container">
 
                 <h1 id="java虚拟机核心概念">java虚拟机核心概念</h1>
+<h2 id="jvm内存模型">JVM内存模型</h2>
+<p><img src="https://i.loli.net/2019/03/15/5c8bb57d726d1.png" alt=""></p>
+<blockquote>
+<p>需要注意的是,运行时常量池是位于方法区内部的</p>
+</blockquote>
 <h2 id="java堆">java堆</h2>
 <p>java堆是GC的主要工作区域,是被所有线程共享的一块内存区域,在虚拟机启动时创建,唯一目的就是存放对象的实例</p>
 <h2 id="方法区">方法区</h2>
@@ -290,7 +295,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#java虚拟机核心概念"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">java&#x865A;&#x62DF;&#x673A;&#x6838;&#x5FC3;&#x6982;&#x5FF5;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#java堆"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">java&#x5806;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#方法区"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x65B9;&#x6CD5;&#x533A;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#对象创建的顺序"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">&#x5BF9;&#x8C61;&#x521B;&#x5EFA;&#x7684;&#x987A;&#x5E8F;</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#java虚拟机核心概念"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">java&#x865A;&#x62DF;&#x673A;&#x6838;&#x5FC3;&#x6982;&#x5FF5;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#jvm内存模型"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">JVM&#x5185;&#x5B58;&#x6A21;&#x578B;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#java堆"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">java&#x5806;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#方法区"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">&#x65B9;&#x6CD5;&#x533A;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#对象创建的顺序"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">&#x5BF9;&#x8C61;&#x521B;&#x5EFA;&#x7684;&#x987A;&#x5E8F;</span></a></li></ol></li></ol>
         
         </div>
       </aside>
