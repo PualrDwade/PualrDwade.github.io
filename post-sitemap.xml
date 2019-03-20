@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://www.xuanxuan.site/article/java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</loc>
+        <lastmod>2019-03-20T08:23:58.584Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://www.xuanxuan.site/article/Java%E5%9F%BA%E7%A1%80%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</loc>
         <lastmod>2019-03-20T02:26:28.300Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -41,14 +49,6 @@
     <url>
         <loc>http://www.xuanxuan.site/article/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/</loc>
         <lastmod>2019-03-08T04:54:01.542Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://www.xuanxuan.site/article/java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</loc>
-        <lastmod>2019-03-08T02:07:08.418Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
