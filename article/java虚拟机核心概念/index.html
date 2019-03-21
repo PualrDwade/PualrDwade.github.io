@@ -213,19 +213,112 @@
                 post-container">
 
                 <h1 id="java虚拟机核心概念">java虚拟机核心概念</h1>
-<h2 id="jvm内存模型">JVM内存模型</h2>
+<blockquote>
+<p>特别鸣谢CS-NOTE作者提供的美观图片</p>
+</blockquote>
+<h2 id="一-运行时数据区">一. 运行时数据区</h2>
+<p>Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区进行协作,从而为java带来生命</p>
 <p><img src="https://i.loli.net/2019/03/15/5c8bb57d726d1.png" alt=""></p>
 <blockquote>
 <p>需要注意的是,运行时常量池是位于方法区内部的</p>
 </blockquote>
-<h2 id="java堆">java堆</h2>
-<p>java堆是GC的主要工作区域,是被所有线程共享的一块内存区域,在虚拟机启动时创建,唯一目的就是存放对象的实例</p>
-<h2 id="方法区">方法区</h2>
-<p>与java堆区一样,都是所有线程共享的,主要存放类加载信息,常量,静态变量,静态方法等…,常量池属于方法区</p>
-<h2 id="对象创建的顺序">对象创建的顺序</h2>
-<p>1.首先进行类加载检查(参数是否能在常量池中找到类符号的引用,如果找不到说明还没有进行加载)</p>
-<p>2.在类加载过程中确定对象所需要的内存空间</p>
-<p>3.从堆中划分对象内存</p>
+<p><strong>划分成为思维导图,便于理解与记忆</strong></p>
+<p><img src="https://i.loli.net/2019/03/21/5c93234e55b28.png" alt=""></p>
+<hr>
+<h2 id="二-垃圾回收gc">二. 垃圾回收(<code>GC</code>)</h2>
+<p>垃圾收集器主要是针对于线程共享的区域(堆,方法区)进行工作。</p>
+<p><strong>垃圾收集主要有两部分的工作:</strong></p>
+<ol>
+<li>判断对象是否可以被回收</li>
+<li>采用一定的策略对可回收对象进行回收操作</li>
+</ol>
+<h3 id="21-可回收性质判断">2.1 可回收性质判断</h3>
+<h4 id="211-引用计数法">2.1.1 引用计数法</h4>
+<p>为对象添加一个引用计数器，当对象增加一个引用时计数器加 1，引用失效时计数器减 1。引用计数为 0 的对象可被回收。</p>
+<p>在两个对象出现循环引用的情况下，此时引用计数器永远不为 0，导致无法对它们进行回收。正是因为循环引用的存在，因此 Java 虚拟机不使用引用计数算法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Object instance = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Test a = <span class="keyword">new</span> Test();</span><br><span class="line">        Test b = <span class="keyword">new</span> Test();</span><br><span class="line">        a.instance = b;</span><br><span class="line">        b.instance = a;</span><br><span class="line">        a = <span class="keyword">null</span>;</span><br><span class="line">        b = <span class="keyword">null</span>;</span><br><span class="line">        doSomething();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上述代码中,a与b引用的对象实例互相持有了对象的引用,因此当我们把对a对象与b对象的引用去除之后,由于两个对象还存在互相之间的引用,导致两个Test对象无法被回收。</p>
+<h4 id="212-线性探测法可达性分析法">2.1.2 线性探测法(可达性分析法)</h4>
+<p>以 GC Roots 为起始点进行搜索，可达的对象都是存活的，不可达的对象可被回收。</p>
+<p>Java 虚拟机使用该算法来判断对象是否可被回收，GC Roots 一般包含以下内容：</p>
+<ul>
+<li>虚拟机栈中局部变量表中引用的对象</li>
+<li>本地方法栈中 JNI 中引用的对象</li>
+<li>方法区中类静态属性引用的对象</li>
+<li>方法区中的常量引用的对象</li>
+</ul>
+<p><img src="https://i.loli.net/2019/03/21/5c93283695887.png" alt=""></p>
+<h4 id="213-方法区的垃圾回收">2.1.3 方法区的垃圾回收</h4>
+<p>方法区被称为永久代,回收频率比较低,主要是进行常量的回收以及对类的<strong>卸载</strong></p>
+<blockquote>
+<p>大量使用反射与动态代理技术会产生很多临时使用的类,这是就要求虚拟机具备较好的类卸载效率</p>
+</blockquote>
+<p>类卸载的<strong>必要条件</strong>:</p>
+<ul>
+<li>该类所有的实例都已经被回收，此时堆中不存在该类的任何实例。</li>
+<li>加载该类的 ClassLoader 已经被回收。</li>
+<li>该类对应的 Class 对象没有在任何地方被引用，也就无法在任何地方通过反射访问该类方法。</li>
+</ul>
+<blockquote>
+<p>简单来说:类的实例没了,类的加载器没了,类的Class对象任何引用都没了,这样才满足被回收的条件</p>
+</blockquote>
+<h3 id="22-引用类型与可回收判断关系">2.2 引用类型与可回收判断关系</h3>
+<p>无论是通过引用计数算法判断对象的引用数量，还是通过可达性分析算法判断对象是否可达，判定对象是否可被回收都与引用有关。</p>
+<p>Java 提供了四种强度不同的引用类型。</p>
+<h4 id="221-强引用">2.2.1 强引用</h4>
+<p>被强引用的对象不会被回收</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object obj = <span class="keyword">new</span> Object();</span><br></pre></td></tr></table></figure>
+<h4 id="222-软引用">2.2.2 软引用</h4>
+<p>软引用可以通过JDK提供的<code>SoftReference</code>类来创建,软引用在内存不足的时候会被回收</p>
+<blockquote>
+<p>软应用是手动GC不掉的</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SoftReferenceTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Object obj = <span class="keyword">new</span> Object();</span><br><span class="line">        SoftReference&lt;Object&gt; softReference = <span class="keyword">new</span> SoftReference&lt;&gt;(obj);</span><br><span class="line">        obj = <span class="keyword">null</span>;</span><br><span class="line">        System.out.println(softReference.get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="223-弱引用">2.2.3 弱引用</h4>
+<p>从名字就可以知道,与强引用是对应的</p>
+<p>被弱引用关联的对象一定会被回收，也就是说它只能存活到<strong>下一次垃圾回收发生之前</strong>。</p>
+<blockquote>
+<p>垃圾回收有专门的线程,有回收的周期,可以直接手动GC掉</p>
+</blockquote>
+<p>实验:使用 <code>WeakReference</code>类来创建弱引用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Object obj = <span class="keyword">new</span> Object();</span><br><span class="line">WeakReference&lt;Object&gt; wf = <span class="keyword">new</span> WeakReference&lt;Object&gt;(obj);</span><br><span class="line">obj = <span class="keyword">null</span>;</span><br><span class="line"> <span class="comment">// 判断是否GC</span></span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">    System.out.println(weakReference.get());</span><br><span class="line">    Thread.sleep(<span class="number">300</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>控制台输出:</strong></p>
+<p><img src="https://i.loli.net/2019/03/21/5c9330f9d1594.png" alt=""></p>
+<p><strong>手动触发GC:使用<code>jconsole</code>命令打开进程控制面板</strong></p>
+<p><img src="https://i.loli.net/2019/03/21/5c93315308467.png" alt=""></p>
+<p><strong>手动触发之后:控制台输出</strong></p>
+<p><img src="https://i.loli.net/2019/03/21/5c933189ad2b1.png" alt=""></p>
+<blockquote>
+<p>证明我们的论证是正确的,弱引用会保持对象可访问,直到下一次自动|手动GC</p>
+</blockquote>
+<h4 id="224-虚引用">2.2.4 虚引用</h4>
+<p>虚引用又称幻影引用或者幽灵引用</p>
+<p>又称为幽灵引用或者幻影引用，一个对象是否有虚引用的存在，不会对其生存时间造成影响，也<strong>无法通过虚引用得到一个对象。</strong></p>
+<p>为一个对象设置虚引用的唯一目的是能在这个对象被回收时收到一个系统通知。</p>
+<p>使用 <code>PhantomReference</code>来创建虚引用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object obj = <span class="keyword">new</span> Object();</span><br><span class="line">PhantomReference&lt;Object&gt; pf = <span class="keyword">new</span> PhantomReference&lt;Object&gt;(obj,<span class="keyword">null</span>);</span><br><span class="line">obj = <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="23-垃圾回收算法">2.3 垃圾回收算法</h3>
+<p>以下介绍一些虚拟机常用的回收算法</p>
+<h4 id="231-标记-清除算法">2.3.1 标记-清除算法</h4>
+<p>标记清除算法很简单,判断可回收的时候打上标记,在回收的时候对标记位置进行回收即可</p>
+<p>不足：</p>
+<ul>
+<li>标记和清除过程效率都不高；</li>
+<li>会产生大量不连续的内存碎片，导致无法给大对象分配内存。</li>
+</ul>
+<p><img src="https://i.loli.net/2019/03/21/5c9334e4c0934.png" alt=""></p>
+<h4 id="232-标记-整理算法">2.3.2 标记-整理算法</h4>
+<p>让所有存活的对象都向一端移动，然后直接清理掉端边界以外的内存。</p>
+<p><img src="https://i.loli.net/2019/03/21/5c933562712c3.png" alt=""></p>
+<h4 id="233-复制算法主流">2.3.3 复制算法(主流)</h4>
+<p><img src="https://i.loli.net/2019/03/21/5c93386dac7da.png" alt=""></p>
+<p>将内存划分为大小相等的两块，每次只使用其中一块，当这一块内存用完了就将还存活的对象复制到另一块上面，然后再把使用过的内存空间进行一次清理。</p>
+<p>主要不足是只使用了内存的一半。</p>
+<p>现在的商业虚拟机都采用这种收集算法<strong>回收新生代</strong>，但是并不是划分为大小相等的两块，<strong>而是一块较大的 Eden 空间和两块较小的 Survivor 空间</strong>，每次使用 Eden 和其中一块 Survivor。在回收时，将 Eden 和 Survivor 中还存活着的对象全部复制到另一块 Survivor 上，最后清理 Eden 和使用过的那一块 Survivor。</p>
+<p><code>HotSpot</code>虚拟机的 Eden 和 Survivor 大小比例<strong>默认为 8:1，保证了内存的利用率达到 90%</strong>。如果每次回收有多于 10% 的对象存活，那么一块 Survivor 就不够用了，此时需要依赖于老年代进行空间分配担保，也就是<strong>借用老年代的空间存储放不下的对象。</strong></p>
+<hr>
+<h2 id="三-类加载机制">三. 类加载机制</h2>
+<h2 id="四-对象创建的顺序">四. 对象创建的顺序</h2>
 
                 
 
@@ -295,7 +388,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#java虚拟机核心概念"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">java&#x865A;&#x62DF;&#x673A;&#x6838;&#x5FC3;&#x6982;&#x5FF5;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#jvm内存模型"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">JVM&#x5185;&#x5B58;&#x6A21;&#x578B;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#java堆"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">java&#x5806;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#方法区"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">&#x65B9;&#x6CD5;&#x533A;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#对象创建的顺序"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">&#x5BF9;&#x8C61;&#x521B;&#x5EFA;&#x7684;&#x987A;&#x5E8F;</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#java虚拟机核心概念"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">java&#x865A;&#x62DF;&#x673A;&#x6838;&#x5FC3;&#x6982;&#x5FF5;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一-运行时数据区"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x4E00;. &#x8FD0;&#x884C;&#x65F6;&#x6570;&#x636E;&#x533A;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二-垃圾回收gc"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x4E8C;. &#x5783;&#x573E;&#x56DE;&#x6536;(<code>GC</code>)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#21-可回收性质判断"><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text">2.1 &#x53EF;&#x56DE;&#x6536;&#x6027;&#x8D28;&#x5224;&#x65AD;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#211-引用计数法"><span class="toc-nav-number">1.2.1.1.</span> <span class="toc-nav-text">2.1.1 &#x5F15;&#x7528;&#x8BA1;&#x6570;&#x6CD5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#212-线性探测法可达性分析法"><span class="toc-nav-number">1.2.1.2.</span> <span class="toc-nav-text">2.1.2 &#x7EBF;&#x6027;&#x63A2;&#x6D4B;&#x6CD5;(&#x53EF;&#x8FBE;&#x6027;&#x5206;&#x6790;&#x6CD5;)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#213-方法区的垃圾回收"><span class="toc-nav-number">1.2.1.3.</span> <span class="toc-nav-text">2.1.3 &#x65B9;&#x6CD5;&#x533A;&#x7684;&#x5783;&#x573E;&#x56DE;&#x6536;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#22-引用类型与可回收判断关系"><span class="toc-nav-number">1.2.2.</span> <span class="toc-nav-text">2.2 &#x5F15;&#x7528;&#x7C7B;&#x578B;&#x4E0E;&#x53EF;&#x56DE;&#x6536;&#x5224;&#x65AD;&#x5173;&#x7CFB;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#221-强引用"><span class="toc-nav-number">1.2.2.1.</span> <span class="toc-nav-text">2.2.1 &#x5F3A;&#x5F15;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#222-软引用"><span class="toc-nav-number">1.2.2.2.</span> <span class="toc-nav-text">2.2.2 &#x8F6F;&#x5F15;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#223-弱引用"><span class="toc-nav-number">1.2.2.3.</span> <span class="toc-nav-text">2.2.3 &#x5F31;&#x5F15;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#224-虚引用"><span class="toc-nav-number">1.2.2.4.</span> <span class="toc-nav-text">2.2.4 &#x865A;&#x5F15;&#x7528;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#23-垃圾回收算法"><span class="toc-nav-number">1.2.3.</span> <span class="toc-nav-text">2.3 &#x5783;&#x573E;&#x56DE;&#x6536;&#x7B97;&#x6CD5;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#231-标记-清除算法"><span class="toc-nav-number">1.2.3.1.</span> <span class="toc-nav-text">2.3.1 &#x6807;&#x8BB0;-&#x6E05;&#x9664;&#x7B97;&#x6CD5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#232-标记-整理算法"><span class="toc-nav-number">1.2.3.2.</span> <span class="toc-nav-text">2.3.2 &#x6807;&#x8BB0;-&#x6574;&#x7406;&#x7B97;&#x6CD5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#233-复制算法主流"><span class="toc-nav-number">1.2.3.3.</span> <span class="toc-nav-text">2.3.3 &#x590D;&#x5236;&#x7B97;&#x6CD5;(&#x4E3B;&#x6D41;)</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#三-类加载机制"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">&#x4E09;. &#x7C7B;&#x52A0;&#x8F7D;&#x673A;&#x5236;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#四-对象创建的顺序"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">&#x56DB;. &#x5BF9;&#x8C61;&#x521B;&#x5EFA;&#x7684;&#x987A;&#x5E8F;</span></a></li></ol></li></ol>
         
         </div>
       </aside>
