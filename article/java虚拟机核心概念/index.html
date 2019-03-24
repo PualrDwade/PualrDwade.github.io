@@ -92,7 +92,7 @@
                             
                         </div>
                         <h1>java虚拟机核心概念</h1>
-                        <h2 class="subheading">深入理解jvm</h2>
+                        <h2 class="subheading">详解java运行时数据区</h2>
                         <span class="meta">
                             Posted by PualrDwade on
                             2019-03-06
@@ -224,7 +224,6 @@
 </blockquote>
 <p><strong>划分成为思维导图,便于理解与记忆</strong></p>
 <p><img src="https://i.loli.net/2019/03/21/5c93234e55b28.png" alt=""></p>
-<hr>
 <h2 id="二-垃圾回收gc">二. 垃圾回收(<code>GC</code>)</h2>
 <p>垃圾收集器主要是针对于线程共享的区域(堆,方法区)进行工作。</p>
 <p><strong>垃圾收集主要有两部分的工作:</strong></p>
@@ -316,9 +315,50 @@
 <p>主要不足是只使用了内存的一半。</p>
 <p>现在的商业虚拟机都采用这种收集算法<strong>回收新生代</strong>，但是并不是划分为大小相等的两块，<strong>而是一块较大的 Eden 空间和两块较小的 Survivor 空间</strong>，每次使用 Eden 和其中一块 Survivor。在回收时，将 Eden 和 Survivor 中还存活着的对象全部复制到另一块 Survivor 上，最后清理 Eden 和使用过的那一块 Survivor。</p>
 <p><code>HotSpot</code>虚拟机的 Eden 和 Survivor 大小比例<strong>默认为 8:1，保证了内存的利用率达到 90%</strong>。如果每次回收有多于 10% 的对象存活，那么一块 Survivor 就不够用了，此时需要依赖于老年代进行空间分配担保，也就是<strong>借用老年代的空间存储放不下的对象。</strong></p>
-<hr>
-<h2 id="三-类加载机制">三. 类加载机制</h2>
-<h2 id="四-对象创建的顺序">四. 对象创建的顺序</h2>
+<p>###2.4 垃圾收集器</p>
+<h4 id="241-概览">2.4.1 概览</h4>
+<p><img src="https://i.loli.net/2019/03/24/5c96f9a55e0b8.png" alt=""></p>
+<p>以上是 HotSpot 虚拟机中的 7 个垃圾收集器，连线表示垃圾收集器可以配合使用。</p>
+<ul>
+<li>单线程与多线程：单线程指的是垃圾收集器只使用一个线程，而多线程使用多个线程；</li>
+<li>串行与并行：串行指的是垃圾收集器与用户程序交替执行，这意味着在执行垃圾收集的时候需要停顿用户程序；并行指的是垃圾收集器和用户程序同时执行。除了 CMS 和 G1 之外，其它垃圾收集器都是以串行的方式执行。</li>
+</ul>
+<h4 id="242-gc的停顿与cpu吞吐率">2.4.2 GC的停顿与CPU吞吐率</h4>
+<p>垃圾回收相同数量的垃圾对象:</p>
+<ul>
+<li>若回收频率越高,则回收的停顿越低,用户交互越强,要求新生代空间越小越好,相对应的则CPU吞吐率下降(要频繁GC)</li>
+<li>若频率越低,则回收的停顿时间较长,CPU吞吐率较高,不需要额外时间来控制回收</li>
+</ul>
+<blockquote>
+<p>缩短停顿时间是以牺牲吞吐量和新生代空间来换取的：新生代空间变小，垃圾回收变得频繁，导致吞吐量下降</p>
+</blockquote>
+<h2 id="三-内存分配与回收策略">三. 内存分配与回收策略</h2>
+<h3 id="31-minor-gc与full-gc">3.1 Minor GC与Full GC</h3>
+<ul>
+<li>Minor GC：回收新生代，因为新生代对象存活时间很短，因此 Minor GC 会频繁执行，执行的速度一般也会比较快。</li>
+<li>Full GC：回收老年代和新生代，老年代对象其存活时间长，因此 Full GC 很少执行，执行速度会比 Minor GC 慢很多。</li>
+</ul>
+<h3 id="32-内存分配策略">3.2 内存分配策略</h3>
+<ul>
+<li><strong>对象优先在Eden分配</strong>:Eden满则触发Minor回收</li>
+<li><strong>大对象直接进入老年代</strong>:大数组,长字符串…</li>
+<li><strong>长期存活进入老年代</strong>:每次经历过一次GC,年龄+1,达到规定值则转移到老年代</li>
+<li><strong>动态对象年龄判定</strong>:也不一定达到指定年龄,可以动态判断,找出一个年龄众数(大于一半),则超过此年龄也可以进入老年代</li>
+<li><strong>空间分配担保</strong>:由于Minor GC采用复制算法,需要把Eden+Servival1中存活对象复制到Servival2中,若Servival2分区空间不足以放下所有对象,则需要判断<strong>老年代</strong>分配额外空间是否能够担保,若能够保证放入新对象,则直接进行Minor GC,否则担保失败,出发Full GC。</li>
+</ul>
+<blockquote>
+<p>新生代的Minor GC执行时间短,适合生存时间短的对象,而Full GC则速度慢,回收存活比较久的,要频率尽可能低。总之:尽可能在新生代被回收,活得久再去老年代</p>
+</blockquote>
+<h3 id="33-full-gc触发条件">3.3 Full GC触发条件</h3>
+<p>对于 Minor GC，其触发条件非常简单，当 Eden 空间满时，就将触发一次 Minor GC。而 Full GC 则相对复杂，有以下条件:</p>
+<ul>
+<li><strong>调用<code>System.gc()</code></strong>:只是建议虚拟机执行 Full GC，但是虚拟机不一定真正去执行。<strong>不建议使用这种方式</strong>，而是让虚拟机管理内存。</li>
+<li><strong>老年代空间不足</strong>:<br>
+老年代空间不足的常见场景为前文所讲的大对象直接进入老年代、长期存活的对象进入老年代等。为了避免以上原因引起的 Full GC，应当尽量不要创建过大的对象以及数组。除此之外，可以通过 -Xmn 虚拟机参数调大新生代的大小，让对象尽量在新生代被回收掉，不进入老年代。还可以通过 -XX:MaxTenuringThreshold 调大对象进入老年代的年龄，让对象在新生代多存活一段时间。</li>
+<li><strong>空间分配担保失败</strong>:如上3.2</li>
+</ul>
+<h2 id="四-类加载机制">四. 类加载机制</h2>
+<h2 id="五-对象创建的顺序">五. 对象创建的顺序</h2>
 
                 
 
@@ -388,7 +428,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#java虚拟机核心概念"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">java&#x865A;&#x62DF;&#x673A;&#x6838;&#x5FC3;&#x6982;&#x5FF5;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一-运行时数据区"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x4E00;. &#x8FD0;&#x884C;&#x65F6;&#x6570;&#x636E;&#x533A;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二-垃圾回收gc"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x4E8C;. &#x5783;&#x573E;&#x56DE;&#x6536;(<code>GC</code>)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#21-可回收性质判断"><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text">2.1 &#x53EF;&#x56DE;&#x6536;&#x6027;&#x8D28;&#x5224;&#x65AD;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#211-引用计数法"><span class="toc-nav-number">1.2.1.1.</span> <span class="toc-nav-text">2.1.1 &#x5F15;&#x7528;&#x8BA1;&#x6570;&#x6CD5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#212-可达性分析法"><span class="toc-nav-number">1.2.1.2.</span> <span class="toc-nav-text">2.1.2 &#x53EF;&#x8FBE;&#x6027;&#x5206;&#x6790;&#x6CD5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#213-方法区的垃圾回收"><span class="toc-nav-number">1.2.1.3.</span> <span class="toc-nav-text">2.1.3 &#x65B9;&#x6CD5;&#x533A;&#x7684;&#x5783;&#x573E;&#x56DE;&#x6536;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#22-引用类型与可回收判断关系"><span class="toc-nav-number">1.2.2.</span> <span class="toc-nav-text">2.2 &#x5F15;&#x7528;&#x7C7B;&#x578B;&#x4E0E;&#x53EF;&#x56DE;&#x6536;&#x5224;&#x65AD;&#x5173;&#x7CFB;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#221-强引用"><span class="toc-nav-number">1.2.2.1.</span> <span class="toc-nav-text">2.2.1 &#x5F3A;&#x5F15;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#222-软引用"><span class="toc-nav-number">1.2.2.2.</span> <span class="toc-nav-text">2.2.2 &#x8F6F;&#x5F15;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#223-弱引用"><span class="toc-nav-number">1.2.2.3.</span> <span class="toc-nav-text">2.2.3 &#x5F31;&#x5F15;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#224-虚引用"><span class="toc-nav-number">1.2.2.4.</span> <span class="toc-nav-text">2.2.4 &#x865A;&#x5F15;&#x7528;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#23-垃圾回收算法"><span class="toc-nav-number">1.2.3.</span> <span class="toc-nav-text">2.3 &#x5783;&#x573E;&#x56DE;&#x6536;&#x7B97;&#x6CD5;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#231-标记-清除算法"><span class="toc-nav-number">1.2.3.1.</span> <span class="toc-nav-text">2.3.1 &#x6807;&#x8BB0;-&#x6E05;&#x9664;&#x7B97;&#x6CD5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#232-标记-整理算法"><span class="toc-nav-number">1.2.3.2.</span> <span class="toc-nav-text">2.3.2 &#x6807;&#x8BB0;-&#x6574;&#x7406;&#x7B97;&#x6CD5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#233-复制算法主流"><span class="toc-nav-number">1.2.3.3.</span> <span class="toc-nav-text">2.3.3 &#x590D;&#x5236;&#x7B97;&#x6CD5;(&#x4E3B;&#x6D41;)</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#三-类加载机制"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">&#x4E09;. &#x7C7B;&#x52A0;&#x8F7D;&#x673A;&#x5236;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#四-对象创建的顺序"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">&#x56DB;. &#x5BF9;&#x8C61;&#x521B;&#x5EFA;&#x7684;&#x987A;&#x5E8F;</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#java虚拟机核心概念"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">java&#x865A;&#x62DF;&#x673A;&#x6838;&#x5FC3;&#x6982;&#x5FF5;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一-运行时数据区"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x4E00;. &#x8FD0;&#x884C;&#x65F6;&#x6570;&#x636E;&#x533A;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二-垃圾回收gc"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x4E8C;. &#x5783;&#x573E;&#x56DE;&#x6536;(<code>GC</code>)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#21-可回收性质判断"><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text">2.1 &#x53EF;&#x56DE;&#x6536;&#x6027;&#x8D28;&#x5224;&#x65AD;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#211-引用计数法"><span class="toc-nav-number">1.2.1.1.</span> <span class="toc-nav-text">2.1.1 &#x5F15;&#x7528;&#x8BA1;&#x6570;&#x6CD5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#212-可达性分析法"><span class="toc-nav-number">1.2.1.2.</span> <span class="toc-nav-text">2.1.2 &#x53EF;&#x8FBE;&#x6027;&#x5206;&#x6790;&#x6CD5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#213-方法区的垃圾回收"><span class="toc-nav-number">1.2.1.3.</span> <span class="toc-nav-text">2.1.3 &#x65B9;&#x6CD5;&#x533A;&#x7684;&#x5783;&#x573E;&#x56DE;&#x6536;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#22-引用类型与可回收判断关系"><span class="toc-nav-number">1.2.2.</span> <span class="toc-nav-text">2.2 &#x5F15;&#x7528;&#x7C7B;&#x578B;&#x4E0E;&#x53EF;&#x56DE;&#x6536;&#x5224;&#x65AD;&#x5173;&#x7CFB;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#221-强引用"><span class="toc-nav-number">1.2.2.1.</span> <span class="toc-nav-text">2.2.1 &#x5F3A;&#x5F15;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#222-软引用"><span class="toc-nav-number">1.2.2.2.</span> <span class="toc-nav-text">2.2.2 &#x8F6F;&#x5F15;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#223-弱引用"><span class="toc-nav-number">1.2.2.3.</span> <span class="toc-nav-text">2.2.3 &#x5F31;&#x5F15;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#224-虚引用"><span class="toc-nav-number">1.2.2.4.</span> <span class="toc-nav-text">2.2.4 &#x865A;&#x5F15;&#x7528;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#23-垃圾回收算法"><span class="toc-nav-number">1.2.3.</span> <span class="toc-nav-text">2.3 &#x5783;&#x573E;&#x56DE;&#x6536;&#x7B97;&#x6CD5;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#231-标记-清除算法"><span class="toc-nav-number">1.2.3.1.</span> <span class="toc-nav-text">2.3.1 &#x6807;&#x8BB0;-&#x6E05;&#x9664;&#x7B97;&#x6CD5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#232-标记-整理算法"><span class="toc-nav-number">1.2.3.2.</span> <span class="toc-nav-text">2.3.2 &#x6807;&#x8BB0;-&#x6574;&#x7406;&#x7B97;&#x6CD5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#233-复制算法主流"><span class="toc-nav-number">1.2.3.3.</span> <span class="toc-nav-text">2.3.3 &#x590D;&#x5236;&#x7B97;&#x6CD5;(&#x4E3B;&#x6D41;)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#241-概览"><span class="toc-nav-number">1.2.3.4.</span> <span class="toc-nav-text">2.4.1 &#x6982;&#x89C8;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#242-gc的停顿与cpu吞吐率"><span class="toc-nav-number">1.2.3.5.</span> <span class="toc-nav-text">2.4.2 GC&#x7684;&#x505C;&#x987F;&#x4E0E;CPU&#x541E;&#x5410;&#x7387;</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#三-内存分配与回收策略"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">&#x4E09;. &#x5185;&#x5B58;&#x5206;&#x914D;&#x4E0E;&#x56DE;&#x6536;&#x7B56;&#x7565;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#31-minor-gc与full-gc"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">3.1 Minor GC&#x4E0E;Full GC</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#32-内存分配策略"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">3.2 &#x5185;&#x5B58;&#x5206;&#x914D;&#x7B56;&#x7565;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#33-full-gc触发条件"><span class="toc-nav-number">1.3.3.</span> <span class="toc-nav-text">3.3 Full GC&#x89E6;&#x53D1;&#x6761;&#x4EF6;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#四-类加载机制"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">&#x56DB;. &#x7C7B;&#x52A0;&#x8F7D;&#x673A;&#x5236;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#五-对象创建的顺序"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">&#x4E94;. &#x5BF9;&#x8C61;&#x521B;&#x5EFA;&#x7684;&#x987A;&#x5E8F;</span></a></li></ol></li></ol>
         
         </div>
       </aside>
