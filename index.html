@@ -134,14 +134,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -208,6 +208,41 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/article/详解LinuxI-O模式/">
+        <h2 class="post-title">
+            详解LinuxI/O模式
+        </h2>
+        <h3 class="post-subtitle">
+            poll select epoll揭秘
+        </h3>
+        <div class="post-content-preview">
+            Linux I/O模型
+一. 缓冲区拷贝
+一个网络输入操作有两部分:
+
+等待输入数据准备好:从网卡到系统内核缓冲区:data-&gt;kernel buf
+内核拷贝到进程:内核缓冲区-&gt;进程缓冲区kernel buf-&gt;user buf
+
+对于一个套接字上的输入操作，第一步通常涉及等待数据从网络中到达。当所等待数据到达时，它被复制到内核中的某个缓冲区。第二步就是把数据从内核缓冲区......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-04-08
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#linux" title="linux">linux</a>
+            
+        </div>
+    
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -449,50 +484,6 @@
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/article/java虚拟机核心概念/">
-        <h2 class="post-title">
-            java虚拟机核心概念
-        </h2>
-        <h3 class="post-subtitle">
-            详解java运行时数据区
-        </h3>
-        <div class="post-content-preview">
-            java虚拟机核心概念
-
-特别鸣谢CS-NOTE作者提供的美观图片
-
-一. 运行时数据区
-Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区进行协作,从而为java带来生命
-
-
-需要注意的是,运行时常量池是位于方法区内部的
-
-划分成为思维导图,便于理解与记忆
-
-二. 垃圾回收(GC)
-垃圾收集器主要是针对于线程共享的区域(堆,方法区)进行工作。
-垃圾收集主要有两部分的工作:
-
-判断......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-03-06
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#java" title="java">java</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -538,11 +529,11 @@ Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区
             
         
             
-            <a href="/tags/#算法" title="算法" rel="4">算法</a>
+            <a href="/tags/#数据结构" title="数据结构" rel="3">数据结构</a>
             
         
             
-            <a href="/tags/#数据结构" title="数据结构" rel="3">数据结构</a>
+            <a href="/tags/#算法" title="算法" rel="4">算法</a>
             
         
             
@@ -558,15 +549,19 @@ Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区
             
         
             
-            <a href="/tags/#软件工程" title="软件工程" rel="1">软件工程</a>
-            
-        
-            
             <a href="/tags/#数据库" title="数据库" rel="1">数据库</a>
             
         
             
+            <a href="/tags/#linux" title="linux" rel="1">linux</a>
+            
+        
+            
             <a href="/tags/#计算机网络原理" title="计算机网络原理" rel="1">计算机网络原理</a>
+            
+        
+            
+            <a href="/tags/#软件工程" title="软件工程" rel="1">软件工程</a>
             
         
     </div>
@@ -640,6 +635,10 @@ Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区
     <ul>
       
         <li>
+          <a href="/article/详解LinuxI-O模式/">详解LinuxI/O模式</a>
+        </li>
+      
+        <li>
           <a href="/article/数据库原理详解/">数据库原理详解</a>
         </li>
       
@@ -655,10 +654,6 @@ Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区
           <a href="/article/计算机网络重要知识点/">计算机网络重要知识点</a>
         </li>
       
-        <li>
-          <a href="/article/详解进程间通信IPC原理/">详解进程间通信IPC原理</a>
-        </li>
-      
     </ul>
   </div>
 
@@ -671,7 +666,7 @@ Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>
