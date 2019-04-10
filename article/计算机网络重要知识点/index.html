@@ -151,14 +151,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -214,82 +214,82 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="计算机网络重要知识点">计算机网络重要知识点</h1>
+                <h1 id="计算机网络重要知识点"><a class="markdownIt-Anchor" href="#计算机网络重要知识点"></a> 计算机网络重要知识点</h1>
 <blockquote>
 <p>本文图片来自<code>github</code>的<code>CS-NOTE</code>,在此感谢作者CYC的开源精神</p>
 </blockquote>
-<h2 id="一-互联网">一. 互联网</h2>
-<h3 id="11-基本概念">1.1 基本概念</h3>
+<h2 id="一-互联网"><a class="markdownIt-Anchor" href="#一-互联网"></a> 一. 互联网</h2>
+<h3 id="11-基本概念"><a class="markdownIt-Anchor" href="#11-基本概念"></a> 1.1 基本概念</h3>
 <p>网络是多个终端(主机)互相连接起来,而互联网则是将网络联系起来,<strong>互联网是网络的网络</strong></p>
 <p><img src="https://i.loli.net/2019/03/11/5c85c8a41e6af.png" alt=""></p>
-<h3 id="12-主机之间的常见通信方式">1.2 主机之间的常见通信方式:</h3>
+<h3 id="12-主机之间的常见通信方式"><a class="markdownIt-Anchor" href="#12-主机之间的常见通信方式"></a> 1.2 主机之间的常见通信方式:</h3>
 <ul>
 <li>客户机服务器模式:(<code>C/S</code>),拓扑结构呈放射状</li>
 </ul>
 <p><img src="https://i.loli.net/2019/03/11/5c85c90631975.png" alt=""></p>
 <ul>
-<li>点对点模式(不区分客户机和服务器,公平通信):(<code>P2P</code>),拓扑结构呈网状</li>
+<li>点对点模式(不区分客户机和服务器,公平通信)😦<code>P2P</code>),拓扑结构呈网状</li>
 </ul>
 <p><img src="https://i.loli.net/2019/03/11/5c85c91365a36.png" alt=""></p>
-<h3 id="13-计算机网络体系结构">1.3 计算机网络体系结构</h3>
+<h3 id="13-计算机网络体系结构"><a class="markdownIt-Anchor" href="#13-计算机网络体系结构"></a> 1.3 计算机网络体系结构</h3>
 <p><img src="https://i.loli.net/2019/03/11/5c85c9c7a0f86.png" alt=""></p>
 <p><strong>数据工作流:</strong></p>
-<p>应用层:HTTP等协议数据---&gt;传输层:TCP/UDP数据报,面向进程---&gt;网络层:传输层数据报封装成组:面向主机</p>
-<p>---&gt;数据链路层:将网络层的数据组封装成帧:面向主机之间的链路--&gt;物理层:传输比特流,单位为<code>bit</code>.</p>
+<p>应用层:HTTP等协议数据—&gt;传输层:TCP/UDP数据报,面向进程—&gt;网络层:传输层数据报封装成组:面向主机</p>
+<p>—&gt;数据链路层:将网络层的数据组封装成帧:面向主机之间的链路–&gt;物理层:传输比特流,单位为<code>bit</code>.</p>
 <blockquote>
 <p>总之,底层为高层提供服务,数据从高层不断拆箱成比特流数据到另一个主机,而后反过来不断装箱,提供应用层使用,这便是网络数据的工作流,HTTP-&gt;成数据报-&gt;成组-&gt;成帧-&gt;成比特-&gt;帧-&gt;分组-&gt;数据报-&gt;HTTP</p>
 </blockquote>
 <hr>
-<h2 id="二-物理层">二. 物理层</h2>
+<h2 id="二-物理层"><a class="markdownIt-Anchor" href="#二-物理层"></a> 二. 物理层</h2>
 <p>物理层进行二进制的比特流传输.重点是通信方式,主要有3种通信方式</p>
 <p><strong>1. 单工通信</strong>:数据固定由一端传输到另一端</p>
 <p><strong>2. 半双工通信</strong>:数据可以双向传输,但是不可以同时在两端传递,只能交替传输</p>
 <p><strong>3. 全双工通信</strong>:数据可以同时在两端传递</p>
 <hr>
-<h2 id="三-数据链路层">三. 数据链路层</h2>
+<h2 id="三-数据链路层"><a class="markdownIt-Anchor" href="#三-数据链路层"></a> 三. 数据链路层</h2>
 <p>主要功能是报文分组之后的成帧传输,面向链路服务</p>
-<h3 id="31-成帧">3.1 成帧</h3>
+<h3 id="31-成帧"><a class="markdownIt-Anchor" href="#31-成帧"></a> 3.1 成帧</h3>
 <p>将网络层传下来的报文分组添加首部和尾部,用于标记帧的开始和结束</p>
 <p><img src="https://i.loli.net/2019/03/11/5c85cf5502a3e.png" alt=""></p>
-<h3 id="32-差错检验">3.2 差错检验</h3>
+<h3 id="32-差错检验"><a class="markdownIt-Anchor" href="#32-差错检验"></a> 3.2 差错检验</h3>
 <p>数据链路层广泛使用了循环冗余检验（<code>CRC</code>）来检查比特差错</p>
-<h3 id="33-信道">3.3 信道</h3>
+<h3 id="33-信道"><a class="markdownIt-Anchor" href="#33-信道"></a> 3.3 信道</h3>
 <p><strong>1. 广播信道</strong>:一对多通信,所有节点在同一个广播信道发送数据,因此可能产生碰撞,需要使用算法来规避.</p>
 <p>主要有两种控制方法进行,一个是使用<strong>信道复用技术</strong>,一是使用<code>CSMA/CD</code>协议</p>
 <p><strong>2.  点对点信道</strong>:<code>PPP</code>协议控制,不会冲突,过程简单</p>
-<h3 id="34-信道复用技术">3.4 信道复用技术</h3>
+<h3 id="34-信道复用技术"><a class="markdownIt-Anchor" href="#34-信道复用技术"></a> 3.4 信道复用技术</h3>
 <p><strong>1. 频分复用</strong></p>
 <p>频分复用的所有主机在相同的时间占用不同的频率带宽资源</p>
 <p><img src="https://i.loli.net/2019/03/11/5c85d112ea0be.png" alt=""></p>
 <p><strong>2. 时分复用</strong></p>
 <p><img src="https://i.loli.net/2019/03/11/5c85d19759821.png" alt=""></p>
-<h3 id="35-mac地址">3.5 MAC地址</h3>
+<h3 id="35-mac地址"><a class="markdownIt-Anchor" href="#35-mac地址"></a> 3.5 MAC地址</h3>
 <p>MAC 地址是链路层地址,长度为6字节(48 位),用于唯一标识网络适配器(网卡)</p>
 <p>一台主机拥有多少个网络适配器就有多少个 MAC 地址.例如笔记本电脑普遍存在无线网络适配器和有线网络适配器,因此就有两个 MAC 地址</p>
 <hr>
-<h2 id="四-网络层">四. 网络层</h2>
+<h2 id="四-网络层"><a class="markdownIt-Anchor" href="#四-网络层"></a> 四. 网络层</h2>
 <p>网络层的主要作用是报文的分组和数据传输,路由的寻址算法,是整个互联网的核心</p>
 <p>使用 IP 协议，可以把异构的物理网络连接起来，使得在网络层看起来好像是一个统一的网络</p>
 <p>​	<img src="https://i.loli.net/2019/03/11/5c85d3fc71f95.png" alt=""></p>
 <hr>
-<h2 id="五-传输层">五. 传输层</h2>
+<h2 id="五-传输层"><a class="markdownIt-Anchor" href="#五-传输层"></a> 五. 传输层</h2>
 <p>网络层只把分组发送到目的主机，但是真正通信的并不是主机而是主机中的进程。传输层提供了进程间的逻辑通信，传输层向高层用户屏蔽了下面网络层的核心细节，使应用程序看起来像是在两个传输层实体之间有一条端到端的逻辑通信信道</p>
 <blockquote>
 <p>传输层的对象是进程</p>
 </blockquote>
-<h3 id="51-tcp和udp">5.1 TCP和UDP</h3>
+<h3 id="51-tcp和udp"><a class="markdownIt-Anchor" href="#51-tcp和udp"></a> 5.1 TCP和UDP</h3>
 <ul>
 <li>用户数据报协议 UDP（User Datagram Protocol）是无连接的，尽最大可能交付，没有拥塞控制，面向报文（对于应用程序传下来的报文不合并也不拆分，只是添加 UDP 首部），支持一对一、一对多、多对一和多对多的交互通信。</li>
 <li>传输控制协议 TCP（Transmission Control Protocol）是面向连接的，提供可靠交付，有流量控制，拥塞控制，提供全双工通信，面向字节流（把应用层传下来的报文看成字节流，把字节流组织成大小不等的数据块），每一条 TCP 连接只能是点对点的（一对一）。</li>
 </ul>
-<h3 id="52-三次握手">5.2 三次握手</h3>
-<h3 id="53-四次挥手">5.3 四次挥手</h3>
+<h3 id="52-三次握手"><a class="markdownIt-Anchor" href="#52-三次握手"></a> 5.2 三次握手</h3>
+<h3 id="53-四次挥手"><a class="markdownIt-Anchor" href="#53-四次挥手"></a> 5.3 四次挥手</h3>
 <hr>
-<h2 id="六-应用层">六. 应用层</h2>
-<h3 id="http协议">HTTP协议</h3>
+<h2 id="六-应用层"><a class="markdownIt-Anchor" href="#六-应用层"></a> 六. 应用层</h2>
+<h3 id="http协议"><a class="markdownIt-Anchor" href="#http协议"></a> HTTP协议</h3>
 <p>超文本传输协议,建立于TCP之上的应用层协议</p>
 <p>一个HTTP过程包括请求报文与响应报文两个部分</p>
-<h4 id="请求报文">请求报文</h4>
+<h4 id="请求报文"><a class="markdownIt-Anchor" href="#请求报文"></a> 请求报文</h4>
 <blockquote>
 <p>请求头,请求方法,请求体</p>
 </blockquote>
@@ -321,7 +321,7 @@
 </blockquote>
 </li>
 </ul>
-<h4 id="响应报文">响应报文</h4>
+<h4 id="响应报文"><a class="markdownIt-Anchor" href="#响应报文"></a> 响应报文</h4>
 <blockquote>
 <p>响应状态码,响应头,响应体</p>
 </blockquote>
@@ -363,7 +363,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="常见的状态码">常见的状态码</h4>
+<h4 id="常见的状态码"><a class="markdownIt-Anchor" href="#常见的状态码"></a> 常见的状态码</h4>
 <ul>
 <li>200:成功请求</li>
 <li>400:bad request 请求报文错误</li>
@@ -376,7 +376,7 @@
 <blockquote>
 <p>2xx表示成功请求,3xx通常需要额外操作,4xx是客户端错误,5xx是服务器的错误,经常出现5xx说明服务端开发人员水平欠佳</p>
 </blockquote>
-<h4 id="浏览器http请求经历的过程">浏览器HTTP请求经历的过程</h4>
+<h4 id="浏览器http请求经历的过程"><a class="markdownIt-Anchor" href="#浏览器http请求经历的过程"></a> 浏览器HTTP请求经历的过程</h4>
 <p>1.本地占用一个端口,查看本地host文件是否指定了请求URL的IP地址,如果是则2,否则3</p>
 <p>2.直接访问IP地址主机的80端口,并准备开始建立连接,随后6</p>
 <p>3.本地没有配置则从本地DNS查询URL,若有记录则4,否则5</p>
@@ -386,14 +386,14 @@
 <p>7.发送请求数据到服务器,服务器解析成HTTP请求报文后处理</p>
 <p>8.服务器封装处理后的响应报文发送到客户端</p>
 <p>9.浏览器解析Response,完成渲染</p>
-<h4 id="短连接与长连接">短连接与长连接</h4>
+<h4 id="短连接与长连接"><a class="markdownIt-Anchor" href="#短连接与长连接"></a> 短连接与长连接</h4>
 <p>当浏览器访问一个包含多张图片的 HTML 页面时，除了请求访问 HTML 页面资源，还会请求图片资源。如果每进行一次 HTTP 通信就要新建一个 TCP 连接，那么开销会很大。</p>
 <p>长连接只需要建立一次 TCP 连接就能进行多次 HTTP 通信。</p>
 <ul>
 <li>从 HTTP/1.1 开始默认是长连接的，如果要断开连接，需要由客户端或者服务器端提出断开，使用 <code>Connection : close</code>；</li>
 <li>在 HTTP/1.1 之前默认是短连接的，如果需要使用长连接，则使用 <code>Connection : Keep-Alive</code>。</li>
 </ul>
-<h4 id="会话跟踪技术">会话跟踪技术</h4>
+<h4 id="会话跟踪技术"><a class="markdownIt-Anchor" href="#会话跟踪技术"></a> 会话跟踪技术</h4>
 <p>客户端使用cookie,服务端使用session</p>
 
                 
@@ -464,7 +464,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#计算机网络重要知识点"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x8BA1;&#x7B97;&#x673A;&#x7F51;&#x7EDC;&#x91CD;&#x8981;&#x77E5;&#x8BC6;&#x70B9;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一-互联网"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x4E00;. &#x4E92;&#x8054;&#x7F51;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#11-基本概念"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">1.1 &#x57FA;&#x672C;&#x6982;&#x5FF5;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#12-主机之间的常见通信方式"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text">1.2 &#x4E3B;&#x673A;&#x4E4B;&#x95F4;&#x7684;&#x5E38;&#x89C1;&#x901A;&#x4FE1;&#x65B9;&#x5F0F;:</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#13-计算机网络体系结构"><span class="toc-nav-number">1.1.3.</span> <span class="toc-nav-text">1.3 &#x8BA1;&#x7B97;&#x673A;&#x7F51;&#x7EDC;&#x4F53;&#x7CFB;&#x7ED3;&#x6784;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二-物理层"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x4E8C;. &#x7269;&#x7406;&#x5C42;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#三-数据链路层"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">&#x4E09;. &#x6570;&#x636E;&#x94FE;&#x8DEF;&#x5C42;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#31-成帧"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">3.1 &#x6210;&#x5E27;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#32-差错检验"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">3.2 &#x5DEE;&#x9519;&#x68C0;&#x9A8C;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#33-信道"><span class="toc-nav-number">1.3.3.</span> <span class="toc-nav-text">3.3 &#x4FE1;&#x9053;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#34-信道复用技术"><span class="toc-nav-number">1.3.4.</span> <span class="toc-nav-text">3.4 &#x4FE1;&#x9053;&#x590D;&#x7528;&#x6280;&#x672F;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#35-mac地址"><span class="toc-nav-number">1.3.5.</span> <span class="toc-nav-text">3.5 MAC&#x5730;&#x5740;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#四-网络层"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">&#x56DB;. &#x7F51;&#x7EDC;&#x5C42;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#五-传输层"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">&#x4E94;. &#x4F20;&#x8F93;&#x5C42;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#51-tcp和udp"><span class="toc-nav-number">1.5.1.</span> <span class="toc-nav-text">5.1 TCP&#x548C;UDP</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#52-三次握手"><span class="toc-nav-number">1.5.2.</span> <span class="toc-nav-text">5.2 &#x4E09;&#x6B21;&#x63E1;&#x624B;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#53-四次挥手"><span class="toc-nav-number">1.5.3.</span> <span class="toc-nav-text">5.3 &#x56DB;&#x6B21;&#x6325;&#x624B;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#六-应用层"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">&#x516D;. &#x5E94;&#x7528;&#x5C42;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#http协议"><span class="toc-nav-number">1.6.1.</span> <span class="toc-nav-text">HTTP&#x534F;&#x8BAE;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#请求报文"><span class="toc-nav-number">1.6.1.1.</span> <span class="toc-nav-text">&#x8BF7;&#x6C42;&#x62A5;&#x6587;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#响应报文"><span class="toc-nav-number">1.6.1.2.</span> <span class="toc-nav-text">&#x54CD;&#x5E94;&#x62A5;&#x6587;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#常见的状态码"><span class="toc-nav-number">1.6.1.3.</span> <span class="toc-nav-text">&#x5E38;&#x89C1;&#x7684;&#x72B6;&#x6001;&#x7801;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#浏览器http请求经历的过程"><span class="toc-nav-number">1.6.1.4.</span> <span class="toc-nav-text">&#x6D4F;&#x89C8;&#x5668;HTTP&#x8BF7;&#x6C42;&#x7ECF;&#x5386;&#x7684;&#x8FC7;&#x7A0B;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#短连接与长连接"><span class="toc-nav-number">1.6.1.5.</span> <span class="toc-nav-text">&#x77ED;&#x8FDE;&#x63A5;&#x4E0E;&#x957F;&#x8FDE;&#x63A5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#会话跟踪技术"><span class="toc-nav-number">1.6.1.6.</span> <span class="toc-nav-text">&#x4F1A;&#x8BDD;&#x8DDF;&#x8E2A;&#x6280;&#x672F;</span></a></li></ol></li></ol></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#计算机网络重要知识点"><span class="toc-nav-number">1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x8BA1;&#x7B97;&#x673A;&#x7F51;&#x7EDC;&#x91CD;&#x8981;&#x77E5;&#x8BC6;&#x70B9;"></a> &#x8BA1;&#x7B97;&#x673A;&#x7F51;&#x7EDC;&#x91CD;&#x8981;&#x77E5;&#x8BC6;&#x70B9;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一-互联网"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E00;-&#x4E92;&#x8054;&#x7F51;"></a> &#x4E00;. &#x4E92;&#x8054;&#x7F51;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#11-基本概念"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#11-&#x57FA;&#x672C;&#x6982;&#x5FF5;"></a> 1.1 &#x57FA;&#x672C;&#x6982;&#x5FF5;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#12-主机之间的常见通信方式"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#12-&#x4E3B;&#x673A;&#x4E4B;&#x95F4;&#x7684;&#x5E38;&#x89C1;&#x901A;&#x4FE1;&#x65B9;&#x5F0F;"></a> 1.2 &#x4E3B;&#x673A;&#x4E4B;&#x95F4;&#x7684;&#x5E38;&#x89C1;&#x901A;&#x4FE1;&#x65B9;&#x5F0F;:</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#13-计算机网络体系结构"><span class="toc-nav-number">1.1.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#13-&#x8BA1;&#x7B97;&#x673A;&#x7F51;&#x7EDC;&#x4F53;&#x7CFB;&#x7ED3;&#x6784;"></a> 1.3 &#x8BA1;&#x7B97;&#x673A;&#x7F51;&#x7EDC;&#x4F53;&#x7CFB;&#x7ED3;&#x6784;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二-物理层"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E8C;-&#x7269;&#x7406;&#x5C42;"></a> &#x4E8C;. &#x7269;&#x7406;&#x5C42;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#三-数据链路层"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E09;-&#x6570;&#x636E;&#x94FE;&#x8DEF;&#x5C42;"></a> &#x4E09;. &#x6570;&#x636E;&#x94FE;&#x8DEF;&#x5C42;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#31-成帧"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#31-&#x6210;&#x5E27;"></a> 3.1 &#x6210;&#x5E27;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#32-差错检验"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#32-&#x5DEE;&#x9519;&#x68C0;&#x9A8C;"></a> 3.2 &#x5DEE;&#x9519;&#x68C0;&#x9A8C;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#33-信道"><span class="toc-nav-number">1.3.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#33-&#x4FE1;&#x9053;"></a> 3.3 &#x4FE1;&#x9053;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#34-信道复用技术"><span class="toc-nav-number">1.3.4.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#34-&#x4FE1;&#x9053;&#x590D;&#x7528;&#x6280;&#x672F;"></a> 3.4 &#x4FE1;&#x9053;&#x590D;&#x7528;&#x6280;&#x672F;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#35-mac地址"><span class="toc-nav-number">1.3.5.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#35-mac&#x5730;&#x5740;"></a> 3.5 MAC&#x5730;&#x5740;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#四-网络层"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x56DB;-&#x7F51;&#x7EDC;&#x5C42;"></a> &#x56DB;. &#x7F51;&#x7EDC;&#x5C42;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#五-传输层"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E94;-&#x4F20;&#x8F93;&#x5C42;"></a> &#x4E94;. &#x4F20;&#x8F93;&#x5C42;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#51-tcp和udp"><span class="toc-nav-number">1.5.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#51-tcp&#x548C;udp"></a> 5.1 TCP&#x548C;UDP</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#52-三次握手"><span class="toc-nav-number">1.5.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#52-&#x4E09;&#x6B21;&#x63E1;&#x624B;"></a> 5.2 &#x4E09;&#x6B21;&#x63E1;&#x624B;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#53-四次挥手"><span class="toc-nav-number">1.5.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#53-&#x56DB;&#x6B21;&#x6325;&#x624B;"></a> 5.3 &#x56DB;&#x6B21;&#x6325;&#x624B;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#六-应用层"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x516D;-&#x5E94;&#x7528;&#x5C42;"></a> &#x516D;. &#x5E94;&#x7528;&#x5C42;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#http协议"><span class="toc-nav-number">1.6.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#http&#x534F;&#x8BAE;"></a> HTTP&#x534F;&#x8BAE;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#请求报文"><span class="toc-nav-number">1.6.1.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x8BF7;&#x6C42;&#x62A5;&#x6587;"></a> &#x8BF7;&#x6C42;&#x62A5;&#x6587;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#响应报文"><span class="toc-nav-number">1.6.1.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x54CD;&#x5E94;&#x62A5;&#x6587;"></a> &#x54CD;&#x5E94;&#x62A5;&#x6587;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#常见的状态码"><span class="toc-nav-number">1.6.1.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x5E38;&#x89C1;&#x7684;&#x72B6;&#x6001;&#x7801;"></a> &#x5E38;&#x89C1;&#x7684;&#x72B6;&#x6001;&#x7801;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#浏览器http请求经历的过程"><span class="toc-nav-number">1.6.1.4.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x6D4F;&#x89C8;&#x5668;http&#x8BF7;&#x6C42;&#x7ECF;&#x5386;&#x7684;&#x8FC7;&#x7A0B;"></a> &#x6D4F;&#x89C8;&#x5668;HTTP&#x8BF7;&#x6C42;&#x7ECF;&#x5386;&#x7684;&#x8FC7;&#x7A0B;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#短连接与长连接"><span class="toc-nav-number">1.6.1.5.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x77ED;&#x8FDE;&#x63A5;&#x4E0E;&#x957F;&#x8FDE;&#x63A5;"></a> &#x77ED;&#x8FDE;&#x63A5;&#x4E0E;&#x957F;&#x8FDE;&#x63A5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#会话跟踪技术"><span class="toc-nav-number">1.6.1.6.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4F1A;&#x8BDD;&#x8DDF;&#x8E2A;&#x6280;&#x672F;"></a> &#x4F1A;&#x8BDD;&#x8DDF;&#x8E2A;&#x6280;&#x672F;</span></a></li></ol></li></ol></li></ol></li></ol>
         
         </div>
       </aside>
