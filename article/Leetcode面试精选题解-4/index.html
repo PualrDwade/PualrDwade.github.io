@@ -144,13 +144,6 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/archive/">Archives</a>
                         </li>
                         
@@ -159,6 +152,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -214,45 +214,46 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="leetcode面试精选题解-位运算详解"><a class="markdownIt-Anchor" href="#leetcode面试精选题解-位运算详解"></a> Leetcode面试精选题解-位运算详解</h1>
-<h2 id="1按位取与amp"><a class="markdownIt-Anchor" href="#1按位取与"></a> 1.按位取与（&amp;）</h2>
+                <h1 id="leetcode面试精选题解-位运算详解">Leetcode面试精选题解-位运算详解</h1>
+<h2 id="1按位取与amp">1.按位取与（&amp;）</h2>
 <p>两值按二进制位进行 “与”运算</p>
 <p>规则：0&amp;0=0；0&amp;1=0；1&amp;0=0；1&amp;1=1</p>
 <p>举个栗子： a = 5  ,b = 3</p>
 <p>a：0101</p>
 <p>b：0011</p>
 <p>r：0001</p>
-<h2 id="2按位取或"><a class="markdownIt-Anchor" href="#2按位取或"></a> 2.按位取或（|）</h2>
-<p>两值按二进制位进行 “或”运算<br>
-规则：0|0=0；0|1=1；1|0=1；1|1=1<br>
+<h2 id="2按位取或">2.按位取或（|）</h2>
+<p>两值按二进制位进行 “或”运算
+规则：0|0=0；0|1=1；1|0=1；1|1=1
 举个栗子： a = 5  ,b = 3</p>
 <p>a：0101</p>
 <p>b：0011</p>
 <p>r：0111</p>
-<h2 id="3按位取异或"><a class="markdownIt-Anchor" href="#3按位取异或"></a> 3.按位取异或（^）</h2>
-<p>两值按二进制位进行 “异或”运算<br>
-规则：0<sup>0=0；0</sup>1=1；1<sup>0=1；1</sup>1=0<br>
+<h2 id="3按位取异或">3.按位取异或（^）</h2>
+<p>两值按二进制位进行 “异或”运算
+规则：0^0=0；0^1=1；1^0=1；1^1=0
 举个栗子： a = 5  ,b = 3</p>
 <p>a：0101</p>
 <p>b：0011</p>
 <p>r：0110</p>
-<h2 id="4左移运算符ltlt及右移运算符gtgt"><a class="markdownIt-Anchor" href="#4左移运算符及右移运算符"></a> 4.左移运算符“&lt;&lt;”及右移运算符“&gt;&gt;”</h2>
+<h2 id="4左移运算符ltlt及右移运算符gtgt">4.左移运算符“&lt;&lt;”及右移运算符“&gt;&gt;”</h2>
 <p><strong>左移运算符&quot; &lt;&lt; n &quot;:</strong></p>
 <p>将一个数的二进制位全部向左移n位,最左边一位舍弃，右边补0。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">5</span>;</span><br><span class="line">a&lt;&lt;<span class="number">1</span>;</span><br><span class="line"><span class="number">0101</span> -&gt; <span class="number">1010</span>;</span><br></pre></td></tr></table></figure>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">5</span>;</span><br><span class="line">a&lt;&lt;<span class="number">1</span>;</span><br><span class="line"><span class="number">0101</span> -&gt; <span class="number">1010</span>;</span><br></pre></td></tr></table></figure></p>
 <p>左移一位后，<code>a = a * 2 = 10</code></p>
-<p><strong>右移运算符&quot;&gt;&gt;&quot;:</strong><br>
+<p><strong>右移运算符&quot;&gt;&gt;&quot;:</strong>
 将一个数的二进制位全部向右移n位,最右边一位舍弃，左边补0</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">5</span>;</span><br><span class="line">a&gt;&gt;<span class="number">1</span>;</span><br><span class="line"><span class="number">0101</span> -&gt; <span class="number">0010</span>;</span><br></pre></td></tr></table></figure>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">5</span>;</span><br><span class="line">a&gt;&gt;<span class="number">1</span>;</span><br><span class="line"><span class="number">0101</span> -&gt; <span class="number">0010</span>;</span><br></pre></td></tr></table></figure></p>
 <p>左移一位后，<code>a = a / 2 = 2</code></p>
-<h2 id="5例题分析题号371两整数之和"><a class="markdownIt-Anchor" href="#5例题分析题号371两整数之和"></a> 5.例题分析:题号371:两整数之和</h2>
+<h2 id="5例题分析题号371两整数之和">5.例题分析:题号371:两整数之和</h2>
 <p><strong>不使用</strong>运算符 <code>+</code> 和 <code>-</code> ，计算两整数 <code>a</code> 、<code>b</code> 之和。</p>
 <p><strong>示例 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: a = 1, b = 2</span><br><span class="line">输出: 3</span><br></pre></td></tr></table></figure>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: a = 1, b = 2</span><br><span class="line">输出: 3</span><br></pre></td></tr></table></figure></p>
 <p><strong>示例 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: a = -2, b = 3</span><br><span class="line">输出: 1</span><br></pre></td></tr></table></figure>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: a = -2, b = 3</span><br><span class="line">输出: 1</span><br></pre></td></tr></table></figure></p>
 <p><strong>解答:</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//按位取异或</span></span><br><span class="line">	<span class="keyword">int</span> result = a^b;</span><br><span class="line">	<span class="comment">//判断是否需要进位</span></span><br><span class="line">	<span class="keyword">int</span> forward = (a&amp;b) &lt;&lt;<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(forward!=<span class="number">0</span>)&#123;</span><br><span class="line">    	<span class="comment">//如有进位，则将二进制数左移一位，进行递归</span></span><br><span class="line">    	<span class="keyword">return</span> getSum(result,forward);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//按位取异或</span></span><br><span class="line">	<span class="keyword">int</span> result = a^b;</span><br><span class="line">	<span class="comment">//判断是否需要进位</span></span><br><span class="line">	<span class="keyword">int</span> forward = (a&amp;b) &lt;&lt;<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(forward!=<span class="number">0</span>)&#123;</span><br><span class="line">    	<span class="comment">//如有进位，则将二进制数左移一位，进行递归</span></span><br><span class="line">    	<span class="keyword">return</span> getSum(result,forward);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
                 
 
                 <hr>
@@ -321,7 +322,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#leetcode面试精选题解-位运算详解"><span class="toc-nav-number">1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#leetcode&#x9762;&#x8BD5;&#x7CBE;&#x9009;&#x9898;&#x89E3;-&#x4F4D;&#x8FD0;&#x7B97;&#x8BE6;&#x89E3;"></a> Leetcode&#x9762;&#x8BD5;&#x7CBE;&#x9009;&#x9898;&#x89E3;-&#x4F4D;&#x8FD0;&#x7B97;&#x8BE6;&#x89E3;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1按位取与amp"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#1&#x6309;&#x4F4D;&#x53D6;&#x4E0E;"></a> 1.&#x6309;&#x4F4D;&#x53D6;&#x4E0E;&#xFF08;&amp;&#xFF09;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2按位取或"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#2&#x6309;&#x4F4D;&#x53D6;&#x6216;"></a> 2.&#x6309;&#x4F4D;&#x53D6;&#x6216;&#xFF08;|&#xFF09;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3按位取异或"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#3&#x6309;&#x4F4D;&#x53D6;&#x5F02;&#x6216;"></a> 3.&#x6309;&#x4F4D;&#x53D6;&#x5F02;&#x6216;&#xFF08;^&#xFF09;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#4左移运算符ltlt及右移运算符gtgt"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#4&#x5DE6;&#x79FB;&#x8FD0;&#x7B97;&#x7B26;&#x53CA;&#x53F3;&#x79FB;&#x8FD0;&#x7B97;&#x7B26;"></a> 4.&#x5DE6;&#x79FB;&#x8FD0;&#x7B97;&#x7B26;&#x201C;&lt;&lt;&#x201D;&#x53CA;&#x53F3;&#x79FB;&#x8FD0;&#x7B97;&#x7B26;&#x201C;&gt;&gt;&#x201D;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#5例题分析题号371两整数之和"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#5&#x4F8B;&#x9898;&#x5206;&#x6790;&#x9898;&#x53F7;371&#x4E24;&#x6574;&#x6570;&#x4E4B;&#x548C;"></a> 5.&#x4F8B;&#x9898;&#x5206;&#x6790;:&#x9898;&#x53F7;371:&#x4E24;&#x6574;&#x6570;&#x4E4B;&#x548C;</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#leetcode面试精选题解-位运算详解"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Leetcode&#x9762;&#x8BD5;&#x7CBE;&#x9009;&#x9898;&#x89E3;-&#x4F4D;&#x8FD0;&#x7B97;&#x8BE6;&#x89E3;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1按位取与amp"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">1.&#x6309;&#x4F4D;&#x53D6;&#x4E0E;&#xFF08;&amp;&#xFF09;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2按位取或"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">2.&#x6309;&#x4F4D;&#x53D6;&#x6216;&#xFF08;|&#xFF09;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3按位取异或"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">3.&#x6309;&#x4F4D;&#x53D6;&#x5F02;&#x6216;&#xFF08;^&#xFF09;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#4左移运算符ltlt及右移运算符gtgt"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">4.&#x5DE6;&#x79FB;&#x8FD0;&#x7B97;&#x7B26;&#x201C;&lt;&lt;&#x201D;&#x53CA;&#x53F3;&#x79FB;&#x8FD0;&#x7B97;&#x7B26;&#x201C;&gt;&gt;&#x201D;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#5例题分析题号371两整数之和"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">5.&#x4F8B;&#x9898;&#x5206;&#x6790;:&#x9898;&#x53F7;371:&#x4E24;&#x6574;&#x6570;&#x4E4B;&#x548C;</span></a></li></ol></li></ol>
         
         </div>
       </aside>
