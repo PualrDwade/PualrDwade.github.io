@@ -214,11 +214,11 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="进程间通信ipc-interprocess-communication"><a class="markdownIt-Anchor" href="#进程间通信ipc-interprocess-communication"></a> 进程间通信IPC (InterProcess Communication)</h1>
-<h2 id="一-进程间通信的概念"><a class="markdownIt-Anchor" href="#一-进程间通信的概念"></a> 一、进程间通信的概念</h2>
+                <h1 id="进程间通信ipc-interprocess-communication">进程间通信IPC (InterProcess Communication)</h1>
+<h2 id="一-进程间通信的概念">一、进程间通信的概念</h2>
 <p>每个进程各自有不同的用户地址空间，任何一个进程的全局变量在另一个进程中都看不到，所以进程之间要交换数据必须通过内核，在内核中<strong>开辟一块缓冲区</strong>，进程1把数据从用户空间拷到内核缓冲区，进程2再从内核缓冲区把数据读走，内核提供的这种机制称为<strong>进程间通信（<code>IPC</code>)</strong></p>
 <p><img src="https://i.loli.net/2019/03/08/5c81c4d94f846.png" alt=""></p>
-<h2 id="二-进程间通信的7种方式"><a class="markdownIt-Anchor" href="#二-进程间通信的7种方式"></a> 二、进程间通信的7种方式</h2>
+<h2 id="二-进程间通信的7种方式">二、进程间通信的7种方式</h2>
 <p>第一类:传统的Unix通信机制</p>
 <p>1.管道/匿名管道</p>
 <p>2.有名管道</p>
@@ -296,7 +296,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#进程间通信ipc-interprocess-communication"><span class="toc-nav-number">1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x8FDB;&#x7A0B;&#x95F4;&#x901A;&#x4FE1;ipc-interprocess-communication"></a> &#x8FDB;&#x7A0B;&#x95F4;&#x901A;&#x4FE1;IPC (InterProcess Communication)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一-进程间通信的概念"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E00;-&#x8FDB;&#x7A0B;&#x95F4;&#x901A;&#x4FE1;&#x7684;&#x6982;&#x5FF5;"></a> &#x4E00;&#x3001;&#x8FDB;&#x7A0B;&#x95F4;&#x901A;&#x4FE1;&#x7684;&#x6982;&#x5FF5;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二-进程间通信的7种方式"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E8C;-&#x8FDB;&#x7A0B;&#x95F4;&#x901A;&#x4FE1;&#x7684;7&#x79CD;&#x65B9;&#x5F0F;"></a> &#x4E8C;&#x3001;&#x8FDB;&#x7A0B;&#x95F4;&#x901A;&#x4FE1;&#x7684;7&#x79CD;&#x65B9;&#x5F0F;</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#进程间通信ipc-interprocess-communication"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x8FDB;&#x7A0B;&#x95F4;&#x901A;&#x4FE1;IPC (InterProcess Communication)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一-进程间通信的概念"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x4E00;&#x3001;&#x8FDB;&#x7A0B;&#x95F4;&#x901A;&#x4FE1;&#x7684;&#x6982;&#x5FF5;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二-进程间通信的7种方式"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x4E8C;&#x3001;&#x8FDB;&#x7A0B;&#x95F4;&#x901A;&#x4FE1;&#x7684;7&#x79CD;&#x65B9;&#x5F0F;</span></a></li></ol></li></ol>
         
         </div>
       </aside>
