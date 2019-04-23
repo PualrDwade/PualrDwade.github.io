@@ -144,14 +144,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -214,8 +214,8 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="哈希表"><a class="markdownIt-Anchor" href="#哈希表"></a> 哈希表</h2>
-<h3 id="1概念"><a class="markdownIt-Anchor" href="#1概念"></a> 1.概念</h3>
+                <h2 id="哈希表">哈希表</h2>
+<h3 id="1概念">1.概念</h3>
 <p>哈希表是使用<code>哈希函数</code>组织的数据结构,能够支持快速的查找和插入操作.</p>
 <p>哈希表通常有两种:</p>
 <blockquote>
@@ -224,8 +224,8 @@
 <blockquote>
 <p>2.哈希映射:java的<code>util</code>包中提供了<code>HashMap</code>的实现</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;?&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">Map&lt;?,?&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br></pre></td></tr></table></figure>
-<h3 id="2哈希表的原理"><a class="markdownIt-Anchor" href="#2哈希表的原理"></a> 2.哈希表的原理</h3>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;?&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">Map&lt;?,?&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br></pre></td></tr></table></figure></p>
+<h3 id="2哈希表的原理">2.哈希表的原理</h3>
 <p>哈希表的关键思想是使用哈希函数<code>将键映射到存储桶(Bucket)</code>。更确切地说，</p>
 <p>1.当我们插入一个新的键时，<strong>哈希函数</strong>将决定该键应该分配到哪个桶中，并将该键存储在相应的桶中</p>
 <p>2.当我们想要搜索一个键时，哈希表将<strong>使用相同的哈希函数</strong>来查找对应的桶，并只在特定的桶中进行搜索。</p>
@@ -245,15 +245,15 @@
 </ul>
 </li>
 </ol>
-<h3 id="3设计哈希表的关键"><a class="markdownIt-Anchor" href="#3设计哈希表的关键"></a> 3.设计哈希表的关键</h3>
-<h4 id="哈希函数key-gt桶索引"><a class="markdownIt-Anchor" href="#哈希函数key-桶索引"></a> <strong>哈希函数</strong>(key-&gt;桶索引)</h4>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">好的哈希函数总是尽可能将key分布到桶中,而不浪费桶,完美的哈希是指key-&gt;桶一一对应</span><br></pre></td></tr></table></figure>
+<h3 id="3设计哈希表的关键">3.设计哈希表的关键</h3>
+<h4 id="哈希函数key-gt桶索引"><strong>哈希函数</strong>(key-&gt;桶索引)</h4>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">好的哈希函数总是尽可能将key分布到桶中,而不浪费桶,完美的哈希是指key-&gt;桶一一对应</span><br></pre></td></tr></table></figure></p>
 <p>哈希函数是哈希表中最重要的组件，该哈希表用于将键映射到特定的桶。在上一篇文章中的示例中，我们使用 <code>y = x % 5</code> 作为散列函数，其中 <code>x</code> 是键值，<code>y</code> 是分配的桶的索引。</p>
-<p>!!!散列函数将取决于<code>键值的范围</code>和<code>桶的数量。</code>🔴</p>
+<p>!!!散列函数将取决于<code>键值的范围</code>和<code>桶的数量。</code>:red_circle:</p>
 <p>下面是一些哈希函数的示例：</p>
 <p><img src="https://aliyun-lc-upload.oss-cn-hangzhou.aliyuncs.com/aliyun-lc-upload/uploads/2018/05/04/screen-shot-2018-05-04-at-145454.png" alt="img"></p>
 <p>哈希函数的设计是一个开放的问题。其思想是尽可能将键分配到桶中，理想情况下，完美的哈希函数将是键和桶之间的一对一映射。然而，在大多数情况下，哈希函数并不完美，它需要在桶的数量和桶的容量之间进行权衡。</p>
-<h4 id="冲突解决"><a class="markdownIt-Anchor" href="#冲突解决"></a> 冲突解决</h4>
+<h4 id="冲突解决">冲突解决</h4>
 <p>对于完美哈希,<strong>显然不会冲突</strong>,但是这是很难的.在前面介绍哈希的过程中,我们可以看到对于不同的key,我们可能将其<strong>分配到了同一个桶对象</strong>中,比如<code>2</code>和<code>1987</code>,<code>%5</code>之后都为<code>2</code>,所以都分配给了2号桶,那么该如何解决这种冲突呢?</p>
 <p>冲突解决算法应该解决以下几个问题：</p>
 <ol>
