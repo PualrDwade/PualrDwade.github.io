@@ -7,8 +7,16 @@
     </url>
 
     <url>
+        <loc>http://www.xuanxuan.site/article/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%98%BF%E9%87%8C2020%E5%B1%8A%E6%98%A5%E6%8B%9B%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95/</loc>
+        <lastmod>2019-04-23T05:11:10.413Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://www.xuanxuan.site/article/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AF%86%E7%82%B9/</loc>
-        <lastmod>2019-04-22T06:43:31.826Z</lastmod>
+        <lastmod>2019-04-22T07:41:26.870Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -17,22 +25,6 @@
     <url>
         <loc>http://www.xuanxuan.site/article/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3/</loc>
         <lastmod>2019-04-21T11:52:42.925Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://www.xuanxuan.site/article/Golang%E6%A0%B8%E5%BF%83%E8%A6%81%E7%82%B9/</loc>
-        <lastmod>2019-04-21T11:47:16.715Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://www.xuanxuan.site/article/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E6%88%98/</loc>
-        <lastmod>2019-04-20T02:49:45.677Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -191,7 +183,7 @@
     </url>
 
     <url>
-        <loc>http://www.xuanxuan.site/article/python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</loc>
+        <loc>http://www.xuanxuan.site/article/python%E7%9A%84for%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/</loc>
         <lastmod>2019-02-28T09:09:17.221Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -199,7 +191,7 @@
     </url>
 
     <url>
-        <loc>http://www.xuanxuan.site/article/python%E7%9A%84for%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/</loc>
+        <loc>http://www.xuanxuan.site/article/python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</loc>
         <lastmod>2019-02-28T09:09:17.221Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Golang核心要点 - 陈志轩 | Blog
+          记一次阿里2020届春招实习面试 - 陈志轩 | Blog
         
     </title>
 
-    <link rel="canonical" href="http://www.xuanxuan.site/article/Golang核心要点/">
+    <link rel="canonical" href="http://www.xuanxuan.site/article/记一次阿里2020届春招实习面试/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -90,14 +90,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#Golang" title="Golang">Golang</a>
+                              <a class="tag" href="/tags/#面试" title="面试">面试</a>
                             
                         </div>
-                        <h1>Golang核心要点</h1>
-                        <h2 class="subheading">Golang常见面试知识点</h2>
+                        <h1>记一次阿里2020届春招实习面试</h1>
+                        <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by PualrDwade on
-                            2019-04-21
+                            2019-04-23
                         </span>
                     </div>
                 
@@ -151,14 +151,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -214,7 +214,76 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="golang核心要点">Golang核心要点</h1>
+                <h1 id="阿里2020届春招实习一面"><a class="markdownIt-Anchor" href="#阿里2020届春招实习一面"></a> 阿里2020届春招实习一面</h1>
+<p>面试官给我的感觉就像是个小哥哥,很亲近也很耐心,整个过程还算顺利,一共面了有1个小时20分钟,还是有比较多的地方没有回答好,可能是还是比较紧张的原因,很简单的笔试题居然经过提醒之后才完成解答QAQ,主要的内容如下:</p>
+<h2 id="项目"><a class="markdownIt-Anchor" href="#项目"></a> 项目</h2>
+<p>架构,分工,实现,技术难点</p>
+<h2 id="操作系统"><a class="markdownIt-Anchor" href="#操作系统"></a> 操作系统</h2>
+<ol>
+<li>进程线程区别</li>
+<li>虚拟内存管理(分段分页)</li>
+<li>linux常见命令有哪些</li>
+</ol>
+<h2 id="数据结构"><a class="markdownIt-Anchor" href="#数据结构"></a> 数据结构</h2>
+<ol>
+<li>两个栈实现队列</li>
+<li>两个队列实现栈</li>
+<li>二叉树的深度遍历，广度遍历</li>
+<li>广度遍历代码实现</li>
+<li>二叉搜索树原理</li>
+<li>平衡二叉树是什么</li>
+<li>二叉树平衡算法有哪些</li>
+<li>B树,B+树</li>
+<li>红黑树</li>
+</ol>
+<h2 id="数据库"><a class="markdownIt-Anchor" href="#数据库"></a> 数据库</h2>
+<ol>
+<li>innodb默认隔离级别</li>
+<li>如何实现可重复读(MVCC)</li>
+<li>select * from table in share mode 加S锁</li>
+<li>select * from  table for update 加X锁</li>
+<li>a,b,c三个字段联合索引,select * from table where a = x and b = y;索引是否生效,where a = x and c = y 呢?</li>
+</ol>
+<h2 id="网络"><a class="markdownIt-Anchor" href="#网络"></a> 网络</h2>
+<ol>
+<li>http响应过程,从输入url到显示页面经历了什么</li>
+<li>DNS解析,端口,协议(upd,tcp)</li>
+<li>三次握手,四次挥手过程</li>
+<li>四次挥手客户端为什么要进入TIME-WAIT等待最大报文存活时间,而不是直接断开连接</li>
+<li>应用层协议有哪些</li>
+</ol>
+<h2 id="java"><a class="markdownIt-Anchor" href="#java"></a> java</h2>
+<ol>
+<li>原始类型,包装类型区别</li>
+<li>装箱,拆箱过程</li>
+<li>把空的包装类型赋值给原始类型会怎么样</li>
+<li>Integer底层怎么实现的</li>
+<li>== equals()区别</li>
+<li>hashcode()有什么用</li>
+<li>为什么重写eq必须重写hashcode,</li>
+<li>如何正确重写hashcode()</li>
+<li>LinkHashMap,TreeMap,HashMap</li>
+<li>如果要保存元素插入顺序,用上面的哪几个</li>
+<li>HashMap如何解决哈希冲突</li>
+</ol>
+<h2 id="框架"><a class="markdownIt-Anchor" href="#框架"></a> 框架</h2>
+<ol>
+<li>IOC,AOP概念</li>
+<li>Spring是怎么实现IOC和AOP的</li>
+<li>Spring的声明式事务如何实现的</li>
+</ol>
+<h2 id="设计模式"><a class="markdownIt-Anchor" href="#设计模式"></a> 设计模式</h2>
+<p>你知道的JDK用了哪些设计模式</p>
+<h2 id="笔试题"><a class="markdownIt-Anchor" href="#笔试题"></a> 笔试题</h2>
+<ol>
+<li>用递归实现字符串反转</li>
+<li>找出一个第K大元素</li>
+</ol>
+<h2 id="校园经历"><a class="markdownIt-Anchor" href="#校园经历"></a> 校园经历</h2>
+<ol>
+<li>拿了什么奖,什么奖学金,有没有上线的项目</li>
+<li>博客等等…</li>
+</ol>
 
                 
 
@@ -224,7 +293,7 @@
                     
                     
                         <li class="next">
-                            <a href="/article/内网穿透原理与实战/" data-toggle="tooltip" data-placement="top" title="内网穿透原理与实战">Next Post &rarr;</a>
+                            <a href="/article/详解LinuxI-O模式/" data-toggle="tooltip" data-placement="top" title="详解LinuxI/O模式">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -280,7 +349,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#golang核心要点"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Golang&#x6838;&#x5FC3;&#x8981;&#x70B9;</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#阿里2020届春招实习一面"><span class="toc-nav-number">1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x963F;&#x91CC;2020&#x5C4A;&#x6625;&#x62DB;&#x5B9E;&#x4E60;&#x4E00;&#x9762;"></a> &#x963F;&#x91CC;2020&#x5C4A;&#x6625;&#x62DB;&#x5B9E;&#x4E60;&#x4E00;&#x9762;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#项目"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x9879;&#x76EE;"></a> &#x9879;&#x76EE;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#操作系统"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;"></a> &#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#数据结构"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x6570;&#x636E;&#x7ED3;&#x6784;"></a> &#x6570;&#x636E;&#x7ED3;&#x6784;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#数据库"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x6570;&#x636E;&#x5E93;"></a> &#x6570;&#x636E;&#x5E93;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#网络"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x7F51;&#x7EDC;"></a> &#x7F51;&#x7EDC;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#java"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#java"></a> java</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#框架"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x6846;&#x67B6;"></a> &#x6846;&#x67B6;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#设计模式"><span class="toc-nav-number">1.8.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;"></a> &#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#笔试题"><span class="toc-nav-number">1.9.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x7B14;&#x8BD5;&#x9898;"></a> &#x7B14;&#x8BD5;&#x9898;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#校园经历"><span class="toc-nav-number">1.10.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x6821;&#x56ED;&#x7ECF;&#x5386;"></a> &#x6821;&#x56ED;&#x7ECF;&#x5386;</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -300,7 +369,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Golang" title="Golang">Golang</a>
+                          <a class="tag" href="/tags/#面试" title="面试">面试</a>
                         
                     </div>
                 </section>
