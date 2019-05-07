@@ -136,14 +136,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -221,13 +221,13 @@
             详解kubernetes原理与应用
         </h3>
         <div class="post-content-preview">
-             kubernetes核心技术
- 一. 概念
- 1.1 kubernates
+            kubernetes核心技术
+一. 概念
+1.1 kubernates
 kubernetes是谷歌推出的开源容器编排系统。Kubernetes 用于协调高度可用的计算机集群，这些计算机群集被连接作为单个单元工作,提供高度抽象的视角来实现统一的集群管理调度与容器编排。
 Kubernetes 是一个 开源 平台，可满足生产环境的需要。
- 1.2 kubernates cluster
-Kub......
+1.2 kubernates cluster
+Kuberne......
         </div>
     </a>
     
@@ -255,13 +255,18 @@ Kub......
             机器学习基本原理与算法
         </h3>
         <div class="post-content-preview">
-             机器学习算法
- 一. 线性回归
- 1.1 单变量线性回归
-f(x)=β0+β1xf(x) = \beta_0 + \beta_1x
-f(x)=β​0​​+β​1​​x
- 1.2 多元线性回归
-y=β0+β1x1+β2x2+β3x3+β4x4+..+βnxny = \beta_0+\beta_1x_1+\beta_2x_2+\beta_3x_3+\beta_4x_4+..+\beta_nx_......
+            机器学习算法
+一. 线性回归
+1.1 单变量线性回归
+$$
+f(x) = \beta_0 + \beta_1x
+$$
+1.2 多元线性回归
+$$
+y = \beta_0+\beta_1x_1+\beta_2x_2+\beta_3x_3+\beta_4x_4+..+\beta_nx_n
+$$
+1.2.1 特征缩放
+损失函数对于不同的β,在进行梯度下降过程中,步长可能会不一致,导致计算变慢,需要......
         </div>
     </a>
     
@@ -289,8 +294,8 @@ y=β0+β1x1+β2x2+β3x3+β4x4+..+βnxny = \beta_0+\beta_1x_1+\beta_2x_2+\beta_3x
             innodb存储引擎探秘
         </h3>
         <div class="post-content-preview">
-             MySQL联合索引与数据结构
- 一. 联合索引建立
+            MySQL联合索引与数据结构
+一. 联合索引建立
 联合索引是指通过多个字段序列联合建立索引,建立联合索引很简单,考虑如下表student:
 
 
@@ -319,7 +324,7 @@ phone
 
 
 我们给name,phone两个字段建立联合索引:
-1create index index_s......
+1create index index_stu......
         </div>
     </a>
     
@@ -347,14 +352,14 @@ phone
             poll select epoll揭秘
         </h3>
         <div class="post-content-preview">
-             Linux I/O模型
- 一. 缓冲区拷贝
+            Linux I/O模型
+一. 缓冲区拷贝
 一个网络输入操作有两部分:
 
 等待输入数据准备好:从网卡到系统内核缓冲区:data-&gt;kernel buf
 内核拷贝到进程:内核缓冲区-&gt;进程缓冲区kernel buf-&gt;user buf
 
-对于一个套接字上的输入操作，第一步通常涉及等待数据从网络中到达。当所等待数据到达时，它被复制到内核中的某个缓冲区。第二步就是把数据从内核缓......
+对于一个套接字上的输入操作，第一步通常涉及等待数据从网络中到达。当所等待数据到达时，它被复制到内核中的某个缓冲区。第二步就是把数据从内核缓冲区......
         </div>
     </a>
     
@@ -382,14 +387,14 @@ phone
             一文清点数据库原理
         </h3>
         <div class="post-content-preview">
-             数据库原理详解
- 一. 什么是ACID?
- 1.1 原子性:(Atomicity)
+            数据库原理详解
+一. 什么是ACID?
+1.1 原子性:(Atomicity)
 不可分割的最小单元,要么全部执行成功提交,要么失败回滚,回滚通过redo日志实现,记录执行过的语句,回滚时反向执行。
- 1.2 一致性:(Consistency)
+1.2 一致性:(Consistency)
 在一致性状态下,同一时间所有事务对数据读取的结果应该是相同的。
- 1.3 隔离性:(ISolation)
-一个事务所做的修改在最终提交以前，对其......
+1.3 隔离性:(ISolation)
+一个事务所做的修改在最终提交以前，对其它事务是不......
         </div>
     </a>
     
@@ -417,12 +422,12 @@ phone
             虚拟内存管理
         </h3>
         <div class="post-content-preview">
-             操作系统内存管理模型
- 引言
+            操作系统内存管理模型
+引言
 在现代操作系统体系中,如何为程序分配内存,同时对内存进行合理、有效的管理是至关重要的一个技术点,操作系统不但要保证内存资源的利用率、减少内存碎片的产生,还要协调各个不同进程之间的内存关系。因此,实现一个高效可用的内存管理模型,是一个可用操作系统的基本要求。
 
- 一. 连续内存管理
-一种比较简单的内存管理机制,为每一个程序分配一段连续的物理地址空间,这样便可能会......
+一. 连续内存管理
+一种比较简单的内存管理机制,为每一个程序分配一段连续的物理地址空间,这样便可能会导致产......
         </div>
     </a>
     
@@ -489,11 +494,11 @@ phone
             
         
             
-            <a href="/tags/#spring框架" title="spring框架" rel="2">spring框架</a>
+            <a href="/tags/#MySQL" title="MySQL" rel="1">MySQL</a>
             
         
             
-            <a href="/tags/#MySQL" title="MySQL" rel="1">MySQL</a>
+            <a href="/tags/#spring框架" title="spring框架" rel="2">spring框架</a>
             
         
             
@@ -513,15 +518,15 @@ phone
             
         
             
-            <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
-            
-        
-            
             <a href="/tags/#数据结构" title="数据结构" rel="1">数据结构</a>
             
         
             
-            <a href="/tags/#软件工程" title="软件工程" rel="1">软件工程</a>
+            <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
+            
+        
+            
+            <a href="/tags/#linux" title="linux" rel="1">linux</a>
             
         
             
@@ -529,7 +534,7 @@ phone
             
         
             
-            <a href="/tags/#linux" title="linux" rel="1">linux</a>
+            <a href="/tags/#软件工程" title="软件工程" rel="1">软件工程</a>
             
         
     </div>

@@ -136,14 +136,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -221,10 +221,10 @@
             详解java重点概念
         </h3>
         <div class="post-content-preview">
-             Java基础核心概念总结
- 重写equal()必须重写hashcode()
+            Java基础核心概念总结
+重写equal()必须重写hashcode()
 为什么?首先从equals()函数讲起,equals()函数判断的是两个对象的内容是否相等,也就是两个对象是否等价
-1.在哈希表中,会利用一个对象的hashcode()将对象散列到bucket数组中,若两个对象是等价的,那么他理应被散列到同一个位置,同时与该位置上的其余具有相同hashcode的对象进行equals......
+1.在哈希表中,会利用一个对象的hashcode()将对象散列到bucket数组中,若两个对象是等价的,那么他理应被散列到同一个位置,同时与该位置上的其余具有相同hashcode的对象进行equals()......
         </div>
     </a>
     
@@ -252,10 +252,10 @@
             IO流模型详解
         </h3>
         <div class="post-content-preview">
-             java常见IO重点知识清点
- 磁盘操作
+            java常见IO重点知识清点
+磁盘操作
 使用File类进行操作,File表示文件和目录的基本信息,并不表示真正的操作,通过磁盘操作可以实现一些文件级别的控制程序,如文件管理程序
-123456789101112public static void listAllFiles(File dir) &#123;    if (dir == null || !dir.exists()) &#123......
+123456789101112public static void listAllFiles(File dir) &#123;    if (dir == null || !dir.exists()) &#123; ......
         </div>
     </a>
     
@@ -283,24 +283,24 @@
             一文清点计算机网络重点知识
         </h3>
         <div class="post-content-preview">
-             计算机网络重要知识点
+            计算机网络重要知识点
 
 本文图片来自github的CS-NOTE,在此感谢作者CYC的开源精神
 
- 一. 互联网
- 1.1 基本概念
+一. 互联网
+1.1 基本概念
 网络是多个终端(主机)互相连接起来,而互联网则是将网络联系起来,互联网是网络的网络
 
- 1.2 主机之间的常见通信方式:
+1.2 主机之间的常见通信方式:
 
 客户机服务器模式:(C/S),拓扑结构呈放射状
 
 
 
-点对点模式(不区分客户机和服务器,公平通信)😦P2P),拓扑结构呈网状
+点对点模式(不区分客户机和服务器,公平通信):(P2P),拓扑结构呈网状
 
 
- ......
+1.3 计......
         </div>
     </a>
     
@@ -328,12 +328,12 @@
             一文提炼重点
         </h3>
         <div class="post-content-preview">
-             进程间通信IPC (InterProcess Communication)
- 一、进程间通信的概念
+            进程间通信IPC (InterProcess Communication)
+一、进程间通信的概念
 每个进程各自有不同的用户地址空间，任何一个进程的全局变量在另一个进程中都看不到，所以进程之间要交换数据必须通过内核，在内核中开辟一块缓冲区，进程1把数据从用户空间拷到内核缓冲区，进程2再从内核缓冲区把数据读走，内核提供的这种机制称为进程间通信（IPC)
 
- 二、进程间通信的7种方式
-第一类:......
+二、进程间通信的7种方式
+第一类:传统的......
         </div>
     </a>
     
@@ -361,14 +361,14 @@
             一文清点操作系统
         </h3>
         <div class="post-content-preview">
-             操作系统重点知识汇总
- 一、操作系统基本特性
- 1. 并发
+            操作系统重点知识汇总
+一、操作系统基本特性
+1. 并发
 1.进程和线程:线程是CPU调度的基本单位,进程是系统资源分配的基本单位,一个进程可以包含多个线程
 2.并行与并发:并发是宏观概念,计算机同时运行多个程序,并行是指同一时刻可以运行多个指令,并行需要硬件的支持
 3.操作系统引入了线程和进程的概念,加上调度算法,使得程序能在系统中并发运行
- 2. 共享
-1.共享是指资源可以被多个并发......
+2. 共享
+1.共享是指资源可以被多个并发的进程或......
         </div>
     </a>
     
@@ -396,9 +396,9 @@
             基于Cucumber的行为驱动开发
         </h3>
         <div class="post-content-preview">
-             行为驱动开发
- 引言
-成功的软件开发项目要求正确的开发正确的软件。在传统的软件开发流程中,测试总是放在后面的阶段进行，从而只能起到查漏补缺的作用。测试驱动开发(*test-driven development*)要求测试先行,开发中首先根据需求写测试,然后再编写实现代码。最终,通过不断修正实现代码来通过测试,交付可靠代码。然而，软件开发涉及到多人紧密协作的团队。高质量的沟通对于整个团队来说......
+            行为驱动开发
+引言
+成功的软件开发项目要求正确的开发正确的软件。在传统的软件开发流程中,测试总是放在后面的阶段进行，从而只能起到查漏补缺的作用。测试驱动开发(*test-driven development*)要求测试先行,开发中首先根据需求写测试,然后再编写实现代码。最终,通过不断修正实现代码来通过测试,交付可靠代码。然而，软件开发涉及到多人紧密协作的团队。高质量的沟通对于整个团队来说至关......
         </div>
     </a>
     
@@ -469,11 +469,11 @@
             
         
             
-            <a href="/tags/#spring框架" title="spring框架" rel="2">spring框架</a>
+            <a href="/tags/#MySQL" title="MySQL" rel="1">MySQL</a>
             
         
             
-            <a href="/tags/#MySQL" title="MySQL" rel="1">MySQL</a>
+            <a href="/tags/#spring框架" title="spring框架" rel="2">spring框架</a>
             
         
             
@@ -493,15 +493,15 @@
             
         
             
-            <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
-            
-        
-            
             <a href="/tags/#数据结构" title="数据结构" rel="1">数据结构</a>
             
         
             
-            <a href="/tags/#软件工程" title="软件工程" rel="1">软件工程</a>
+            <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
+            
+        
+            
+            <a href="/tags/#linux" title="linux" rel="1">linux</a>
             
         
             
@@ -509,7 +509,7 @@
             
         
             
-            <a href="/tags/#linux" title="linux" rel="1">linux</a>
+            <a href="/tags/#软件工程" title="软件工程" rel="1">软件工程</a>
             
         
     </div>
