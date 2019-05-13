@@ -144,6 +144,13 @@
 
                         
                         <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/archive/">Archives</a>
                         </li>
                         
@@ -152,13 +159,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -214,12 +214,12 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="kubernetes核心技术">kubernetes核心技术</h1>
-<h2 id="一-概念">一. 概念</h2>
-<h3 id="11-kubernates">1.1 kubernates</h3>
+                <h1 id="kubernetes核心技术"><a class="markdownIt-Anchor" href="#kubernetes核心技术"></a> kubernetes核心技术</h1>
+<h2 id="一-概念"><a class="markdownIt-Anchor" href="#一-概念"></a> 一. 概念</h2>
+<h3 id="11-kubernates"><a class="markdownIt-Anchor" href="#11-kubernates"></a> 1.1 kubernates</h3>
 <p>kubernetes是谷歌推出的开源容器编排系统。Kubernetes 用于协调高度可用的计算机集群，这些计算机群集被连接作为单个单元工作,提供高度抽象的视角来实现统一的集群管理调度与容器编排。</p>
 <p>Kubernetes 是一个 <a href="https://github.com/kubernetes/kubernetes" target="_blank" rel="noopener">开源</a> 平台，可满足生产环境的需要。</p>
-<h3 id="12-kubernates-cluster">1.2 kubernates cluster</h3>
+<h3 id="12-kubernates-cluster"><a class="markdownIt-Anchor" href="#12-kubernates-cluster"></a> 1.2 kubernates cluster</h3>
 <p>Kubernetes 的抽象性允许将容器化的应用程序部署到集群，而不必专门将其绑定到单个计算机。为了利用这种新的部署模型，应用程序需要以将它们与各个主机分离的方式打包: 它们需要被容器化。容器化应用程序比过去的部署模型更灵活和可用，其中应用程序直接安装到特定机器上，作为深入集成到主机中的软件包。 <strong>Kubernetes 在一个集群上以更有效的方式自动分发和调度容器应用程序。</strong></p>
 <p>Kubernetes 集群由两种类型的资源组成:</p>
 <ul>
@@ -232,14 +232,14 @@
 <p>Master 管理集群，而 节点 用于托管正在运行的应用程序。</p>
 </blockquote>
 <p>当在 Kubernetes 上部署应用程序时，可以告诉 master 启动应用程序容器。Master 调度容器在集群的 节点 上运行。 <strong>节点 使用 Master 公开的 Kubernetes API 与 Master 通信</strong>。最终用户还可以直接使用 Kubernetes 的 API 与集群交互。</p>
-<h2 id="二-应用">二. 应用</h2>
-<h3 id="21-创建集群">2.1 创建集群</h3>
+<h2 id="二-应用"><a class="markdownIt-Anchor" href="#二-应用"></a> 二. 应用</h2>
+<h3 id="21-创建集群"><a class="markdownIt-Anchor" href="#21-创建集群"></a> 2.1 创建集群</h3>
 <p>如上文说道,创建一个k8s集群需要有很多部分,对于学习过程而言,官方提供了Minikube工具,让我们能够快速地在本地创建一个k8s集群</p>
 <p>Minikube 是一个轻量级的 Kubernetes 实现，会在本机创建一台虚拟机，并部署一个只包含一个节点的简单集群。 Minikube 适用于 Linux, Mac OS 和 Windows 系统。Minikube CLI 提供了集群的基本引导操作，包括启动、停止、状态和删除。</p>
 <p><strong>常用命令</strong></p>
 <p>查看集群信息 : <em>kubectl cluster-info</em></p>
 <p>查看节点信息 : <em>kubectl get nodes</em></p>
-<h3 id="22-部署应用">2.2 部署应用</h3>
+<h3 id="22-部署应用"><a class="markdownIt-Anchor" href="#22-部署应用"></a> 2.2 部署应用</h3>
 <p>一旦创建了集群,便可以在集群上部署应用,因此需要创建一个Kubernetes <strong>Deployment</strong>。Deployment 负责创建和更新应用程序实例。创建 Deployment 后， Kubernetes master 会将 Deployment 创建的应用程序实例调度到<strong>集群中的各个节点</strong>。这使我们不需要关心单台机器,也就是前文所说的高层视角。</p>
 <p>创建应用程序实例后，Kubernetes 部署控制器会持续监视这些实例。如果托管它的节点不可用或删除，则部署控制器将替换实例。 <strong>这提供了一种解决机器故障或维护的自愈机制。</strong></p>
 <blockquote>
@@ -247,7 +247,7 @@
 </blockquote>
 <p><img src="https://d33wubrfki0l68.cloudfront.net/152c845f25df8e69dd24dd7b0836a289747e258a/4a1d2/docs/tutorials/kubernetes-basics/public/images/module_02_first_app.svg" alt="img"></p>
 <p>使用 <em>kubectl run image [option]</em> 命令来启动一个Deployment并启动容器应用,for example:</p>
-<p><em>kubectl run kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1 --port=8080</em></p>
+<p><em>kubectl run kubernetes-bootcamp --image=<a href="http://gcr.io/google-samples/kubernetes-bootcamp:v1" target="_blank" rel="noopener">gcr.io/google-samples/kubernetes-bootcamp:v1</a> --port=8080</em></p>
 <p><strong>kubernates在执行上述命令时,主要做了以下三件事:</strong></p>
 <ul>
 <li>找到一个适当的节点来运行应用实例(当前我们只有一个可用节点)</li>
@@ -257,8 +257,8 @@
 <p>完成部署之后,可以使用  <em>kubectl get deployments</em> 来查看部署的应用实例了</p>
 <p><strong>接下来是重头戏,我们在容器部署了应用,那我们该如何访问到呢?<strong>由于运行在Kubernetes内部的容器运行在一个私有的、隔离的网络上,我们无法从</strong>CLI</strong>直接访问,因此,kubecrl提供了代理功能,能够将我们的请求转发到容器内部的网络环境中,使用<em>kubectl proxy</em>便可开启</p>
 <p><strong>开启代理之后,我们便可以访问网络api了</strong></p>
-<h3 id="23-探索应用">2.3 探索应用</h3>
-<h4 id="231-kubernetes-pod">2.3.1 Kubernetes Pod</h4>
+<h3 id="23-探索应用"><a class="markdownIt-Anchor" href="#23-探索应用"></a> 2.3 探索应用</h3>
+<h4 id="231-kubernetes-pod"><a class="markdownIt-Anchor" href="#231-kubernetes-pod"></a> 2.3.1 Kubernetes Pod</h4>
 <p>在上述容器部署过程中,我们的容器其实是被抽象成了pod单元。</p>
 <p>Kubernetes 创建了一个 <strong>Pod</strong> 来托管应用程序实例。Pod 是一个 Kubernetes 的资源抽象，表示一个或多个应用容器 (例如 Docker 或 rkt) 组，以及一些用于这些容器的共享资源。这些资源包括:</p>
 <ul>
@@ -266,13 +266,13 @@
 <li>网络，作为唯一的集群 IP 地址</li>
 <li>每个容器如何运行的信息，例如容器镜像版本或要使用的特定端口</li>
 </ul>
-<p>Pod 模型可以理解为应用程序特定的 &quot;<strong>逻辑主机</strong>&quot;，并且可以包含相对紧密耦合的不同应用程序容器。例如，Pod 可能包含带有 Node.js 应用程序的容器以及另一个要利用到 Node.js Web 服务器提供的数据的不同容器。Pod 中的容器共享 IP 地址和端口空间，始终位于同一位置并且统一调度，并在相同的节点上运行，共享上下文环境。</p>
+<p>Pod 模型可以理解为应用程序特定的 “<strong>逻辑主机</strong>”，并且可以包含相对紧密耦合的不同应用程序容器。例如，Pod 可能包含带有 Node.js 应用程序的容器以及另一个要利用到 Node.js Web 服务器提供的数据的不同容器。Pod 中的容器共享 IP 地址和端口空间，始终位于同一位置并且统一调度，并在相同的节点上运行，共享上下文环境。</p>
 <p><img src="https://d33wubrfki0l68.cloudfront.net/fe03f68d8ede9815184852ca2a4fd30325e5d15a/98064/docs/tutorials/kubernetes-basics/public/images/module_03_pods.svg" alt="img"></p>
 <blockquote>
 <p>Pod 是 Kubernetes 平台上原子级别的单元。需要注意的是:当我们在 Kubernetes 上创建一个部署时，该部署将在其中创建包含容器的 Pod (而不是直接创建容器)。</p>
 </blockquote>
-<h4 id="232-节点">2.3.2 节点</h4>
-<h2 id="节点">节点</h2>
+<h4 id="232-节点"><a class="markdownIt-Anchor" href="#232-节点"></a> 2.3.2 节点</h4>
+<h2 id="节点"><a class="markdownIt-Anchor" href="#节点"></a> 节点</h2>
 <p>Pod 总是运行在 <strong>Node</strong>上。Node 是 Kubernetes 的工作机器，可以是虚拟机或物理机，这取决于在集群的安装情况。每个节点由 Master 管理。一个节点上可以有多个 Pod, Kubernetes master 会自动处理调度集群各个节点上的 Pod。 Master 在自动调度时，会考虑每个 Node 上的可用资源。</p>
 <p>每个 Kubernetes 节点至少运行以下组件:</p>
 <ul>
@@ -289,6 +289,10 @@
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/详解数据结构-广义表/" data-toggle="tooltip" data-placement="top" title="详解数据结构-广义表">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">
@@ -348,7 +352,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#kubernetes核心技术"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">kubernetes&#x6838;&#x5FC3;&#x6280;&#x672F;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一-概念"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x4E00;. &#x6982;&#x5FF5;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#11-kubernates"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">1.1 kubernates</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#12-kubernates-cluster"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text">1.2 kubernates cluster</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二-应用"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x4E8C;. &#x5E94;&#x7528;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#21-创建集群"><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text">2.1 &#x521B;&#x5EFA;&#x96C6;&#x7FA4;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#22-部署应用"><span class="toc-nav-number">1.2.2.</span> <span class="toc-nav-text">2.2 &#x90E8;&#x7F72;&#x5E94;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#23-探索应用"><span class="toc-nav-number">1.2.3.</span> <span class="toc-nav-text">2.3 &#x63A2;&#x7D22;&#x5E94;&#x7528;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#231-kubernetes-pod"><span class="toc-nav-number">1.2.3.1.</span> <span class="toc-nav-text">2.3.1 Kubernetes Pod</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#232-节点"><span class="toc-nav-number">1.2.3.2.</span> <span class="toc-nav-text">2.3.2 &#x8282;&#x70B9;</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#节点"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">&#x8282;&#x70B9;</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#kubernetes核心技术"><span class="toc-nav-number">1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#kubernetes&#x6838;&#x5FC3;&#x6280;&#x672F;"></a> kubernetes&#x6838;&#x5FC3;&#x6280;&#x672F;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一-概念"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E00;-&#x6982;&#x5FF5;"></a> &#x4E00;. &#x6982;&#x5FF5;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#11-kubernates"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#11-kubernates"></a> 1.1 kubernates</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#12-kubernates-cluster"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#12-kubernates-cluster"></a> 1.2 kubernates cluster</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二-应用"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E8C;-&#x5E94;&#x7528;"></a> &#x4E8C;. &#x5E94;&#x7528;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#21-创建集群"><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#21-&#x521B;&#x5EFA;&#x96C6;&#x7FA4;"></a> 2.1 &#x521B;&#x5EFA;&#x96C6;&#x7FA4;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#22-部署应用"><span class="toc-nav-number">1.2.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#22-&#x90E8;&#x7F72;&#x5E94;&#x7528;"></a> 2.2 &#x90E8;&#x7F72;&#x5E94;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#23-探索应用"><span class="toc-nav-number">1.2.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#23-&#x63A2;&#x7D22;&#x5E94;&#x7528;"></a> 2.3 &#x63A2;&#x7D22;&#x5E94;&#x7528;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#231-kubernetes-pod"><span class="toc-nav-number">1.2.3.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#231-kubernetes-pod"></a> 2.3.1 Kubernetes Pod</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#232-节点"><span class="toc-nav-number">1.2.3.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#232-&#x8282;&#x70B9;"></a> 2.3.2 &#x8282;&#x70B9;</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#节点"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x8282;&#x70B9;"></a> &#x8282;&#x70B9;</span></a></li></ol></li></ol>
         
         </div>
       </aside>

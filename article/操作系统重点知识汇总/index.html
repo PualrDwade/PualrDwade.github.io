@@ -144,6 +144,13 @@
 
                         
                         <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/archive/">Archives</a>
                         </li>
                         
@@ -152,13 +159,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -214,17 +214,17 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="操作系统重点知识汇总">操作系统重点知识汇总</h1>
-<h2 id="一-操作系统基本特性">一、操作系统基本特性</h2>
-<h3 id="1-并发">1. 并发</h3>
+                <h1 id="操作系统重点知识汇总"><a class="markdownIt-Anchor" href="#操作系统重点知识汇总"></a> 操作系统重点知识汇总</h1>
+<h2 id="一-操作系统基本特性"><a class="markdownIt-Anchor" href="#一-操作系统基本特性"></a> 一、操作系统基本特性</h2>
+<h3 id="1-并发"><a class="markdownIt-Anchor" href="#1-并发"></a> 1. 并发</h3>
 <p>1.进程和线程:线程是CPU调度的基本单位,进程是系统资源分配的基本单位,一个进程可以包含<strong>多个线程</strong></p>
 <p>2.并行与并发:并发是宏观概念,计算机同时运行多个程序,并行是指同一时刻可以运行多个指令,并行需要硬件的支持</p>
 <p>3.操作系统引入了线程和进程的概念,加上调度算法,使得程序能在系统中并发运行</p>
-<h3 id="2-共享">2. 共享</h3>
+<h3 id="2-共享"><a class="markdownIt-Anchor" href="#2-共享"></a> 2. 共享</h3>
 <p>1.共享是指资源可以被多个并发的进程或线程共享</p>
 <p>2.两种共享方式:<code>互斥共享</code>和<code>同步共享</code></p>
 <p>3.互斥共享的资源称为临界资源，例如打印机等，在同一时间只允许一个进程访问，需要用同步机制来实现对临界资源的访问。</p>
-<h3 id="3-虚拟">3. 虚拟</h3>
+<h3 id="3-虚拟"><a class="markdownIt-Anchor" href="#3-虚拟"></a> 3. 虚拟</h3>
 <p>虚拟是把物理实体映射为多个虚拟实体,可以从更加抽象的层次对系统资源进行管理</p>
 <p>两种虚拟技术:</p>
 <ol>
@@ -233,12 +233,12 @@
 </ol>
 <p>多个进程能在同一个处理器上并发执行使用了时分复用技术，让每个进程轮流占有处理器，每次只执行一小个时间片并快速切换(<code>时间片轮转</code>)</p>
 <p>虚拟内存使用了<strong>空分复用技术</strong>，它将物理内存抽象为地址空间，每个进程都有各自的地址空间。地址空间的页被映射到物理内存，地址空间的页并不需要全部在物理内存中，<strong>当使用到一个没有在物理内存的页时，执行页面置换算法，将该页置换到内存中</strong>(先用,没有再换)</p>
-<h3 id="4-异步">4. 异步</h3>
+<h3 id="4-异步"><a class="markdownIt-Anchor" href="#4-异步"></a> 4. 异步</h3>
 <p>异步指进程不是一次性执行完毕，而是走走停停，以不可知的速度向前推进</p>
 <hr>
-<h2 id="二-操作系统基本功能">二、 操作系统基本功能</h2>
-<h3 id="1-进程管理">1. 进程管理</h3>
-<h4 id="11-进程与线程">1.1 进程与线程</h4>
+<h2 id="二-操作系统基本功能"><a class="markdownIt-Anchor" href="#二-操作系统基本功能"></a> 二、 操作系统基本功能</h2>
+<h3 id="1-进程管理"><a class="markdownIt-Anchor" href="#1-进程管理"></a> 1. 进程管理</h3>
+<h4 id="11-进程与线程"><a class="markdownIt-Anchor" href="#11-进程与线程"></a> 1.1 进程与线程</h4>
 <p><strong>进程</strong>:是<strong>资源分配</strong>的基本单位。</p>
 <p>进程控制块 (Process Control Block, PCB) 描述进程的基本信息和运行状态，所谓的创建进程和撤销进程，都是指对 PCB 的操作。</p>
 <p>下图显示了 4 个程序创建了 4 个进程，这 4 个进程可以并发地执行(时间片轮转调度)</p>
@@ -250,15 +250,15 @@
 <p>2.不同进程中线程调度的切换导致进程的切换</p>
 <p>3.创建进程开销更大(I/O,内存)</p>
 <p>4.进程直接读写统一进程数据,而进程间需要通过<code>IPC</code></p>
-<p><strong>进程间切换</strong>
+<p><strong>进程间切换</strong><br>
 <img src="https://i.loli.net/2019/03/08/5c81c58eb3952.png" alt=""></p>
 <blockquote>
 <p>注:CPU调度时间结束,<code>running</code>是进入<code>ready</code>而不是<code>waiting</code>,<code>ready</code>和<code>runing</code>之间可以双向变化(明显的例子就是CPU时间片轮转),进程进入<code>waiting</code>一般是为了等待临界资源或者事件,而且<code>waiting</code>等待结束之后,不可以直接进入<code>running</code>状态,而是进入<code>ready</code>状态等待时间片调度</p>
 <hr>
 </blockquote>
-<h4 id="12-进程调度算法">1.2 进程调度算法</h4>
+<h4 id="12-进程调度算法"><a class="markdownIt-Anchor" href="#12-进程调度算法"></a> 1.2 进程调度算法</h4>
 <p>不同环境的调度算法目标不同</p>
-<h5 id="批处理系统">批处理系统:</h5>
+<h5 id="批处理系统"><a class="markdownIt-Anchor" href="#批处理系统"></a> 批处理系统:</h5>
 <p>批处理系统没有太多的用户操作，在该系统中，调度算法目标是保证吞吐量和周转时间(从提交到终止的时间)</p>
 <p><strong>1.先来先服务</strong><code>first-come first-serverd(FCFS</code>)</p>
 <p>有利于长作业,短作业需要等很久</p>
@@ -266,15 +266,15 @@
 <p>可以保证运行时间最短</p>
 <p><strong>3.最短剩余时间优先</strong> <code>shortest remaining time next（SRTN）</code></p>
 <p>​    按估计剩余时间最短的顺序进行调度</p>
-<h5 id="交互式系统">交互式系统:</h5>
+<h5 id="交互式系统"><a class="markdownIt-Anchor" href="#交互式系统"></a> 交互式系统:</h5>
 <p>交互式系统有大量的用户交互操作，在该系统中调度算法的目标是快速地进行响应</p>
 <p><strong>1.时间片轮转</strong></p>
 <p><strong>2.优先级调度</strong></p>
 <p><strong>3.多级反馈队列</strong></p>
 <hr>
-<h3 id="2-死锁">2. 死锁</h3>
-<h3 id="3内存管理">3.内存管理</h3>
-<h3 id="4设备管理">4.设备管理</h3>
+<h3 id="2-死锁"><a class="markdownIt-Anchor" href="#2-死锁"></a> 2. 死锁</h3>
+<h3 id="3内存管理"><a class="markdownIt-Anchor" href="#3内存管理"></a> 3.内存管理</h3>
+<h3 id="4设备管理"><a class="markdownIt-Anchor" href="#4设备管理"></a> 4.设备管理</h3>
 
                 
 
@@ -344,7 +344,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#操作系统重点知识汇总"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x91CD;&#x70B9;&#x77E5;&#x8BC6;&#x6C47;&#x603B;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一-操作系统基本特性"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x4E00;&#x3001;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x57FA;&#x672C;&#x7279;&#x6027;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-并发"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">1. &#x5E76;&#x53D1;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-共享"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text">2. &#x5171;&#x4EAB;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3-虚拟"><span class="toc-nav-number">1.1.3.</span> <span class="toc-nav-text">3. &#x865A;&#x62DF;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#4-异步"><span class="toc-nav-number">1.1.4.</span> <span class="toc-nav-text">4. &#x5F02;&#x6B65;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二-操作系统基本功能"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x4E8C;&#x3001; &#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x57FA;&#x672C;&#x529F;&#x80FD;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-进程管理"><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text">1. &#x8FDB;&#x7A0B;&#x7BA1;&#x7406;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#11-进程与线程"><span class="toc-nav-number">1.2.1.1.</span> <span class="toc-nav-text">1.1 &#x8FDB;&#x7A0B;&#x4E0E;&#x7EBF;&#x7A0B;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#12-进程调度算法"><span class="toc-nav-number">1.2.1.2.</span> <span class="toc-nav-text">1.2 &#x8FDB;&#x7A0B;&#x8C03;&#x5EA6;&#x7B97;&#x6CD5;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#批处理系统"><span class="toc-nav-number">1.2.1.2.1.</span> <span class="toc-nav-text">&#x6279;&#x5904;&#x7406;&#x7CFB;&#x7EDF;:</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#交互式系统"><span class="toc-nav-number">1.2.1.2.2.</span> <span class="toc-nav-text">&#x4EA4;&#x4E92;&#x5F0F;&#x7CFB;&#x7EDF;:</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-死锁"><span class="toc-nav-number">1.2.2.</span> <span class="toc-nav-text">2. &#x6B7B;&#x9501;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3内存管理"><span class="toc-nav-number">1.2.3.</span> <span class="toc-nav-text">3.&#x5185;&#x5B58;&#x7BA1;&#x7406;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#4设备管理"><span class="toc-nav-number">1.2.4.</span> <span class="toc-nav-text">4.&#x8BBE;&#x5907;&#x7BA1;&#x7406;</span></a></li></ol></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#操作系统重点知识汇总"><span class="toc-nav-number">1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x91CD;&#x70B9;&#x77E5;&#x8BC6;&#x6C47;&#x603B;"></a> &#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x91CD;&#x70B9;&#x77E5;&#x8BC6;&#x6C47;&#x603B;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一-操作系统基本特性"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E00;-&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x57FA;&#x672C;&#x7279;&#x6027;"></a> &#x4E00;&#x3001;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x57FA;&#x672C;&#x7279;&#x6027;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-并发"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#1-&#x5E76;&#x53D1;"></a> 1. &#x5E76;&#x53D1;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-共享"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#2-&#x5171;&#x4EAB;"></a> 2. &#x5171;&#x4EAB;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3-虚拟"><span class="toc-nav-number">1.1.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#3-&#x865A;&#x62DF;"></a> 3. &#x865A;&#x62DF;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#4-异步"><span class="toc-nav-number">1.1.4.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#4-&#x5F02;&#x6B65;"></a> 4. &#x5F02;&#x6B65;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二-操作系统基本功能"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E8C;-&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x57FA;&#x672C;&#x529F;&#x80FD;"></a> &#x4E8C;&#x3001; &#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x57FA;&#x672C;&#x529F;&#x80FD;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-进程管理"><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#1-&#x8FDB;&#x7A0B;&#x7BA1;&#x7406;"></a> 1. &#x8FDB;&#x7A0B;&#x7BA1;&#x7406;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#11-进程与线程"><span class="toc-nav-number">1.2.1.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#11-&#x8FDB;&#x7A0B;&#x4E0E;&#x7EBF;&#x7A0B;"></a> 1.1 &#x8FDB;&#x7A0B;&#x4E0E;&#x7EBF;&#x7A0B;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#12-进程调度算法"><span class="toc-nav-number">1.2.1.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#12-&#x8FDB;&#x7A0B;&#x8C03;&#x5EA6;&#x7B97;&#x6CD5;"></a> 1.2 &#x8FDB;&#x7A0B;&#x8C03;&#x5EA6;&#x7B97;&#x6CD5;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#批处理系统"><span class="toc-nav-number">1.2.1.2.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x6279;&#x5904;&#x7406;&#x7CFB;&#x7EDF;"></a> &#x6279;&#x5904;&#x7406;&#x7CFB;&#x7EDF;:</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#交互式系统"><span class="toc-nav-number">1.2.1.2.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4EA4;&#x4E92;&#x5F0F;&#x7CFB;&#x7EDF;"></a> &#x4EA4;&#x4E92;&#x5F0F;&#x7CFB;&#x7EDF;:</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-死锁"><span class="toc-nav-number">1.2.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#2-&#x6B7B;&#x9501;"></a> 2. &#x6B7B;&#x9501;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3内存管理"><span class="toc-nav-number">1.2.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#3&#x5185;&#x5B58;&#x7BA1;&#x7406;"></a> 3.&#x5185;&#x5B58;&#x7BA1;&#x7406;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#4设备管理"><span class="toc-nav-number">1.2.4.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#4&#x8BBE;&#x5907;&#x7BA1;&#x7406;"></a> 4.&#x8BBE;&#x5907;&#x7BA1;&#x7406;</span></a></li></ol></li></ol></li></ol>
         
         </div>
       </aside>
