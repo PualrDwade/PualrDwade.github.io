@@ -51,13 +51,6 @@
     </url>
 
     <url>
-        <loc>http://www.xuanxuan.site/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-        <lastmod>2019-04-21T11:52:42.925Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://www.xuanxuan.site/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/</loc>
         <lastmod>2019-04-22T07:41:26.870Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -95,6 +88,13 @@
     <url>
         <loc>http://www.xuanxuan.site/tags/go/</loc>
         <lastmod>2019-05-13T03:55:35.767Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.xuanxuan.site/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+        <lastmod>2019-09-17T06:44:25.658Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
