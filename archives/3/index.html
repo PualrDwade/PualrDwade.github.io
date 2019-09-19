@@ -213,101 +213,24 @@
 
 <div class="post-preview">
 
-    <a href="/article/详解LinuxI-O模式/">
+    <a href="/article/java常见IO重点知识清点/">
         <h2 class="post-title">
-            详解LinuxI/O模式
+            java常见IO重点知识清点
         </h2>
         <h3 class="post-subtitle">
-            poll select epoll揭秘
+            IO流模型详解
         </h3>
         <div class="post-content-preview">
-             Linux I/O模型
- 一. 缓冲区拷贝
-一个网络输入操作有两部分:
-
-等待输入数据准备好:从网卡到系统内核缓冲区:data-&gt;kernel buf
-内核拷贝到进程:内核缓冲区-&gt;进程缓冲区kernel buf-&gt;user buf
-
-对于一个套接字上的输入操作，第一步通常涉及等待数据从网络中到达。当所等待数据到达时，它被复制到内核中的某个缓冲区。第二步就是把数据从内核缓......
+            java常见IO重点知识清点
+磁盘操作
+使用File类进行操作,File表示文件和目录的基本信息,并不表示真正的操作,通过磁盘操作可以实现一些文件级别的控制程序,如文件管理程序
+123456789101112public static void listAllFiles(File dir) &#123;    if (dir == null || !dir.exists()) &#123; ......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by PualrDwade on
-            2019-04-08
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#linux" title="linux">linux</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/行为驱动开发实践/">
-        <h2 class="post-title">
-            行为驱动开发实践
-        </h2>
-        <h3 class="post-subtitle">
-            基于Cucumber的行为驱动开发
-        </h3>
-        <div class="post-content-preview">
-             行为驱动开发
- 引言
-成功的软件开发项目要求正确的开发正确的软件。在传统的软件开发流程中,测试总是放在后面的阶段进行，从而只能起到查漏补缺的作用。测试驱动开发(*test-driven development*)要求测试先行,开发中首先根据需求写测试,然后再编写实现代码。最终,通过不断修正实现代码来通过测试,交付可靠代码。然而，软件开发涉及到多人紧密协作的团队。高质量的沟通对于整个团队来说......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-04-07
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#软件工程" title="软件工程">软件工程</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/java虚拟机核心概念/">
-        <h2 class="post-title">
-            java虚拟机核心概念
-        </h2>
-        <h3 class="post-subtitle">
-            详解java运行时数据区
-        </h3>
-        <div class="post-content-preview">
-             java虚拟机核心概念
-
-特别鸣谢CS-NOTE作者提供的美观图片
-
- 一. 运行时数据区
-Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区进行协作,从而为java带来生命
-
-
-需要注意的是,运行时常量池是位于方法区内部的
-
-划分成为思维导图,便于理解与记忆
-
- 二. 垃圾回收(GC)
-垃圾收集器主要是针对于线程共享的区域(堆,方法区)进行工作。
-垃圾收集主要有两部分的工作:
-......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-03-31
+            2019-09-19
         </p>
         <div class="tags">
             
@@ -321,28 +244,28 @@ Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区
 
 <div class="post-preview">
 
-    <a href="/article/java多线程核心概念/">
+    <a href="/article/go并发编程技巧/">
         <h2 class="post-title">
-            Java多线程核心概念
+            go并发编程技巧
         </h2>
         <h3 class="post-subtitle">
-            多线程重要知识清点
+            golang并发核心要点
         </h3>
         <div class="post-content-preview">
-             java多线程核心概念
- 线程的优先级
-1.线程的优先级与代码执行顺序是无关的,这意味的代码先执行的线程不一定先被调度
-123456789101112public class Run &#123;   public static void main(String[] args)&#123;       for (int i = 0 ;i &lt; 5; i++)&#123;        ......
+            go并发编程技巧
+一. Goroutines
+在学习golang并发时,一开始不应该过多陷入于细节,可以直接把一个goroutine看作一个线程,其作为并发的基本执行单元,使得程序可以同时进行。使用关键字&quot;go&quot;启动一个函数开启一个goroutine。
+12345678910import "fmt"func main() &#123;    f()    go f()&#......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by PualrDwade on
-            2019-03-21
+            2019-09-19
         </p>
         <div class="tags">
             
-              <a href="/tags/#java" title="java">java</a>
+              <a href="/tags/#go" title="go">go</a>
             
         </div>
     
@@ -360,16 +283,16 @@ Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区
             详解java重点概念
         </h3>
         <div class="post-content-preview">
-             Java基础核心概念总结
- 重写equal()必须重写hashcode()
+            Java基础核心概念总结
+重写equal()必须重写hashcode()
 为什么?首先从equals()函数讲起,equals()函数判断的是两个对象的内容是否相等,也就是两个对象是否等价
-1.在哈希表中,会利用一个对象的hashcode()将对象散列到bucket数组中,若两个对象是等价的,那么他理应被散列到同一个位置,同时与该位置上的其余具有相同hashcode的对象进行equals......
+1.在哈希表中,会利用一个对象的hashcode()将对象散列到bucket数组中,若两个对象是等价的,那么他理应被散列到同一个位置,同时与该位置上的其余具有相同hashcode的对象进行equals()......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by PualrDwade on
-            2019-03-20
+            2019-09-19
         </p>
         <div class="tags">
             
@@ -383,28 +306,96 @@ Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区
 
 <div class="post-preview">
 
-    <a href="/article/java常见IO重点知识清点/">
+    <a href="/article/Leetcode面试精选题解-2/">
         <h2 class="post-title">
-            java常见IO重点知识清点
+            Leetcode面试精选题解-2
         </h2>
         <h3 class="post-subtitle">
-            IO流模型详解
+            字符串专题
         </h3>
         <div class="post-content-preview">
-             java常见IO重点知识清点
- 磁盘操作
-使用File类进行操作,File表示文件和目录的基本信息,并不表示真正的操作,通过磁盘操作可以实现一些文件级别的控制程序,如文件管理程序
-123456789101112public static void listAllFiles(File dir) &#123;    if (dir == null || !dir.exists()) &#123......
+            Leetcode面试精选题解-字符串专题
+1.验证回文串
+给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。
+**说明：**本题中，我们将空字符串定义为有效的回文串。
+示例 1:
+12输入: &quot;A man, a plan, a canal: Panama&quot;输出: true
+示例 2:
+12输入: &quot;race a car&quot;输......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by PualrDwade on
-            2019-03-17
+            2019-09-19
         </p>
         <div class="tags">
             
-              <a href="/tags/#java" title="java">java</a>
+              <a href="/tags/#算法" title="算法">算法</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/python的for循环迭代/">
+        <h2 class="post-title">
+            python学习笔记(1)
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            python学习笔记(1)
+python的for循环迭代
+Interator
+12345678表示迭代器,使用生成器可以生成一个迭代器,生成器的基本用法和生成式很像ex:#生成器:(与list生成器的区别是[]改为())g = (x * x for x in range(10))#判断类型是迭代器from collections import Iterableisinstance((x fo......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-09-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#python程序设计" title="python程序设计">python程序设计</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/python函数式编程/">
+        <h2 class="post-title">
+            python学习笔记(2)
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            python学习笔记(2)
+python函数式编程
+定义：
+什么是函数式编程?
+函数是Python内建支持的一种封装，我们通过把大段代码拆成函数，通过一层一层的函数调用，就可以把复杂任务分解成简单的任务，这种分解可以称之为面向过程的程序设计。函数就是面向过程的程序设计的基本单元。
+而函数式编程（请注意多了一个“式”字）——Functional Programming，虽然也可以归结到面向过程......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-09-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#python程序设计" title="python程序设计">python程序设计</a>
             
         </div>
     
@@ -469,11 +460,11 @@ Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区
             
         
             
-            <a href="/tags/#spring框架" title="spring框架" rel="2">spring框架</a>
+            <a href="/tags/#MySQL" title="MySQL" rel="1">MySQL</a>
             
         
             
-            <a href="/tags/#MySQL" title="MySQL" rel="1">MySQL</a>
+            <a href="/tags/#spring框架" title="spring框架" rel="2">spring框架</a>
             
         
             
@@ -497,11 +488,11 @@ Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区
             
         
             
-            <a href="/tags/#软件工程" title="软件工程" rel="1">软件工程</a>
+            <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
             
         
             
-            <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
+            <a href="/tags/#软件工程" title="软件工程" rel="1">软件工程</a>
             
         
             
@@ -583,23 +574,23 @@ Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区
     <ul>
       
         <li>
-          <a href="/article/计算机网络重要知识点/">计算机网络重要知识点</a>
+          <a href="/article/java虚拟机核心概念/">java虚拟机核心概念</a>
         </li>
       
         <li>
-          <a href="/article/MySQL精要/">MySQL精要</a>
+          <a href="/article/java内置的数据结构与经典算法/">java内置的数据结构与经典算法</a>
         </li>
       
         <li>
-          <a href="/article/go并发编程技巧/">go并发编程技巧</a>
+          <a href="/article/Leetcode面试精选题解-1/">Leetcode面试精选题解-1</a>
         </li>
       
         <li>
-          <a href="/article/详解数据结构-广义表/">详解数据结构-广义表</a>
+          <a href="/article/Leetcode面试精选题解-4/">Leetcode面试精选题解-4</a>
         </li>
       
         <li>
-          <a href="/article/机器学习算法/">机器学习算法</a>
+          <a href="/article/Leetcode面试精选题解-5/">Leetcode面试精选题解-5</a>
         </li>
       
     </ul>
@@ -614,7 +605,7 @@ Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">30</span></li></ul>
     </div>
 
         <hr>
