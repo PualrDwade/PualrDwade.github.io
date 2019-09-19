@@ -136,14 +136,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -215,127 +215,26 @@
 
     <a href="/article/java常见IO重点知识清点/">
         <h2 class="post-title">
-            Untitled
+            java常见IO重点知识清点
         </h2>
         <h3 class="post-subtitle">
-            
+            IO流模型详解
         </h3>
         <div class="post-content-preview">
-            date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-1......
+             java常见IO重点知识清点
+ 磁盘操作
+使用File类进行操作,File表示文件和目录的基本信息,并不表示真正的操作,通过磁盘操作可以实现一些文件级别的控制程序,如文件管理程序
+123456789101112public static void listAllFiles(File dir) &#123;    if (dir == null || !dir.exists()) &#123......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by PualrDwade on
-            2019-03-16
+            2019-09-19
         </p>
         <div class="tags">
             
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/计算机网络重要知识点/">
-        <h2 class="post-title">
-            Untitled
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-1......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-03-11
-        </p>
-        <div class="tags">
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/详解进程间通信IPC原理/">
-        <h2 class="post-title">
-            Untitled
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-1......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-03-08
-        </p>
-        <div class="tags">
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/操作系统重点知识汇总/">
-        <h2 class="post-title">
-            Untitled
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-1......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-03-08
-        </p>
-        <div class="tags">
+              <a href="/tags/#java" title="java">java</a>
             
         </div>
     
@@ -347,28 +246,38 @@ date: 2019-09-1......
 
     <a href="/article/java虚拟机核心概念/">
         <h2 class="post-title">
-            Untitled
+            java虚拟机核心概念
         </h2>
         <h3 class="post-subtitle">
-            
+            详解java运行时数据区
         </h3>
         <div class="post-content-preview">
-            date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-1......
+             java虚拟机核心概念
+
+特别鸣谢CS-NOTE作者提供的美观图片
+
+ 一. 运行时数据区
+Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区进行协作,从而为java带来生命
+
+
+需要注意的是,运行时常量池是位于方法区内部的
+
+划分成为思维导图,便于理解与记忆
+
+ 二. 垃圾回收(GC)
+垃圾收集器主要是针对于线程共享的区域(堆,方法区)进行工作。
+垃圾收集主要有两部分的工作:
+......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by PualrDwade on
-            2019-03-06
+            2019-09-19
         </p>
         <div class="tags">
+            
+              <a href="/tags/#java" title="java">java</a>
             
         </div>
     
@@ -378,30 +287,130 @@ date: 2019-09-1......
 
 <div class="post-preview">
 
-    <a href="/article/Leetcode面试精选题解-5/">
+    <a href="/article/Leetcode面试精选题解-2/">
         <h2 class="post-title">
-            Untitled
+            Leetcode面试精选题解-2
         </h2>
         <h3 class="post-subtitle">
-            
+            字符串专题
         </h3>
         <div class="post-content-preview">
-            date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-19 11:12:32
-date: 2019-09-1......
+             Leetcode面试精选题解-字符串专题
+ 1.验证回文串
+给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。
+**说明：**本题中，我们将空字符串定义为有效的回文串。
+示例 1:
+12输入: &quot;A man, a plan, a canal: Panama&quot;输出: true
+示例 2:
+12输入: &quot;race a car&quot......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by PualrDwade on
-            2019-03-05
+            2019-09-19
         </p>
         <div class="tags">
+            
+              <a href="/tags/#算法" title="算法">算法</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes核心技术/">
+        <h2 class="post-title">
+            kubernetes核心技术
+        </h2>
+        <h3 class="post-subtitle">
+            详解kubernetes原理与应用
+        </h3>
+        <div class="post-content-preview">
+             kubernetes核心技术
+ 一. 概念
+ 1.1 kubernates
+kubernetes是谷歌推出的开源容器编排系统。Kubernetes 用于协调高度可用的计算机集群，这些计算机群集被连接作为单个单元工作,提供高度抽象的视角来实现统一的集群管理调度与容器编排。
+Kubernetes 是一个 开源 平台，可满足生产环境的需要。
+ 1.2 kubernates cluster
+Kub......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-09-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#kubernetes" title="kubernetes">kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/python的for循环迭代/">
+        <h2 class="post-title">
+            python学习笔记(1)
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+             python学习笔记(1)
+ python的for循环迭代
+ Interator
+12345678表示迭代器,使用生成器可以生成一个迭代器,生成器的基本用法和生成式很像ex:#生成器:(与list生成器的区别是[]改为())g = (x * x for x in range(10))#判断类型是迭代器from collections import Iterableisinstance((x......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-09-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#python程序设计" title="python程序设计">python程序设计</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/python高阶函数式编程/">
+        <h2 class="post-title">
+            python学习笔记(3)
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+             python学习笔记(3)
+ python高阶函数式编程
+Python内建了map()和reduce()函数。
+ map()函数
+如果你读过Google的那篇大名鼎鼎的论文“MapReduce: Simplified Data Processing on Large Clusters”，你就能大概明白map/reduce的概念。
+我们先看map。map()函数接收两个参数，一个是函数，一个......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-09-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#python程序设计" title="python程序设计">python程序设计</a>
             
         </div>
     
@@ -452,6 +461,62 @@ date: 2019-09-1......
     <!-- no hr -->
     <h5><a href="/tags/">FEATURED TAGS</a></h5>
     <div class="tags">
+        
+            
+            <a href="/tags/#算法" title="算法" rel="6">算法</a>
+            
+        
+            
+            <a href="/tags/#java" title="java" rel="5">java</a>
+            
+        
+            
+            <a href="/tags/#MySQL" title="MySQL" rel="1">MySQL</a>
+            
+        
+            
+            <a href="/tags/#go" title="go" rel="1">go</a>
+            
+        
+            
+            <a href="/tags/#spring框架" title="spring框架" rel="2">spring框架</a>
+            
+        
+            
+            <a href="/tags/#python程序设计" title="python程序设计" rel="3">python程序设计</a>
+            
+        
+            
+            <a href="/tags/#kubernetes" title="kubernetes" rel="1">kubernetes</a>
+            
+        
+            
+            <a href="/tags/#操作系统" title="操作系统" rel="3">操作系统</a>
+            
+        
+            
+            <a href="/tags/#数据结构" title="数据结构" rel="2">数据结构</a>
+            
+        
+            
+            <a href="/tags/#数据库" title="数据库" rel="1">数据库</a>
+            
+        
+            
+            <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
+            
+        
+            
+            <a href="/tags/#软件工程" title="软件工程" rel="1">软件工程</a>
+            
+        
+            
+            <a href="/tags/#计算机网络原理" title="计算机网络原理" rel="1">计算机网络原理</a>
+            
+        
+            
+            <a href="/tags/#linux" title="linux" rel="1">linux</a>
+            
         
     </div>
 </section>
@@ -524,23 +589,23 @@ date: 2019-09-1......
     <ul>
       
         <li>
-          <a href="/article/MySQL精要/">(no title)</a>
+          <a href="/article/python函数式编程/">python学习笔记(2)</a>
         </li>
       
         <li>
-          <a href="/article/go并发编程技巧/">(no title)</a>
+          <a href="/article/Leetcode面试精选题解-1/">Leetcode面试精选题解-1</a>
         </li>
       
         <li>
-          <a href="/article/详解数据结构-广义表/">(no title)</a>
+          <a href="/article/Java基础核心概念/">Java基础核心概念</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes核心技术/">(no title)</a>
+          <a href="/article/MySQL联合索引与数据结构/">MySQL联合索引与数据结构</a>
         </li>
       
         <li>
-          <a href="/article/机器学习算法/">(no title)</a>
+          <a href="/article/Leetcode面试精选题解-5/">Leetcode面试精选题解-5</a>
         </li>
       
     </ul>
@@ -555,7 +620,7 @@ date: 2019-09-1......
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">29</span></li></ul>
     </div>
 
         <hr>
