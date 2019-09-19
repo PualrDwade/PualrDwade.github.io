@@ -143,14 +143,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -213,22 +213,22 @@
 
 <div class="post-preview">
 
-    <a href="/article/数据库原理详解/">
+    <a href="/article/详解LinuxI-O模式/">
         <h2 class="post-title">
-            数据库原理详解
+            详解LinuxI/O模式
         </h2>
         <h3 class="post-subtitle">
-            一文清点数据库原理
+            poll select epoll揭秘
         </h3>
         <div class="post-content-preview">
-             数据库原理详解
- 一. 什么是ACID?
- 1.1 原子性:(Atomicity)
-不可分割的最小单元,要么全部执行成功提交,要么失败回滚,回滚通过redo日志实现,记录执行过的语句,回滚时反向执行。
- 1.2 一致性:(Consistency)
-在一致性状态下,同一时间所有事务对数据读取的结果应该是相同的。
- 1.3 隔离性:(ISolation)
-一个事务所做的修改在最终提交以前，对其......
+             Linux I/O模型
+ 一. 缓冲区拷贝
+一个网络输入操作有两部分:
+
+等待输入数据准备好:从网卡到系统内核缓冲区:data-&gt;kernel buf
+内核拷贝到进程:内核缓冲区-&gt;进程缓冲区kernel buf-&gt;user buf
+
+对于一个套接字上的输入操作，第一步通常涉及等待数据从网络中到达。当所等待数据到达时，它被复制到内核中的某个缓冲区。第二步就是把数据从内核缓......
         </div>
     </a>
     
@@ -238,71 +238,7 @@
         </p>
         <div class="tags">
             
-              <a href="/tags/#数据库" title="数据库">数据库</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/机器学习算法/">
-        <h2 class="post-title">
-            机器学习算法
-        </h2>
-        <h3 class="post-subtitle">
-            机器学习基本原理与算法
-        </h3>
-        <div class="post-content-preview">
-             机器学习算法
- 一. 线性回归
- 1.1 单变量线性回归
-f(x)=β0+β1xf(x) = \beta_0 + \beta_1x
-f(x)=β​0​​+β​1​​x
- 1.2 多元线性回归
-y=β0+β1x1+β2x2+β3x3+β4x4+..+βnxny = \beta_0+\beta_1x_1+\beta_2x_2+\beta_3x_3+\beta_4x_4+..+\beta_nx_......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-09-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/行为驱动开发实践/">
-        <h2 class="post-title">
-            行为驱动开发实践
-        </h2>
-        <h3 class="post-subtitle">
-            基于Cucumber的行为驱动开发
-        </h3>
-        <div class="post-content-preview">
-             行为驱动开发
- 引言
-成功的软件开发项目要求正确的开发正确的软件。在传统的软件开发流程中,测试总是放在后面的阶段进行，从而只能起到查漏补缺的作用。测试驱动开发(*test-driven development*)要求测试先行,开发中首先根据需求写测试,然后再编写实现代码。最终,通过不断修正实现代码来通过测试,交付可靠代码。然而，软件开发涉及到多人紧密协作的团队。高质量的沟通对于整个团队来说......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-09-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#软件工程" title="软件工程">软件工程</a>
+              <a href="/tags/#linux" title="linux">linux</a>
             
         </div>
     
@@ -345,6 +281,36 @@ y=β0+β1x1+β2x2+β3x3+β4x4+..+βnxny = \beta_0+\beta_1x_1+\beta_2x_2+\beta_3x
 
 <div class="post-preview">
 
+    <a href="/article/行为驱动开发实践/">
+        <h2 class="post-title">
+            行为驱动开发实践
+        </h2>
+        <h3 class="post-subtitle">
+            基于Cucumber的行为驱动开发
+        </h3>
+        <div class="post-content-preview">
+             行为驱动开发
+ 引言
+成功的软件开发项目要求正确的开发正确的软件。在传统的软件开发流程中,测试总是放在后面的阶段进行，从而只能起到查漏补缺的作用。测试驱动开发(*test-driven development*)要求测试先行,开发中首先根据需求写测试,然后再编写实现代码。最终,通过不断修正实现代码来通过测试,交付可靠代码。然而，软件开发涉及到多人紧密协作的团队。高质量的沟通对于整个团队来说......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-09-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#软件工程" title="软件工程">软件工程</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/article/详解进程间通信IPC原理/">
         <h2 class="post-title">
             详解进程间通信IPC原理
@@ -369,6 +335,51 @@ y=β0+β1x1+β2x2+β3x3+β4x4+..+βnxny = \beta_0+\beta_1x_1+\beta_2x_2+\beta_3x
         <div class="tags">
             
               <a href="/tags/#操作系统" title="操作系统">操作系统</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/计算机网络重要知识点/">
+        <h2 class="post-title">
+            计算机网络重要知识点
+        </h2>
+        <h3 class="post-subtitle">
+            一文清点计算机网络重点知识
+        </h3>
+        <div class="post-content-preview">
+             计算机网络重要知识点
+
+本文图片来自github的CS-NOTE,在此感谢作者CYC的开源精神
+
+ 一. 互联网
+ 1.1 基本概念
+网络是多个终端(主机)互相连接起来,而互联网则是将网络联系起来,互联网是网络的网络
+
+ 1.2 主机之间的常见通信方式:
+
+客户机服务器模式:(C/S),拓扑结构呈放射状
+
+
+
+点对点模式(不区分客户机和服务器,公平通信)😦P2P),拓扑结构呈网状
+
+
+ ......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-09-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#计算机网络原理" title="计算机网络原理">计算机网络原理</a>
             
         </div>
     
@@ -417,19 +428,19 @@ y=β0+β1x1+β2x2+β3x3+β4x4+..+βnxny = \beta_0+\beta_1x_1+\beta_2x_2+\beta_3x
     <div class="tags">
         
             
-            <a href="/tags/#java" title="java" rel="5">java</a>
-            
-        
-            
             <a href="/tags/#算法" title="算法" rel="6">算法</a>
             
         
             
-            <a href="/tags/#go" title="go" rel="1">go</a>
+            <a href="/tags/#java" title="java" rel="5">java</a>
             
         
             
             <a href="/tags/#MySQL" title="MySQL" rel="1">MySQL</a>
+            
+        
+            
+            <a href="/tags/#go" title="go" rel="1">go</a>
             
         
             
@@ -453,11 +464,7 @@ y=β0+β1x1+β2x2+β3x3+β4x4+..+βnxny = \beta_0+\beta_1x_1+\beta_2x_2+\beta_3x
             
         
             
-            <a href="/tags/#计算机网络原理" title="计算机网络原理" rel="1">计算机网络原理</a>
-            
-        
-            
-            <a href="/tags/#linux" title="linux" rel="1">linux</a>
+            <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
             
         
             
@@ -465,11 +472,15 @@ y=β0+β1x1+β2x2+β3x3+β4x4+..+βnxny = \beta_0+\beta_1x_1+\beta_2x_2+\beta_3x
             
         
             
-            <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
+            <a href="/tags/#linux" title="linux" rel="1">linux</a>
             
         
             
             <a href="/tags/#软件工程" title="软件工程" rel="1">软件工程</a>
+            
+        
+            
+            <a href="/tags/#计算机网络原理" title="计算机网络原理" rel="1">计算机网络原理</a>
             
         
     </div>
@@ -547,19 +558,19 @@ y=β0+β1x1+β2x2+β3x3+β4x4+..+βnxny = \beta_0+\beta_1x_1+\beta_2x_2+\beta_3x
         </li>
       
         <li>
-          <a href="/article/java常见IO重点知识清点/">java常见IO重点知识清点</a>
+          <a href="/article/python的for循环迭代/">python学习笔记(1)</a>
         </li>
       
         <li>
-          <a href="/article/Leetcode面试精选题解-1/">Leetcode面试精选题解-1</a>
+          <a href="/article/Leetcode面试精选题解-3/">Leetcode面试精选题解-3</a>
         </li>
       
         <li>
-          <a href="/article/Leetcode面试精选题解-2/">Leetcode面试精选题解-2</a>
+          <a href="/article/Leetcode面试精选题解-6/">Leetcode面试精选题解-6</a>
         </li>
       
         <li>
-          <a href="/article/go并发编程技巧/">go并发编程技巧</a>
+          <a href="/article/MySQL联合索引与数据结构/">MySQL联合索引与数据结构</a>
         </li>
       
     </ul>
