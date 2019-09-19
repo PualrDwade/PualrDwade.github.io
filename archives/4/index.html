@@ -213,29 +213,49 @@
 
 <div class="post-preview">
 
-    <a href="/article/java虚拟机核心概念/">
+    <a href="/article/python的for循环迭代/">
         <h2 class="post-title">
-            java虚拟机核心概念
+            python学习笔记(1)
         </h2>
         <h3 class="post-subtitle">
-            详解java运行时数据区
+            
         </h3>
         <div class="post-content-preview">
-             java虚拟机核心概念
+             python学习笔记(1)
+ python的for循环迭代
+ Interator
+12345678表示迭代器,使用生成器可以生成一个迭代器,生成器的基本用法和生成式很像ex:#生成器:(与list生成器的区别是[]改为())g = (x * x for x in range(10))#判断类型是迭代器from collections import Iterableisinstance((x......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-09-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#python程序设计" title="python程序设计">python程序设计</a>
+            
+        </div>
+    
 
-特别鸣谢CS-NOTE作者提供的美观图片
+</div>
+<hr>
 
- 一. 运行时数据区
-Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区进行协作,从而为java带来生命。
+<div class="post-preview">
 
-
-需要注意的是,运行时常量池是位于方法区内部的
-
-划分成为思维导图,便于理解与记忆
-
- 二. 垃圾回收(GC)
-垃圾收集器主要是针对于线程共享的区域(堆,方法区)进行工作。
-垃圾收集主要有两部分的工作:......
+    <a href="/article/java多线程核心概念/">
+        <h2 class="post-title">
+            Java多线程核心概念
+        </h2>
+        <h3 class="post-subtitle">
+            多线程重要知识清点
+        </h3>
+        <div class="post-content-preview">
+             java多线程核心概念
+ 线程的优先级
+1.线程的优先级与代码执行顺序是无关的,这意味的代码先执行的线程不一定先被调度
+123456789101112public class Run &#123;   public static void main(String[] args)&#123;       for (int i = 0 ;i &lt; 5; i++)&#123;        ......
         </div>
     </a>
     
@@ -361,22 +381,21 @@ Python内建了map()和reduce()函数。
 
 <div class="post-preview">
 
-    <a href="/article/数据库原理详解/">
+    <a href="/article/机器学习算法/">
         <h2 class="post-title">
-            数据库原理详解
+            机器学习算法
         </h2>
         <h3 class="post-subtitle">
-            一文清点数据库原理
+            机器学习基本原理与算法
         </h3>
         <div class="post-content-preview">
-             数据库原理详解
- 一. 什么是ACID?
- 1.1 原子性:(Atomicity)
-不可分割的最小单元,要么全部执行成功提交,要么失败回滚,回滚通过redo日志实现,记录执行过的语句,回滚时反向执行。
- 1.2 一致性:(Consistency)
-在一致性状态下,同一时间所有事务对数据读取的结果应该是相同的。
- 1.3 隔离性:(ISolation)
-一个事务所做的修改在最终提交以前，对其......
+             机器学习算法
+ 一. 线性回归
+ 1.1 单变量线性回归
+f(x)=β0+β1xf(x) = \beta_0 + \beta_1x
+f(x)=β​0​​+β​1​​x
+ 1.2 多元线性回归
+y=β0+β1x1+β2x2+β3x3+β4x4+..+βnxny = \beta_0+\beta_1x_1+\beta_2x_2+\beta_3x_3+\beta_4x_4+..+\beta_nx_......
         </div>
     </a>
     
@@ -386,40 +405,7 @@ Python内建了map()和reduce()函数。
         </p>
         <div class="tags">
             
-              <a href="/tags/#数据库" title="数据库">数据库</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/操作系统内存管理模型/">
-        <h2 class="post-title">
-            操作系统内存管理模型
-        </h2>
-        <h3 class="post-subtitle">
-            虚拟内存管理
-        </h3>
-        <div class="post-content-preview">
-             操作系统内存管理模型
- 引言
-在现代操作系统体系中,如何为程序分配内存,同时对内存进行合理、有效的管理是至关重要的一个技术点,操作系统不但要保证内存资源的利用率、减少内存碎片的产生,还要协调各个不同进程之间的内存关系。因此,实现一个高效可用的内存管理模型,是一个可用操作系统的基本要求。
-
- 一. 连续内存管理
-一种比较简单的内存管理机制,为每一个程序分配一段连续的物理地址空间,这样便可能会......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-09-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#操作系统" title="操作系统">操作系统</a>
+              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
             
         </div>
     
@@ -504,15 +490,19 @@ Python内建了map()和reduce()函数。
             
         
             
-            <a href="/tags/#数据结构" title="数据结构" rel="2">数据结构</a>
-            
-        
-            
             <a href="/tags/#操作系统" title="操作系统" rel="3">操作系统</a>
             
         
             
+            <a href="/tags/#数据结构" title="数据结构" rel="2">数据结构</a>
+            
+        
+            
             <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
+            
+        
+            
+            <a href="/tags/#软件工程" title="软件工程" rel="1">软件工程</a>
             
         
             
@@ -521,10 +511,6 @@ Python内建了map()和reduce()函数。
         
             
             <a href="/tags/#计算机网络原理" title="计算机网络原理" rel="1">计算机网络原理</a>
-            
-        
-            
-            <a href="/tags/#软件工程" title="软件工程" rel="1">软件工程</a>
             
         
     </div>
@@ -598,7 +584,7 @@ Python内建了map()和reduce()函数。
     <ul>
       
         <li>
-          <a href="/article/kubernetes核心技术/">kubernetes核心技术</a>
+          <a href="/article/java常见IO重点知识清点/">java常见IO重点知识清点</a>
         </li>
       
         <li>
@@ -606,15 +592,15 @@ Python内建了map()和reduce()函数。
         </li>
       
         <li>
+          <a href="/article/Leetcode面试精选题解-1/">Leetcode面试精选题解-1</a>
+        </li>
+      
+        <li>
           <a href="/article/Leetcode面试精选题解-5/">Leetcode面试精选题解-5</a>
         </li>
       
         <li>
-          <a href="/article/Leetcode面试精选题解-4/">Leetcode面试精选题解-4</a>
-        </li>
-      
-        <li>
-          <a href="/article/Leetcode面试精选题解-1/">Leetcode面试精选题解-1</a>
+          <a href="/article/Leetcode面试精选题解-6/">Leetcode面试精选题解-6</a>
         </li>
       
     </ul>
