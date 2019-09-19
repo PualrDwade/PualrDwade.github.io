@@ -136,14 +136,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -213,65 +213,32 @@
 
 <div class="post-preview">
 
-    <a href="/article/详解进程间通信IPC原理/">
+    <a href="/article/详解LinuxI-O模式/">
         <h2 class="post-title">
-            详解进程间通信IPC原理
+            详解LinuxI/O模式
         </h2>
         <h3 class="post-subtitle">
-            一文提炼重点
+            poll select epoll揭秘
         </h3>
         <div class="post-content-preview">
-             进程间通信IPC (InterProcess Communication)
- 一、进程间通信的概念
-每个进程各自有不同的用户地址空间，任何一个进程的全局变量在另一个进程中都看不到，所以进程之间要交换数据必须通过内核，在内核中开辟一块缓冲区，进程1把数据从用户空间拷到内核缓冲区，进程2再从内核缓冲区把数据读走，内核提供的这种机制称为进程间通信（IPC)
+             Linux I/O模型
+ 一. 缓冲区拷贝
+一个网络输入操作有两部分:
 
- 二、进程间通信的7种方式
-第一类:......
+等待输入数据准备好:从网卡到系统内核缓冲区:data-&gt;kernel buf
+内核拷贝到进程:内核缓冲区-&gt;进程缓冲区kernel buf-&gt;user buf
+
+对于一个套接字上的输入操作，第一步通常涉及等待数据从网络中到达。当所等待数据到达时，它被复制到内核中的某个缓冲区。第二步就是把数据从内核缓......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by PualrDwade on
-            2019-03-08
+            2019-04-08
         </p>
         <div class="tags">
             
-              <a href="/tags/#操作系统" title="操作系统">操作系统</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/操作系统重点知识汇总/">
-        <h2 class="post-title">
-            操作系统重点知识汇总
-        </h2>
-        <h3 class="post-subtitle">
-            一文清点操作系统
-        </h3>
-        <div class="post-content-preview">
-             操作系统重点知识汇总
- 一、操作系统基本特性
- 1. 并发
-1.进程和线程:线程是CPU调度的基本单位,进程是系统资源分配的基本单位,一个进程可以包含多个线程
-2.并行与并发:并发是宏观概念,计算机同时运行多个程序,并行是指同一时刻可以运行多个指令,并行需要硬件的支持
-3.操作系统引入了线程和进程的概念,加上调度算法,使得程序能在系统中并发运行
- 2. 共享
-1.共享是指资源可以被多个并发......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-03-08
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#操作系统" title="操作系统">操作系统</a>
+              <a href="/tags/#linux" title="linux">linux</a>
             
         </div>
     
@@ -297,7 +264,7 @@
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by PualrDwade on
-            2019-03-07
+            2019-04-07
         </p>
         <div class="tags">
             
@@ -340,7 +307,7 @@ Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by PualrDwade on
-            2019-03-06
+            2019-03-31
         </p>
         <div class="tags">
             
@@ -354,32 +321,28 @@ Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区
 
 <div class="post-preview">
 
-    <a href="/article/Leetcode面试精选题解-5/">
+    <a href="/article/java多线程核心概念/">
         <h2 class="post-title">
-            Leetcode面试精选题解-5
+            Java多线程核心概念
         </h2>
         <h3 class="post-subtitle">
-            链表专题
+            多线程重要知识清点
         </h3>
         <div class="post-content-preview">
-             Leetcode面试精选题解-链表专题
- 题号24:两两交换链表中的节点
-给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
-你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
-示例:
-1给定 1-&gt;2-&gt;3-&gt;4, 你应该返回 2-&gt;1-&gt;4-&gt;3.
-解答:
-此题的核心思想是额外记录前一个位置的指针,注意判断边界条件,随后循环交换位......
+             java多线程核心概念
+ 线程的优先级
+1.线程的优先级与代码执行顺序是无关的,这意味的代码先执行的线程不一定先被调度
+123456789101112public class Run &#123;   public static void main(String[] args)&#123;       for (int i = 0 ;i &lt; 5; i++)&#123;        ......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by PualrDwade on
-            2019-03-05
+            2019-03-21
         </p>
         <div class="tags">
             
-              <a href="/tags/#算法" title="算法">算法</a>
+              <a href="/tags/#java" title="java">java</a>
             
         </div>
     
@@ -389,36 +352,59 @@ Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区
 
 <div class="post-preview">
 
-    <a href="/article/Leetcode面试精选题解-4/">
+    <a href="/article/Java基础核心概念/">
         <h2 class="post-title">
-            Leetcode面试精选题解-4
+            Java基础核心概念
         </h2>
         <h3 class="post-subtitle">
-            位运算专题
+            详解java重点概念
         </h3>
         <div class="post-content-preview">
-             Leetcode面试精选题解-位运算详解
- 1.按位取与（&amp;）
-两值按二进制位进行 “与”运算
-规则：0&amp;0=0；0&amp;1=0；1&amp;0=0；1&amp;1=1
-举个栗子： a = 5  ,b = 3
-a：0101
-b：0011
-r：0001
- 2.按位取或（|）
-两值按二进制位进行 “或”运算
-规则：0|0=0；0|1=1；1|0=1；1|1=1
-举个栗子： ......
+             Java基础核心概念总结
+ 重写equal()必须重写hashcode()
+为什么?首先从equals()函数讲起,equals()函数判断的是两个对象的内容是否相等,也就是两个对象是否等价
+1.在哈希表中,会利用一个对象的hashcode()将对象散列到bucket数组中,若两个对象是等价的,那么他理应被散列到同一个位置,同时与该位置上的其余具有相同hashcode的对象进行equals......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by PualrDwade on
-            2019-02-04
+            2019-03-20
         </p>
         <div class="tags">
             
-              <a href="/tags/#算法" title="算法">算法</a>
+              <a href="/tags/#java" title="java">java</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/java常见IO重点知识清点/">
+        <h2 class="post-title">
+            java常见IO重点知识清点
+        </h2>
+        <h3 class="post-subtitle">
+            IO流模型详解
+        </h3>
+        <div class="post-content-preview">
+             java常见IO重点知识清点
+ 磁盘操作
+使用File类进行操作,File表示文件和目录的基本信息,并不表示真正的操作,通过磁盘操作可以实现一些文件级别的控制程序,如文件管理程序
+123456789101112public static void listAllFiles(File dir) &#123;    if (dir == null || !dir.exists()) &#123......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-03-17
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#java" title="java">java</a>
             
         </div>
     
@@ -471,11 +457,11 @@ r：0001
     <div class="tags">
         
             
-            <a href="/tags/#算法" title="算法" rel="6">算法</a>
+            <a href="/tags/#java" title="java" rel="5">java</a>
             
         
             
-            <a href="/tags/#java" title="java" rel="5">java</a>
+            <a href="/tags/#算法" title="算法" rel="6">算法</a>
             
         
             
@@ -507,15 +493,15 @@ r：0001
             
         
             
+            <a href="/tags/#数据结构" title="数据结构" rel="2">数据结构</a>
+            
+        
+            
             <a href="/tags/#软件工程" title="软件工程" rel="1">软件工程</a>
             
         
             
             <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
-            
-        
-            
-            <a href="/tags/#数据结构" title="数据结构" rel="2">数据结构</a>
             
         
             
@@ -597,6 +583,10 @@ r：0001
     <ul>
       
         <li>
+          <a href="/article/计算机网络重要知识点/">计算机网络重要知识点</a>
+        </li>
+      
+        <li>
           <a href="/article/MySQL精要/">MySQL精要</a>
         </li>
       
@@ -606,10 +596,6 @@ r：0001
       
         <li>
           <a href="/article/详解数据结构-广义表/">详解数据结构-广义表</a>
-        </li>
-      
-        <li>
-          <a href="/article/kubernetes核心技术/">kubernetes核心技术</a>
         </li>
       
         <li>
@@ -628,7 +614,7 @@ r：0001
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">3</span></li></ul>
     </div>
 
         <hr>

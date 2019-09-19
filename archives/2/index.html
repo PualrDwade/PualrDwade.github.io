@@ -136,14 +136,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -213,32 +213,55 @@
 
 <div class="post-preview">
 
-    <a href="/article/详解LinuxI-O模式/">
+    <a href="/article/MySQL联合索引与数据结构/">
         <h2 class="post-title">
-            详解LinuxI/O模式
+            MySQL联合索引与数据结构
         </h2>
         <h3 class="post-subtitle">
-            poll select epoll揭秘
+            innodb存储引擎探秘
         </h3>
         <div class="post-content-preview">
-             Linux I/O模型
- 一. 缓冲区拷贝
-一个网络输入操作有两部分:
+             MySQL联合索引与数据结构
+ 一. 联合索引建立
+联合索引是指通过多个字段序列联合建立索引,建立联合索引很简单,考虑如下表student:
 
-等待输入数据准备好:从网卡到系统内核缓冲区:data-&gt;kernel buf
-内核拷贝到进程:内核缓冲区-&gt;进程缓冲区kernel buf-&gt;user buf
 
-对于一个套接字上的输入操作，第一步通常涉及等待数据从网络中到达。当所等待数据到达时，它被复制到内核中的某个缓冲区。第二步就是把数据从内核缓......
+
+id
+name
+phone
+
+
+
+
+1
+小陈
+17726151998
+
+
+2
+小明
+17726151888
+
+
+3
+小黄
+17726448917
+
+
+
+我们给name,phone两个字段建立联合索引:
+1create index index_s......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by PualrDwade on
-            2019-04-08
+            2019-04-26
         </p>
         <div class="tags">
             
-              <a href="/tags/#linux" title="linux">linux</a>
+              <a href="/tags/#MySQL" title="MySQL">MySQL</a>
             
         </div>
     
@@ -269,7 +292,7 @@
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by PualrDwade on
-            2019-03-31
+            2019-04-21
         </p>
         <div class="tags">
             
@@ -302,7 +325,7 @@
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by PualrDwade on
-            2019-03-22
+            2019-04-11
         </p>
         <div class="tags">
             
@@ -316,28 +339,31 @@
 
 <div class="post-preview">
 
-    <a href="/article/Java基础核心概念/">
+    <a href="/article/Leetcode面试精选题解-6/">
         <h2 class="post-title">
-            Java基础核心概念
+            Leetcode面试精选题解-6
         </h2>
         <h3 class="post-subtitle">
-            详解java重点概念
+            动态规划专题
         </h3>
         <div class="post-content-preview">
-             Java基础核心概念总结
- 重写equal()必须重写hashcode()
-为什么?首先从equals()函数讲起,equals()函数判断的是两个对象的内容是否相等,也就是两个对象是否等价
-1.在哈希表中,会利用一个对象的hashcode()将对象散列到bucket数组中,若两个对象是等价的,那么他理应被散列到同一个位置,同时与该位置上的其余具有相同hashcode的对象进行equals......
+             Leetcode面试精选题解-动态规划专题
+ 题号121:买卖股票的最佳时机
+给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。
+如果你最多只允许完成一笔交易（即买入和卖出一支股票），设计一个算法来计算你所能获取的最大利润。
+注意你不能在买入股票前卖出股票。
+示例 1:
+1234输入: [7,1,5,3,6,4]输出: 5解释: 在第 2 天（股票价格 = 1）的时候买入，在......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by PualrDwade on
-            2019-03-20
+            2019-04-11
         </p>
         <div class="tags">
             
-              <a href="/tags/#java" title="java">java</a>
+              <a href="/tags/#算法" title="算法">算法</a>
             
         </div>
     
@@ -347,28 +373,31 @@
 
 <div class="post-preview">
 
-    <a href="/article/java常见IO重点知识清点/">
+    <a href="/article/Leetcode面试精选题解-3/">
         <h2 class="post-title">
-            java常见IO重点知识清点
+            Leetcode面试精选题解-3
         </h2>
         <h3 class="post-subtitle">
-            IO流模型详解
+            数组专题
         </h3>
         <div class="post-content-preview">
-             java常见IO重点知识清点
- 磁盘操作
-使用File类进行操作,File表示文件和目录的基本信息,并不表示真正的操作,通过磁盘操作可以实现一些文件级别的控制程序,如文件管理程序
-123456789101112public static void listAllFiles(File dir) &#123;    if (dir == null || !dir.exists()) &#123......
+             Leetcode面试精选题解-数组专题
+ 题号27:移除元素
+给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。
+不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。
+元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
+示例 1:
+12345给定 nums = [3,2,2,3], ......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by PualrDwade on
-            2019-03-16
+            2019-04-10
         </p>
         <div class="tags">
             
-              <a href="/tags/#java" title="java">java</a>
+              <a href="/tags/#算法" title="算法">算法</a>
             
         </div>
     
@@ -378,42 +407,32 @@
 
 <div class="post-preview">
 
-    <a href="/article/计算机网络重要知识点/">
+    <a href="/article/Leetcode面试精选题解-5/">
         <h2 class="post-title">
-            计算机网络重要知识点
+            Leetcode面试精选题解-5
         </h2>
         <h3 class="post-subtitle">
-            一文清点计算机网络重点知识
+            链表专题
         </h3>
         <div class="post-content-preview">
-             计算机网络重要知识点
-
-本文图片来自github的CS-NOTE,在此感谢作者CYC的开源精神
-
- 一. 互联网
- 1.1 基本概念
-网络是多个终端(主机)互相连接起来,而互联网则是将网络联系起来,互联网是网络的网络
-
- 1.2 主机之间的常见通信方式:
-
-客户机服务器模式:(C/S),拓扑结构呈放射状
-
-
-
-点对点模式(不区分客户机和服务器,公平通信)😦P2P),拓扑结构呈网状
-
-
- ......
+             Leetcode面试精选题解-链表专题
+ 题号24:两两交换链表中的节点
+给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
+你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
+示例:
+1给定 1-&gt;2-&gt;3-&gt;4, 你应该返回 2-&gt;1-&gt;4-&gt;3.
+解答:
+此题的核心思想是额外记录前一个位置的指针,注意判断边界条件,随后循环交换位......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by PualrDwade on
-            2019-03-11
+            2019-04-10
         </p>
         <div class="tags">
             
-              <a href="/tags/#计算机网络原理" title="计算机网络原理">计算机网络原理</a>
+              <a href="/tags/#算法" title="算法">算法</a>
             
         </div>
     
@@ -466,11 +485,11 @@
     <div class="tags">
         
             
-            <a href="/tags/#算法" title="算法" rel="6">算法</a>
+            <a href="/tags/#java" title="java" rel="5">java</a>
             
         
             
-            <a href="/tags/#java" title="java" rel="5">java</a>
+            <a href="/tags/#算法" title="算法" rel="6">算法</a>
             
         
             
@@ -502,15 +521,15 @@
             
         
             
+            <a href="/tags/#数据结构" title="数据结构" rel="2">数据结构</a>
+            
+        
+            
             <a href="/tags/#软件工程" title="软件工程" rel="1">软件工程</a>
             
         
             
             <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
-            
-        
-            
-            <a href="/tags/#数据结构" title="数据结构" rel="2">数据结构</a>
             
         
             
@@ -592,6 +611,10 @@
     <ul>
       
         <li>
+          <a href="/article/计算机网络重要知识点/">计算机网络重要知识点</a>
+        </li>
+      
+        <li>
           <a href="/article/MySQL精要/">MySQL精要</a>
         </li>
       
@@ -601,10 +624,6 @@
       
         <li>
           <a href="/article/详解数据结构-广义表/">详解数据结构-广义表</a>
-        </li>
-      
-        <li>
-          <a href="/article/kubernetes核心技术/">kubernetes核心技术</a>
         </li>
       
         <li>
@@ -623,7 +642,7 @@
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">3</span></li></ul>
     </div>
 
         <hr>

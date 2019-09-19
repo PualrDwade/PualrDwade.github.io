@@ -136,14 +136,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -213,27 +213,170 @@
 
 <div class="post-preview">
 
-    <a href="/article/Leetcode面试精选题解-3/">
+    <a href="/article/操作系统重点知识汇总/">
         <h2 class="post-title">
-            Leetcode面试精选题解-3
+            操作系统重点知识汇总
         </h2>
         <h3 class="post-subtitle">
-            数组专题
+            一文清点操作系统
         </h3>
         <div class="post-content-preview">
-             Leetcode面试精选题解-数组专题
- 题号27:移除元素
-给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。
-不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。
-元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
-示例 1:
-12345给定 nums = [3,2,2,3], ......
+             操作系统重点知识汇总
+ 一、操作系统基本特性
+ 1. 并发
+1.进程和线程:线程是CPU调度的基本单位,进程是系统资源分配的基本单位,一个进程可以包含多个线程
+2.并行与并发:并发是宏观概念,计算机同时运行多个程序,并行是指同一时刻可以运行多个指令,并行需要硬件的支持
+3.操作系统引入了线程和进程的概念,加上调度算法,使得程序能在系统中并发运行
+ 2. 共享
+1.共享是指资源可以被多个并发......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by PualrDwade on
-            2019-02-01
+            2019-03-08
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#操作系统" title="操作系统">操作系统</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/数据结构内部原理-1/">
+        <h2 class="post-title">
+            数据结构内部原理(1)-哈希表
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+             哈希表
+ 1.概念
+哈希表是使用哈希函数组织的数据结构,能够支持快速的查找和插入操作.
+哈希表通常有两种:
+
+1.哈希集合:java的util包中提供了HashSet的实现
+
+
+2.哈希映射:java的util包中提供了HashMap的实现
+
+12Set&lt;?&gt; set = new HashSet&lt;&gt;();Map&lt;?,?&gt; map = new HashMa......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-03-08
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#数据结构" title="数据结构">数据结构</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/详解进程间通信IPC原理/">
+        <h2 class="post-title">
+            详解进程间通信IPC原理
+        </h2>
+        <h3 class="post-subtitle">
+            一文提炼重点
+        </h3>
+        <div class="post-content-preview">
+             进程间通信IPC (InterProcess Communication)
+ 一、进程间通信的概念
+每个进程各自有不同的用户地址空间，任何一个进程的全局变量在另一个进程中都看不到，所以进程之间要交换数据必须通过内核，在内核中开辟一块缓冲区，进程1把数据从用户空间拷到内核缓冲区，进程2再从内核缓冲区把数据读走，内核提供的这种机制称为进程间通信（IPC)
+
+ 二、进程间通信的7种方式
+第一类:......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-03-08
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#操作系统" title="操作系统">操作系统</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/java内置的数据结构与经典算法/">
+        <h2 class="post-title">
+            java内置的数据结构与经典算法
+        </h2>
+        <h3 class="post-subtitle">
+            java数据结构算法详解
+        </h3>
+        <div class="post-content-preview">
+             解密Java常见的数据结构与算法
+ 前言
+本博文针对java程序设计语言以及java.util包中的各种集合类型,融汇数据结构与算法知识,将内部原理,设计思想进行系统的讲解概括,为面试,学习提供参考
+ 集合框架的继承结构
+123圆点虚线框：接口类，如List、Set、Map。加长虚线框：抽象类，如AbstractCollection、AbstractList。实线框（加粗和正常）：实现类，......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-03-05
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#java" title="java">java</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Leetcode面试精选题解-4/">
+        <h2 class="post-title">
+            Leetcode面试精选题解-4
+        </h2>
+        <h3 class="post-subtitle">
+            位运算专题
+        </h3>
+        <div class="post-content-preview">
+             Leetcode面试精选题解-位运算详解
+ 1.按位取与（&amp;）
+两值按二进制位进行 “与”运算
+规则：0&amp;0=0；0&amp;1=0；1&amp;0=0；1&amp;1=1
+举个栗子： a = 5  ,b = 3
+a：0101
+b：0011
+r：0001
+ 2.按位取或（|）
+两值按二进制位进行 “或”运算
+规则：0|0=0；0|1=1；1|0=1；1|1=1
+举个栗子： ......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-03-04
         </p>
         <div class="tags">
             
@@ -268,156 +411,11 @@
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by PualrDwade on
-            2019-02-01
+            2019-03-04
         </p>
         <div class="tags">
             
               <a href="/tags/#算法" title="算法">算法</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Leetcode面试精选题解-6/">
-        <h2 class="post-title">
-            Leetcode面试精选题解-6
-        </h2>
-        <h3 class="post-subtitle">
-            动态规划专题
-        </h3>
-        <div class="post-content-preview">
-             Leetcode面试精选题解-动态规划专题
- 题号121:买卖股票的最佳时机
-给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。
-如果你最多只允许完成一笔交易（即买入和卖出一支股票），设计一个算法来计算你所能获取的最大利润。
-注意你不能在买入股票前卖出股票。
-示例 1:
-1234输入: [7,1,5,3,6,4]输出: 5解释: 在第 2 天（股票价格 = 1）的时候买入，在......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-01-25
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#算法" title="算法">算法</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Leetcode面试精选题解-1/">
-        <h2 class="post-title">
-            Leetcode面试精选题解-1
-        </h2>
-        <h3 class="post-subtitle">
-            热身题
-        </h3>
-        <div class="post-content-preview">
-             Leetcode面试精选题解-热身题
-互联网公司面试常见考点:
-
-面试主题考点总结:
- 算法 - Algorithms
-
-排序算法：快速排序、归并排序、计数排序
-搜索算法：回溯、递归、剪枝技巧
-图论：最短路、最小生成树、网络流建模
-动态规划：背包问题、最长子序列、计数问题
-基础技巧：分治、倍增、二分、贪心
-
- 数据结构 - Data Structures
-
-数组与链表：单 / 双向链表、跳......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-01-25
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#算法" title="算法">算法</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/数据结构内部原理-1/">
-        <h2 class="post-title">
-            数据结构内部原理(1)-哈希表
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-             哈希表
- 1.概念
-哈希表是使用哈希函数组织的数据结构,能够支持快速的查找和插入操作.
-哈希表通常有两种:
-
-1.哈希集合:java的util包中提供了HashSet的实现
-
-
-2.哈希映射:java的util包中提供了HashMap的实现
-
-12Set&lt;?&gt; set = new HashSet&lt;&gt;();Map&lt;?,?&gt; map = new HashMa......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-01-10
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#数据结构" title="数据结构">数据结构</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/java多线程核心概念/">
-        <h2 class="post-title">
-            Java多线程核心概念
-        </h2>
-        <h3 class="post-subtitle">
-            多线程重要知识清点
-        </h3>
-        <div class="post-content-preview">
-             java多线程核心概念
- 线程的优先级
-1.线程的优先级与代码执行顺序是无关的,这意味的代码先执行的线程不一定先被调度
-123456789101112public class Run &#123;   public static void main(String[] args)&#123;       for (int i = 0 ;i &lt; 5; i++)&#123;        ......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2018-12-25
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#java" title="java">java</a>
             
         </div>
     
@@ -470,11 +468,11 @@
     <div class="tags">
         
             
-            <a href="/tags/#算法" title="算法" rel="6">算法</a>
+            <a href="/tags/#java" title="java" rel="5">java</a>
             
         
             
-            <a href="/tags/#java" title="java" rel="5">java</a>
+            <a href="/tags/#算法" title="算法" rel="6">算法</a>
             
         
             
@@ -506,15 +504,15 @@
             
         
             
+            <a href="/tags/#数据结构" title="数据结构" rel="2">数据结构</a>
+            
+        
+            
             <a href="/tags/#软件工程" title="软件工程" rel="1">软件工程</a>
             
         
             
             <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
-            
-        
-            
-            <a href="/tags/#数据结构" title="数据结构" rel="2">数据结构</a>
             
         
             
@@ -596,6 +594,10 @@
     <ul>
       
         <li>
+          <a href="/article/计算机网络重要知识点/">计算机网络重要知识点</a>
+        </li>
+      
+        <li>
           <a href="/article/MySQL精要/">MySQL精要</a>
         </li>
       
@@ -605,10 +607,6 @@
       
         <li>
           <a href="/article/详解数据结构-广义表/">详解数据结构-广义表</a>
-        </li>
-      
-        <li>
-          <a href="/article/kubernetes核心技术/">kubernetes核心技术</a>
         </li>
       
         <li>
@@ -627,7 +625,7 @@
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">3</span></li></ul>
     </div>
 
         <hr>

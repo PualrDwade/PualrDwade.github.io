@@ -97,7 +97,7 @@
                         <h2 class="subheading">虚拟内存管理</h2>
                         <span class="meta">
                             Posted by PualrDwade on
-                            2019-03-22
+                            2019-04-11
                         </span>
                     </div>
                 
@@ -144,14 +144,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -276,7 +276,7 @@
 </ol>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">start=>start: 开始
 end=>end: 结束
-validateTLB=>operation: CPU检查TLB
+date: 2019-04-11 23:17:49
 pageInTLB=>condition: 页表项在TLB中？
 visitTLB=>operation: 直接访问TLB
 getAddressFromCache=>operation: 从TLB缓存中取得对应物理帧
@@ -284,13 +284,13 @@ visitPageTable=>operation: 访问页表
 computeAddress=>operation: CPU计算物理地址
 pageInMemory=>condition: 页表项在内存中？
 interruptHandle=>operation: 处理缺页中断
-updateTLB=>operation: 更新TLB
+date: 2019-04-11 23:17:49
 
-start->validateTLB->pageInTLB
+date: 2019-04-11 23:17:49
 pageInTLB(yes)->visitTLB->computeAddress->end
 pageInTLB(no)->visitPageTable->pageInMemory
-pageInMemory(yes)->updateTLB->computeAddress->end
-pageInMemory(no)->interruptHandle->validateTLB</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script>
+date: 2019-04-11 23:17:49
+date: 2019-04-11 23:17:49</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script>
                 
 
                 <hr>
@@ -303,7 +303,7 @@ pageInMemory(no)->interruptHandle->validateTLB</textarea><textarea id="flowchart
                     
                     
                         <li class="next">
-                            <a href="/article/Java基础核心概念/" data-toggle="tooltip" data-placement="top" title="Java基础核心概念">Next Post &rarr;</a>
+                            <a href="/article/Leetcode面试精选题解-6/" data-toggle="tooltip" data-placement="top" title="Leetcode面试精选题解-6">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
