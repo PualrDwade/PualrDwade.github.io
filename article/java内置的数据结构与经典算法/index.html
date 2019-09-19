@@ -14,7 +14,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          java内置的数据结构与经典算法 - 陈志轩 | Blog
+          陈志轩 | Blog
         
     </title>
 
@@ -90,14 +90,12 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#java" title="java">java</a>
-                            
                         </div>
-                        <h1>java内置的数据结构与经典算法</h1>
-                        <h2 class="subheading">java数据结构算法详解</h2>
+                        <h1></h1>
+                        <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by PualrDwade on
-                            2019-09-19
+                            2019-03-05
                         </span>
                     </div>
                 
@@ -214,212 +212,1058 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="解密java常见的数据结构与算法"><a class="markdownIt-Anchor" href="#解密java常见的数据结构与算法"></a> 解密Java常见的数据结构与算法</h1>
-<h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
-<p>本博文针对<code>java</code>程序设计语言以及<code>java.util</code>包中的各种集合类型,融汇数据结构与算法知识,将内部原理,设计思想进行系统的讲解概括,为面试,学习提供参考</p>
-<h2 id="集合框架的继承结构"><a class="markdownIt-Anchor" href="#集合框架的继承结构"></a> 集合框架的继承结构</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">圆点虚线框：接口类，如List、Set、Map。</span><br><span class="line">加长虚线框：抽象类，如AbstractCollection、AbstractList。</span><br><span class="line">实线框（加粗和正常）：实现类，如ArrayList、Hashtable。</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.loli.net/2019/03/05/5c7e146c560bc.png" alt=""></p>
-<p>基本接口层次类型:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">java.util.Collection [I]</span><br><span class="line">    +--java.util.List [I]</span><br><span class="line">       +--java.util.ArrayList [C]    </span><br><span class="line">       +--java.util.LinkedList [C]  </span><br><span class="line">       +--java.util.Vector [C]    <span class="comment">//线程安全</span></span><br><span class="line">          +--java.util.Stack [C]  <span class="comment">//线程安全</span></span><br><span class="line">    +--java.util.Set [I]                   </span><br><span class="line">       +--java.util.HashSet [C]      </span><br><span class="line">       +--java.util.SortedSet [I]    </span><br><span class="line">          +--java.util.TreeSet [C]    </span><br><span class="line">    +--Java.util.Queue[I]</span><br><span class="line">        +--java.util.Deque[I]   </span><br><span class="line">        +--java.util.PriorityQueue[C]  </span><br><span class="line">java.util.Map [I]</span><br><span class="line">    +--java.util.SortedMap [I]</span><br><span class="line">       +--java.util.TreeMap [C]</span><br><span class="line">    +--java.util.Hashtable [C]   <span class="comment">//线程安全</span></span><br><span class="line">    +--java.util.HashMap [C]</span><br><span class="line">    +--java.util.LinkedHashMap [C]</span><br><span class="line">    +--java.util.WeakHashMap [C]</span><br><span class="line"></span><br><span class="line">[I]：接口</span><br><span class="line">[C]：类</span><br></pre></td></tr></table></figure>
-<h2 id="数组"><a class="markdownIt-Anchor" href="#数组"></a> 数组</h2>
-<p>数组是在内存空间中的连续一段地址,其逻辑地址与物理地址是对应的,因此可以直接通过索引物理位置计算得到具体位置的元素,从而支持随机访问,时间复杂度为常数</p>
-<p>数组索引,访问效率很高,但是增加,删除元素确代价很高,每一次变化都需要重新调整其余元素的位置,时间复杂度为线性级别</p>
-<p><code>ArrayList</code>:内部使用了数组来存储数据,支持随机访问,动态扩容,但是线程不安全,对应的线程安全类为<code>Vector</code>,顺序表<code>get</code>,<code>set</code>的复杂度都是常数<code>O(1)</code>,但是<code>add</code>,<code>remove</code>操作需要<code>O(N)</code>的时间.</p>
-<p><code>Vector</code>和<code>ArrayList</code>相比，主要差别就在于多了一个线程安全性，但是效率比较低下。</p>
-<p>如今<code>java.util.concurrent</code>包提供了许多线程安全的集合类,比如 <code>LinkedBlockingQueue</code>,<code>opyOnWriteArrayList</code>,所以不必再使用<code>Vector</code>了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">list.add(<span class="number">1</span>);</span><br><span class="line">list.remove(<span class="number">1</span>);</span><br><span class="line">list.get(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">List&lt;Integer&gt; list = <span class="keyword">new</span> CopyOnWriteArrayList&lt;&gt;();</span><br><span class="line">.....</span><br></pre></td></tr></table></figure>
-<h2 id="链表"><a class="markdownIt-Anchor" href="#链表"></a> 链表</h2>
-<p>链表是一种非连续的顺序结构.其逻辑地址与物理地址是没有关联的,因此不能直接通过物理地址计算到具体位置,从而<strong>不支持随机访问</strong></p>
-<p>链表的索引需要循环查找链表,时间复杂度为<code>O(n)</code>,但是链表能够灵活变化结构,只需要概念指向下一节点的位置,便可以在常数时间内完成插入,删除等操作</p>
-<p>Java中，<code>LinkedList</code>使用链表作为其基础实现。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">LinkedList&lt;String&gt; linkedList = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">linkedList.add(<span class="string">"addd"</span>);<span class="comment">//add</span></span><br><span class="line">linkedList.set(<span class="number">0</span>,<span class="string">"s"</span>);<span class="comment">//set，必须先保证 linkedList中已经有第0个元素</span></span><br><span class="line">String s =  linkedList.get(<span class="number">0</span>);<span class="comment">//get</span></span><br><span class="line">linkedList.contains(<span class="string">"s"</span>);<span class="comment">//查找</span></span><br><span class="line">linkedList.remove(<span class="string">"s"</span>);<span class="comment">//删除</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//以上方法也适用于ArrayList</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>查找操作对于未排序的数组和链表时间上都是O(N)</p>
-</blockquote>
-<h2 id="队列"><a class="markdownIt-Anchor" href="#队列"></a> 队列</h2>
-<p>队列是一种特殊的线性表，特殊之处在于它只允许在表的前端进行删除操作，而在表的后端进行插入操作，亦即所谓的先进先出（<code>FIFO</code>）。</p>
-<p>Java中，<code>LinkedList</code>实现了<code>Deque</code>接口，可以做为双向队列（自然也可以用作单向队列）。另外<code>PriorityQueue</code>实现了带优先级的队列，亦即队列的每一个元素都有优先级，且元素按照优先级排序。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Deque&lt;Integer&gt; integerDeque = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line"><span class="comment">// 尾部入队，区别在于如果失败了</span></span><br><span class="line"><span class="comment">// add方法会抛出一个IllegalStateException异常，而offer方法返回false</span></span><br><span class="line">integerDeque.offer(<span class="number">122</span>);</span><br><span class="line">integerDeque.add(<span class="number">122</span>);</span><br><span class="line"><span class="comment">// 头部出队,区别在于如果失败了</span></span><br><span class="line"><span class="comment">// remove方法抛出一个NoSuchElementException异常，而poll方法返回false</span></span><br><span class="line"><span class="keyword">int</span> head = integerDeque.poll();<span class="comment">//返回第一个元素，并在队列中删除</span></span><br><span class="line">head = integerDeque.remove();<span class="comment">//返回第一个元素，并在队列中删除</span></span><br><span class="line"><span class="comment">// 头部出队，区别在于如果失败了</span></span><br><span class="line"><span class="comment">// element方法抛出一个NoSuchElementException异常，而peek方法返回null。</span></span><br><span class="line">head = integerDeque.peek();<span class="comment">//返回第一个元素，不删除</span></span><br><span class="line">head = integerDeque.element();<span class="comment">//返回第一个元素，不删除</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>总结:offer入队操作和poll出队操作是队列的自然操作,不抛出异常</p>
-</blockquote>
-<h2 id="栈"><a class="markdownIt-Anchor" href="#栈"></a> 栈</h2>
-<p>栈（<code>stack</code>）又名堆栈，它是一种运算受限的线性表。其限制是仅允许在表的一端进行插入和删除运算。这一端被称为栈顶，相对地，把另一端称为栈底。它体现了后进先出（<code>LIFO</code>）<br>
-的特点。</p>
-<p>Java中，<code>Stack</code>实现了这种特性，但是<code>Stack</code>也继承了<code>Vector</code>，所以具有线程安全线和效率低下两个特性，最新的JDK8中，推荐用<code>Deque</code>来实现栈,如下:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Deque&lt;Integer&gt; stack = <span class="keyword">new</span> ArrayDeque&lt;&gt;();</span><br><span class="line">stack.push(<span class="number">12</span>);<span class="comment">//尾部入栈</span></span><br><span class="line">stack.push(<span class="number">16</span>);<span class="comment">//尾部入栈</span></span><br><span class="line"><span class="keyword">int</span> tail = stack.pop();<span class="comment">//尾部出栈，tail = 16,并删除该元素</span></span><br><span class="line">tail = stack.peek();<span class="comment">//尾部出栈，tail = 12,不删除该元素</span></span><br><span class="line">stack.isEmpty();<span class="comment">//false;</span></span><br></pre></td></tr></table></figure>
-<h2 id="集合"><a class="markdownIt-Anchor" href="#集合"></a> 集合</h2>
-<p>集合是指具有某种特定性质的具体的或抽象的对象汇总成的集体，这些对象称为该集合的元素，其主要特性是元素不可重复。</p>
-<p>在Java中，<code>HashSet</code>体现了这种数据结构，而<code>HashSet</code>是在<code>HashMap</code>的基础上构建的。<code>LinkedHashSet</code>继承了<code>HashSet</code>，使用<code>hashCode</code>确定在集合中的位置，使用<code>链表</code>的方式确定位置，所以有顺序。<code>TreeSet</code>实现了<code>SortedSet</code>接口，是排好序的集合（在<code>TreeMap</code> 基础之上构建），因此查找操作比普通的<code>Hashset</code>要快:<code>log(N)</code>；插入操作要慢:<code>log(N)</code>,因为要维护有序。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;Integer&gt; integerHashSet = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">integerHashSet.add(<span class="number">12121</span>);<span class="comment">//添加</span></span><br><span class="line">integerHashSet.contains(<span class="number">121</span>);<span class="comment">//是否包含:false</span></span><br><span class="line">integerHashSet.size();<span class="comment">//集合大小:1</span></span><br><span class="line">integerHashSet.isEmpty();<span class="comment">//是否为空:false</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意:集合是不允许删除元素的,我们在讨论数据结构的过程中,应该关注与数据结构的核心功能,java中的数据结构其实设计的并不好,因为暴露的接口太多了,宽接口容易导致错误的用例,降低了算法的可读性,我们应该只讨论数据结构本应该拥有的接口,比如对于单向队列,我们只讨论offer和poll,对于stack,我们只关注pop和push,这样我们才能转化思维,编写出可读性强的算法,而不是使用一个<code>ArrayList</code>来充当Stack,使用Stack来充当Set</p>
-</blockquote>
-<h2 id="散列表"><a class="markdownIt-Anchor" href="#散列表"></a> 散列表</h2>
-<p>散列表也叫哈希表，是根据关键键值(Keyvalue)进行访问的数据结构，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度，这个映射函数叫做散列函数。</p>
-<p>Java中<code>HashMap</code>实现了散列表，而<code>HashTable</code>比它多了一个线程安全性，但是由于使用了全局锁导致其性能较低，所以现在一般用<code>ConcurrentHashMap</code>来实现线程安全的<code>HashMap</code>（类似的，以上的数据结构在最新的<code>java.util.concurrent</code>的包中几乎都有对应的高性能的线程安全的类）。<code>TreeMap</code>实现<code>SortMap</code>接口，能够把它保存的记录按照键排序。<code>LinkedHashMap</code>保留了元素插入的顺序。<code>WeakHashMap</code>是一种改进的<code>HashMap</code>,它对key实行“弱引用”，如果一个key不再被外部所引用，那么该key可以被GC回收，而不需要我们手动删除。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HashMap&lt;Integer,String&gt; hashMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">hashMap.put(<span class="number">1</span>,<span class="string">"asdsa"</span>);<span class="comment">//添加</span></span><br><span class="line">hashMap.get(<span class="number">1</span>);<span class="comment">//获得</span></span><br><span class="line">hashMap.size();<span class="comment">//元素个数</span></span><br></pre></td></tr></table></figure>
-<h2 id="树"><a class="markdownIt-Anchor" href="#树"></a> 树</h2>
-<p>树（tree）是包含n（n&gt;0）个节点的有穷集合，其中：</p>
-<ul>
-<li>每个元素称为节点（node）；</li>
-<li>有一个特定的节点被称为根节点或树根（root）。</li>
-<li>除根节点之外的其余数据元素被分为m（m≥0）个互不相交的结合T1，T2，……Tm-1，其中每一个集合Ti（1&lt;=i&lt;=m）本身也是一棵树，被称作原树的子树（subtree）。</li>
-</ul>
-<p>树这种数据结构在计算机世界中有广泛的应用，比如操作系统中用到了红黑树，数据库用到了B+树，编译器中的语法树，内存管理用到了堆（本质上也是树），信息论中的哈夫曼编码等等等等，在Java中<code>TreeSet</code>和<code>TreeMap</code>用到了树来排序（二分查找提高检索速度），不过一般都需要程序员自己去定义一个树的类，并实现相关性质，而没有现成的API。下面就用Java来实现各种常见的树。</p>
-<h2 id="二叉树"><a class="markdownIt-Anchor" href="#二叉树"></a> 二叉树</h2>
-<p>二叉树是一种基础而且重要的数据结构，其每个结点至多只有二棵子树，二叉树有左右子树之分，第<code>i</code>层至多有2<sup>(`i`-1)个结点（`i`从1开始）；深度为k的二叉树至多有2</sup>(k)-1)个结点，对任何一棵二叉树，如果其终端结点数为n0，度为2的结点数为n2，则n0=n2+1。</p>
-<p>二叉树的重要性质:</p>
-<ol>
-<li>
-<p>在非空二叉树中，第i层的结点总数不超过2^(i-1), i&gt;=1;</p>
-</li>
-<li>
-<p>深度为h的二叉树最多有2^h-1个结点(h&gt;=1)，最少有h个结点;</p>
-</li>
-<li>
-<p>对于任意一棵二叉树，如果其叶结点数为N0，而度数为2的结点总数为N2，则N0=N2+1;</p>
-</li>
-<li>
-<p>具有n个结点的完全二叉树的深度为log2(n+1);</p>
-</li>
-</ol>
-<p>5)有N个结点的完全二叉树各结点如果用顺序方式存储，则结点之间有如下关系：<br>
-​	若I为结点编号则 如果I&gt;1，则其父结点的编号为I/2；<br>
-​	如果2I&lt;=N，则其左儿子（即左子树的根结点）的编号为2I；若2I&gt;N，则无左儿子；<br>
-​	如果2I+1&lt;=N，则其右儿子的结点编号为2I+1；若2I+1&gt;N，则无右儿子。　　　　<br>
-6)给定N个节点，能构成h(N)种不同的二叉树，其中h(N)为卡特兰数的第N项，h(n)=C(2*n, n)/(n+</p>
-<p>7)设有<code>i</code>个枝点，I为所有枝点的道路长度总和，J为叶的道路长度总和J=I+2i。</p>
-<h2 id="满二叉树-完全二叉树"><a class="markdownIt-Anchor" href="#满二叉树-完全二叉树"></a> 满二叉树、完全二叉树</h2>
-<p>满二叉树：除最后一层无任何子节点外，每一层上的所有结点都有两个子结点；</p>
-<p>完全二叉树：若设二叉树的深度为h，除第 h 层外，其它各层 (1～(h-1)层) 的结点数都达到最大个数，第h层所有的结点都连续集中在最左边，这就是完全二叉树；</p>
-<p>满二叉树是完全二叉树的一个特例。</p>
-<h2 id="重要二叉搜索树"><a class="markdownIt-Anchor" href="#重要二叉搜索树"></a> (重要)二叉搜索树</h2>
-<p>二叉搜索树又叫二叉查找树,二叉排序树,英文缩写为<code>BST</code>.其中序遍历的结果为有序的序列</p>
-<p>。二叉排序树或者是一棵空树，或者是具有下列性质的二叉树：<br>
-　　1) 若左子树不空，则左子树上所有结点的值均小于它的根结点的值；<br>
-　　2) 若右子树不空，则右子树上所有结点的值均大于或等于它的根结点的值；<br>
-　　3) 左、右子树也分别为二叉排序树；<br>
-　　4) 没有键值相等的节点。<br>
-　　二叉查找树的性质：对二叉查找树进行中序遍历，即可得到有序的数列。<br>
-　　二叉查找树的时间复杂度：它和二分查找一样，插入和查找的时间复杂度均为<code>O(logn)</code>,但是在最坏的情况下仍然会有O(n)的时间复杂度。如下:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> 2           左边的树比较平衡 而右边的树不平衡      1</span><br><span class="line">/ \          左边查找类似二分查找,右边则为线性       \</span><br><span class="line">  1   3                                             2</span><br><span class="line">     / \                                             \</span><br><span class="line">    2   4                                             2</span><br><span class="line">                                                       \</span><br><span class="line">                                                        3</span><br><span class="line">                                                         \</span><br><span class="line">                                                          4</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>原因在于插入和删除元素的时候，树没有保持平衡。我们追求的是在最坏的情况下仍然有较好的时间复杂度，这就是平衡二叉树设计的初衷。</p>
-</blockquote>
-<p>二叉查找树可以这样<strong>表示</strong>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BST</span>&lt;<span class="title">Key</span> <span class="keyword">extends</span> <span class="title">Comparable</span>&lt;<span class="title">Key</span>&gt;, <span class="title">Value</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Node root;             <span class="comment">// 根节点</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> Key key;           <span class="comment">// Key用来排序</span></span><br><span class="line">        <span class="keyword">private</span> Value val;         <span class="comment">// 相应的值</span></span><br><span class="line">        <span class="keyword">private</span> Node left, right;  <span class="comment">// 左子树，右子树</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> size;          <span class="comment">// 以该节点为根的树包含节点数量</span></span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(Key key, Value val, <span class="keyword">int</span> size)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.key = key;</span><br><span class="line">            <span class="keyword">this</span>.val = val;</span><br><span class="line">            <span class="keyword">this</span>.size = size;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BST</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;<span class="comment">//获得该二叉树节点数量</span></span><br><span class="line">        <span class="keyword">return</span> size(root);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">(Node x)</span> </span>&#123;获得以该节点为根的树包含节点数量</span><br><span class="line">        <span class="keyword">if</span> (x == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> x.size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>查找：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Value <span class="title">get</span><span class="params">(Key key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> get(root, key);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> Value <span class="title">get</span><span class="params">(Node x, Key key)</span> </span>&#123;<span class="comment">//在以x节点为根的树中查找key</span></span><br><span class="line">    <span class="keyword">if</span> (x == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">int</span> cmp = key.compareTo(x.key);</span><br><span class="line">    <span class="keyword">if</span>      (cmp &lt; <span class="number">0</span>) <span class="keyword">return</span> get(x.left, key);<span class="comment">//递归左子树查找</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>) <span class="keyword">return</span> get(x.right, key);<span class="comment">//递归右子树查找</span></span><br><span class="line">    <span class="keyword">else</span>              <span class="keyword">return</span> x.val;<span class="comment">//找到了</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>插入：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(Key key, Value val)</span> </span>&#123;</span><br><span class="line">    root = put(root, key, val);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">put</span><span class="params">(Node x, Key key, Value val)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//在以x节点为根的树中查找key，val</span></span><br><span class="line">    <span class="keyword">if</span> (x == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">new</span> Node(key, val, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">int</span> cmp = key.compareTo(x.key);</span><br><span class="line">    <span class="keyword">if</span>      (cmp &lt; <span class="number">0</span>) x.left  = put(x.left,  key, val);<span class="comment">//递归左子树插入</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>) x.right = put(x.right, key, val);<span class="comment">//递归右子树插入</span></span><br><span class="line">    <span class="keyword">else</span>              x.val   = val;</span><br><span class="line">    x.size = <span class="number">1</span> + size(x.left) + size(x.right);</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>删除：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Key <span class="title">min</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> min(root).key;</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">min</span><span class="params">(Node x)</span> </span>&#123; </span><br><span class="line">    <span class="keyword">if</span> (x.left == <span class="keyword">null</span>) <span class="keyword">return</span> x; </span><br><span class="line">    <span class="keyword">else</span>                <span class="keyword">return</span> min(x.left); </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteMin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    root = deleteMin(root);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">deleteMin</span><span class="params">(Node x)</span> </span>&#123;<span class="comment">//删除以x为根节点的子树最小值</span></span><br><span class="line">    <span class="keyword">if</span> (x.left == <span class="keyword">null</span>) <span class="keyword">return</span> x.right;</span><br><span class="line">    x.left = deleteMin(x.left);</span><br><span class="line">    x.size = size(x.left) + size(x.right) + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">(Key key)</span> </span>&#123;</span><br><span class="line">     root = delete(root, key);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">delete</span><span class="params">(Node x, Key key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> cmp = key.compareTo(x.key);</span><br><span class="line">    <span class="keyword">if</span>      (cmp &lt; <span class="number">0</span>) x.left  = delete(x.left,  key);<span class="comment">//递归删除左子树</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>) x.right = delete(x.right, key);<span class="comment">//递归删除右子树</span></span><br><span class="line">    <span class="keyword">else</span> &#123; <span class="comment">//该节点就是所要删除的节点</span></span><br><span class="line">        <span class="keyword">if</span> (x.right == <span class="keyword">null</span>) <span class="keyword">return</span> x.left;<span class="comment">//没有右子树，把左子树挂在原节点父节点上</span></span><br><span class="line">        <span class="keyword">if</span> (x.left  == <span class="keyword">null</span>) <span class="keyword">return</span> x.right;<span class="comment">//没有左子树，，把右子树挂在原节点父节点上</span></span><br><span class="line">        Node t = x;<span class="comment">//用右子树中最小的节点来替代被删除的节点，仍然保证树的有序性</span></span><br><span class="line">        x = min(t.right);</span><br><span class="line">        x.right = deleteMin(t.right);</span><br><span class="line">        x.left = t.left;</span><br><span class="line">    &#125; </span><br><span class="line">    x.size = size(x.left) + size(x.right) + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="平衡二叉树"><a class="markdownIt-Anchor" href="#平衡二叉树"></a> 平衡二叉树</h2>
-<p>平衡二叉树又被称为AVL树，具有以下性质：它是一棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树。它的出现就是解决二叉查找树不平衡导致查找效率退化为线性的问题，因为在删除和插入之时会维护树的平衡，使得查找时间保持在O(logn)，比二叉查找树更稳定。</p>
-<p>ALLTree 的 Node 由 BST 的 Node 加上 <code>private int height;</code> 节点高度属性即可，这是为了便于判断树是否平衡。</p>
-<p>维护树的平衡关键就在于旋转。对于一个平衡的节点，由于任意节点最多有两个儿子，因此高度不平衡时，此节点的两颗子树的高度差2.容易看出，这种不平衡出现在下面四种情况：</p>
-<p><img src="https://segmentfault.com/img/bVPgGt?w=785&amp;h=306" alt="clipboard.png"></p>
-<p>1、6节点的左子树3节点高度比右子树7节点大2，左子树3节点的左子树1节点高度大于右子树4节点，这种情况成为左左。</p>
-<p>2、6节点的左子树2节点高度比右子树7节点大2，左子树2节点的左子树1节点高度小于右子树4节点，这种情况成为左右。</p>
-<p>3、2节点的左子树1节点高度比右子树5节点小2，右子树5节点的左子树3节点高度大于右子树6节点，这种情况成为右左。</p>
-<p>4、2节点的左子树1节点高度比右子树4节点小2，右子树4节点的左子树3节点高度小于右子树6节点，这种情况成为右右。</p>
-<p>从图2中可以可以看出，1和4两种情况是对称的，这两种情况的旋转算法是一致的，只需要经过一次旋转就可以达到目标，我们称之为单旋转。2和3两种情况也是对称的，这两种情况的旋转算法也是一致的，需要进行两次旋转，我们称之为双旋转。</p>
-<p><strong>单旋转是针对于左左和右右这两种情况</strong>，这两种情况是对称的，只要解决了左左这种情况，右右就很好办了。图3是左左情况的解决方案，节点k2不满足平衡特性，因为它的左子树k1比右子树Z深2层，而且k1子树中，更深的一层的是k1的左子树X子树，所以属于左左情况。</p>
-<p><img src="https://segmentfault.com/img/bVPgGW?w=530&amp;h=229" alt="clipboard.png"></p>
-<p>为使树恢复平衡，我们把k1变成这棵树的根节点，因为k2大于k1，把k2置于k1的右子树上，而原本在k1右子树的Y大于k1，小于k2，就把Y置于k2的左子树上，这样既满足了二叉查找树的性质，又满足了平衡二叉树的性质。</p>
-<p>这样的操作只需要一部分指针改变，结果我们得到另外一颗二叉查找树，它是一棵AVL树，因为X向上一移动了一层，Y还停留在原来的层面上，Z向下移动了一层。整棵树的新高度和之前没有在左子树上插入的高度相同，插入操作使得X高度长高了。因此，由于这颗子树高度没有变化，所以通往根节点的路径就不需要继续旋转了。<br>
-代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">height</span><span class="params">(Node t)</span></span>&#123;  </span><br><span class="line">    <span class="keyword">return</span> t == <span class="keyword">null</span> ? -<span class="number">1</span> : t.height;  </span><br><span class="line">&#125;     </span><br><span class="line"></span><br><span class="line"><span class="comment">//左左情况单旋转  </span></span><br><span class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">rotateWithLeftChild</span><span class="params">(Node k2)</span></span>&#123;  </span><br><span class="line">    Node k1 = k2.left;  </span><br><span class="line">    k2.left = k1.right;       </span><br><span class="line">    k1.right = k2;        </span><br><span class="line">    k1.size = k2.size;</span><br><span class="line">    k2.size = size(k2.right)+size(k2.left)+<span class="number">1</span>;</span><br><span class="line">    k2.height = Math.max(height(k2.left), height(k2.right)) + <span class="number">1</span>;  </span><br><span class="line">    k1.height = Math.max(height(k1.left), k2.height) + <span class="number">1</span>;         </span><br><span class="line">    <span class="keyword">return</span> k1;      <span class="comment">//返回新的根  </span></span><br><span class="line">&#125;     </span><br><span class="line"><span class="comment">//右右情况单旋转  </span></span><br><span class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">rotateWithRightChild</span><span class="params">(Node k2)</span></span>&#123;  </span><br><span class="line">    Node k1 = k2.right;  </span><br><span class="line">    k2.right = k1.left;  </span><br><span class="line">    k1.left = k2;  </span><br><span class="line">    k1.size = k2.size;</span><br><span class="line">    k2.size = size(k2.right)+size(k2.left)+<span class="number">1</span>;       </span><br><span class="line">    k2.height = Math.max(height(k2.left), height(k2.right)) + <span class="number">1</span>;  </span><br><span class="line">    k1.height = Math.max(height(k1.right), k2.height) + <span class="number">1</span>;        </span><br><span class="line">    <span class="keyword">return</span> k1;      <span class="comment">//返回新的根   </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>双旋转是针对于左右和右左这两种情况</strong>，单旋转不能使它达到一个平衡状态，要经过两次旋转。同样的，这样两种情况也是对称的，只要解决了左右这种情况，右左就很好办了。图4是左右情况的解决方案，节点k3不满足平衡特性，因为它的左子树k1比右子树Z深2层，而且k1子树中，更深的一层的是k1的右子树k2子树，所以属于左右情况。</p>
-<p><img src="https://segmentfault.com/img/bVPgG9?w=785&amp;h=247" alt="clipboard.png"></p>
-<p>为使树恢复平衡，我们需要进行两步，第一步，把k1作为根，进行一次右右旋转，旋转之后就变成了左左情况，所以第二步再进行一次左左旋转，最后得到了一棵以k2为根的平衡二叉树树。<br>
-代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//左右情况  </span></span><br><span class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">doubleWithLeftChild</span><span class="params">(Node k3)</span></span>&#123;        </span><br><span class="line">    <span class="keyword">try</span>&#123;  </span><br><span class="line">        k3.left = rotateWithRightChild(k3.left);  </span><br><span class="line">    &#125;<span class="keyword">catch</span>(NullPointerException e)&#123;  </span><br><span class="line">        System.out.println(<span class="string">"k.left.right为："</span>+k3.left.right);  </span><br><span class="line">        <span class="keyword">throw</span> e;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> rotateWithLeftChild(k3);       </span><br><span class="line">&#125;     </span><br><span class="line"><span class="comment">//右左情况  </span></span><br><span class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">doubleWithRightChild</span><span class="params">(Node k3)</span></span>&#123;  </span><br><span class="line">    <span class="keyword">try</span>&#123;  </span><br><span class="line">        k3.right = rotateWithLeftChild(k3.right);  </span><br><span class="line">    &#125;<span class="keyword">catch</span>(NullPointerException e)&#123;  </span><br><span class="line">        System.out.println(<span class="string">"k.right.left为："</span>+k3.right.left);  </span><br><span class="line">        <span class="keyword">throw</span> e;  </span><br><span class="line">    &#125;         </span><br><span class="line">    <span class="keyword">return</span> rotateWithRightChild(k3);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>AVL查找操作与BST相同，AVL的删除与插入操作在BST基础之上<strong>需要检查是否平衡</strong>，如果不平衡就要使用旋转操作来维持平衡:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">balance</span><span class="params">(Node x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (balanceFactor(x) &lt; -<span class="number">1</span>) &#123;<span class="comment">//右边高</span></span><br><span class="line">        <span class="keyword">if</span> (balanceFactor(x.right) &gt; <span class="number">0</span>) &#123;<span class="comment">//右左</span></span><br><span class="line">            x.right = rotateWithLeftChild(x.right);</span><br><span class="line">        &#125;</span><br><span class="line">        x = rotateWithRightChild(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (balanceFactor(x) &gt; <span class="number">1</span>) &#123;<span class="comment">//左边高</span></span><br><span class="line">        <span class="keyword">if</span> (balanceFactor(x.left) &lt; <span class="number">0</span>) &#123;<span class="comment">//左右</span></span><br><span class="line">            x.left = rotateWithRightChild(x.left);</span><br><span class="line">        &#125;</span><br><span class="line">        x = rotateWithLeftChild(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">balanceFactor</span><span class="params">(Node x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> height(x.left) - height(x.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="红黑树r-b-tree"><a class="markdownIt-Anchor" href="#红黑树r-b-tree"></a> 红黑树(R-B Tree)</h2>
-<p>红黑树(Red-Black Tree，简称R-B Tree)，它一种特殊的二叉查找树,红黑树使用十分广泛,<code>linux</code>的文件系统,JDK1.8之后的<code>HashMap</code>等等地方都使用到了红黑树.<br>
-红黑树是特殊的二叉查找树，意味着它满足二叉查找树的特征：任意一个节点所包含的键值，大于等于左孩子的键值，小于等于右孩子的键值,除了具备该特性之外，红黑树还包括许多额外的信息</p>
-<p>红黑树的每个节点上都有存储位表示节点的颜色，颜色是红(Red)或黑(Black)</p>
-<p>红黑树的特性:<br>
-(1) 每个节点或者是黑色，或者是红色。<br>
-(2) 根节点是黑色。<br>
-(3) 每个叶子节点是黑色。 [注意：这里叶子节点，是指为空的叶子节点！]<br>
-(4) 如果一个节点是红色的，则它的子节点必须是黑色的。<br>
-(5) 从一个节点到该节点的子孙节点的所有路径上包含相同数目的黑节点。</p>
-<p>关于它的特性，需要注意的是：<br>
-第一，特性(3)中的叶子节点，是只为空(NIL或null)的节点。<br>
-第二，特性(5)，确保没有一条路径会比其他路径长出俩倍。因而，红黑树是相对是接近平衡的二叉树</p>
-<p><img src="https://i.loli.net/2019/03/05/5c7e208c13d4a.png" alt=""></p>
-<p>红黑树的基本操作是<strong>添加</strong>、<strong>删除</strong>和<strong>旋转</strong>。在对红黑树进行添加或删除后，会用到旋转方法。为什么呢？道理很简单，添加或删除红黑树中的节点之后，红黑树就发生了变化，可能不满足红黑树的5条性质，也就不再是一颗红黑树了，而是一颗普通的树。而通过旋转，可以使这颗树重新成为红黑树。简单点说，旋转的目的是让树保持红黑树的特性。<br>
-旋转包括两种：<strong>左旋</strong> 和 <strong>右旋</strong>。下面分别对红黑树的基本操作进行介绍。</p>
-<p><strong>1.基本定义</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RBTree</span>&lt;<span class="title">T</span> <span class="keyword">extends</span> <span class="title">Comparable</span>&lt;<span class="title">T</span>&gt;&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> RBTNode&lt;T&gt; mRoot;    <span class="comment">// 根结点</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">boolean</span> RED   = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">boolean</span> BLACK = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RBTNode</span>&lt;<span class="title">T</span> <span class="keyword">extends</span> <span class="title">Comparable</span>&lt;<span class="title">T</span>&gt;&gt; </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> color;        <span class="comment">// 颜色</span></span><br><span class="line">        T key;                <span class="comment">// 关键字(键值)</span></span><br><span class="line">        RBTNode&lt;T&gt; left;    <span class="comment">// 左孩子</span></span><br><span class="line">        RBTNode&lt;T&gt; right;    <span class="comment">// 右孩子</span></span><br><span class="line">        RBTNode&lt;T&gt; parent;    <span class="comment">// 父结点</span></span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">RBTNode</span><span class="params">(T key, <span class="keyword">boolean</span> color, RBTNode&lt;T&gt; parent, RBTNode&lt;T&gt; left, RBTNode&lt;T&gt; right)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.key = key;</span><br><span class="line">            <span class="keyword">this</span>.color = color;</span><br><span class="line">            <span class="keyword">this</span>.parent = parent;</span><br><span class="line">            <span class="keyword">this</span>.left = left;</span><br><span class="line">            <span class="keyword">this</span>.right = right;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>RBTree是红黑树对应的类，RBTNode是红黑树的节点类。在RBTree中包含了根节点mRoot和红黑树的相关API。<br>
-注意：在实现红黑树API的过程中，我重载了许多函数。重载的原因，一是因为有的API是内部接口，有的是外部接口；二是为了让结构更加清晰</p>
-</blockquote>
-<p><strong>2.左旋</strong></p>
-<p><img src="https://i.loli.net/2019/03/05/5c7e20feda69f.png" alt=""></p>
-<p>对x进行左旋，意味着&quot;将x变成一个左节点&quot;</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * 对红黑树的节点(x)进行左旋转</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 左旋示意图(对节点x进行左旋)：</span></span><br><span class="line"><span class="comment"> *      px                              px</span></span><br><span class="line"><span class="comment"> *     /                               /</span></span><br><span class="line"><span class="comment"> *    x                               y                </span></span><br><span class="line"><span class="comment"> *   /  \      --(左旋)-.           / \                #</span></span><br><span class="line"><span class="comment"> *  lx   y                          x  ry     </span></span><br><span class="line"><span class="comment"> *     /   \                       /  \</span></span><br><span class="line"><span class="comment"> *    ly   ry                     lx  ly  </span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">leftRotate</span><span class="params">(RBTNode&lt;T&gt; x)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 设置x的右孩子为y</span></span><br><span class="line">    RBTNode&lt;T&gt; y = x.right;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将 “y的左孩子” 设为 “x的右孩子”；</span></span><br><span class="line">    <span class="comment">// 如果y的左孩子非空，将 “x” 设为 “y的左孩子的父亲”</span></span><br><span class="line">    x.right = y.left;</span><br><span class="line">    <span class="keyword">if</span> (y.left != <span class="keyword">null</span>)</span><br><span class="line">        y.left.parent = x;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将 “x的父亲” 设为 “y的父亲”</span></span><br><span class="line">    y.parent = x.parent;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (x.parent == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.mRoot = y;            <span class="comment">// 如果 “x的父亲” 是空节点，则将y设为根节点</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (x.parent.left == x)</span><br><span class="line">            x.parent.left = y;    <span class="comment">// 如果 x是它父节点的左孩子，则将y设为“x的父节点的左孩子”</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            x.parent.right = y;    <span class="comment">// 如果 x是它父节点的左孩子，则将y设为“x的父节点的左孩子”</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 将 “x” 设为 “y的左孩子”</span></span><br><span class="line">    y.left = x;</span><br><span class="line">    <span class="comment">// 将 “x的父节点” 设为 “y”</span></span><br><span class="line">    x.parent = y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>3.右旋</strong></p>
-<p><img src="https://i.loli.net/2019/03/05/5c7e212e4df94.png" alt=""></p>
-<p>对y进行左旋，意味着&quot;将y变成一个右节点&quot;</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * 对红黑树的节点(y)进行右旋转</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 右旋示意图(对节点y进行左旋)：</span></span><br><span class="line"><span class="comment"> *            py                               py</span></span><br><span class="line"><span class="comment"> *           /                                /</span></span><br><span class="line"><span class="comment"> *          y                                x                  </span></span><br><span class="line"><span class="comment"> *         /  \      --(右旋)-.            /  \                     #</span></span><br><span class="line"><span class="comment"> *        x   ry                           lx   y  </span></span><br><span class="line"><span class="comment"> *       / \                                   / \                   #</span></span><br><span class="line"><span class="comment"> *      lx  rx                                rx  ry</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">rightRotate</span><span class="params">(RBTNode&lt;T&gt; y)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 设置x是当前节点的左孩子。</span></span><br><span class="line">    RBTNode&lt;T&gt; x = y.left;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将 “x的右孩子” 设为 “y的左孩子”；</span></span><br><span class="line">    <span class="comment">// 如果"x的右孩子"不为空的话，将 “y” 设为 “x的右孩子的父亲”</span></span><br><span class="line">    y.left = x.right;</span><br><span class="line">    <span class="keyword">if</span> (x.right != <span class="keyword">null</span>)</span><br><span class="line">        x.right.parent = y;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将 “y的父亲” 设为 “x的父亲”</span></span><br><span class="line">    x.parent = y.parent;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (y.parent == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.mRoot = x;            <span class="comment">// 如果 “y的父亲” 是空节点，则将x设为根节点</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (y == y.parent.right)</span><br><span class="line">            y.parent.right = x;    <span class="comment">// 如果 y是它父节点的右孩子，则将x设为“y的父节点的右孩子”</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            y.parent.left = x;    <span class="comment">// (y是它父节点的左孩子) 将x设为“x的父节点的左孩子”</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将 “y” 设为 “x的右孩子”</span></span><br><span class="line">    x.right = y;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将 “y的父节点” 设为 “x”</span></span><br><span class="line">    y.parent = x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>4. 添加</strong></p>
-<p>将一个节点插入到红黑树中，需要执行哪些步骤呢？首先，将红黑树当作一颗二叉查找树，将节点插入；然后，将节点着色为红色；最后，通过&quot;旋转和重新着色&quot;等一系列操作来修正该树，使之重新成为一颗红黑树。详细描述如下：<br>
-<strong>第一步: 将红黑树当作一颗二叉查找树，将节点插入。</strong><br>
-​       红黑树本身就是一颗二叉查找树，将节点插入后，该树仍然是一颗二叉查找树。也就意味着，树的键值仍然是有序的。此外，无论是左旋还是右旋，若旋转之前这棵树是二叉查找树，旋转之后它一定还是二叉查找树。这也就意味着，任何的旋转和重新着色操作，都不会改变它仍然是一颗二叉查找树的事实。<br>
-好吧？那接下来，我们就来想方设法的旋转以及重新着色，使这颗树重新成为红黑树！</p>
-<p><strong>第二步：将插入的节点着色为&quot;红色&quot;。</strong><br>
-​       为什么着色成红色，而不是黑色呢？为什么呢？在回答之前，我们需要重新温习一下红黑树的特性：<br>
-(1) 每个节点或者是黑色，或者是红色。<br>
-(2) 根节点是黑色。<br>
-(3) 每个叶子节点是黑色。 [注意：这里叶子节点，是指为空的叶子节点！]<br>
-(4) 如果一个节点是红色的，则它的子节点必须是黑色的。<br>
-(5) 从一个节点到该节点的子孙节点的所有路径上包含相同数目的黑节点。<br>
-​      将插入的节点着色为红色，不会违背&quot;特性(5)&quot;！少违背一条特性，就意味着我们需要处理的情况越少。接下来，就要努力的让这棵树满足其它性质即可；满足了的话，它就又是一颗红黑树了。o(∩∩)o…哈哈</p>
-<p><strong>第三步: 通过一系列的旋转或着色等操作，使之重新成为一颗红黑树。</strong><br>
-​       第二步中，将插入节点着色为&quot;红色&quot;之后，不会违背&quot;特性(5)&quot;。那它到底会违背哪些特性呢？<br>
-​       对于&quot;特性(1)&quot;，显然不会违背了。因为我们已经将它涂成红色了。<br>
-​       对于&quot;特性(2)&quot;，显然也不会违背。在第一步中，我们是将红黑树当作二叉查找树，然后执行的插入操作。而根据二叉查找数的特点，插入操作不会改变根节点。所以，根节点仍然是黑色。<br>
-​       对于&quot;特性(3)&quot;，显然不会违背了。这里的叶子节点是指的空叶子节点，插入非空节点并不会对它们造成影响。<br>
-​       对于&quot;特性(4)&quot;，是有可能违背的！<br>
-​       那接下来，想办法使之&quot;满足特性(4)&quot;，就可以将树重新构造成红黑树了。</p>
-<p>添加操作的实现代码(Java语言)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * 将结点插入到红黑树中</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 参数说明：</span></span><br><span class="line"><span class="comment"> *     node 插入的结点        // 对应《算法导论》中的node</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(RBTNode&lt;T&gt; node)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cmp;</span><br><span class="line">    RBTNode&lt;T&gt; y = <span class="keyword">null</span>;</span><br><span class="line">    RBTNode&lt;T&gt; x = <span class="keyword">this</span>.mRoot;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 将红黑树当作一颗二叉查找树，将节点添加到二叉查找树中。</span></span><br><span class="line">    <span class="keyword">while</span> (x != <span class="keyword">null</span>) &#123;</span><br><span class="line">        y = x;</span><br><span class="line">        cmp = node.key.compareTo(x.key);</span><br><span class="line">        <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>)</span><br><span class="line">            x = x.left;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            x = x.right;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    node.parent = y;</span><br><span class="line">    <span class="keyword">if</span> (y!=<span class="keyword">null</span>) &#123;</span><br><span class="line">        cmp = node.key.compareTo(y.key);</span><br><span class="line">        <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>)</span><br><span class="line">            y.left = node;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            y.right = node;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.mRoot = node;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 设置节点的颜色为红色</span></span><br><span class="line">    node.color = RED;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 将它重新修正为一颗二叉查找树</span></span><br><span class="line">    insertFixUp(node);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * 新建结点(key)，并将其插入到红黑树中</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 参数说明：</span></span><br><span class="line"><span class="comment"> *     key 插入结点的键值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(T key)</span> </span>&#123;</span><br><span class="line">    RBTNode&lt;T&gt; node=<span class="keyword">new</span> RBTNode&lt;T&gt;(key,BLACK,<span class="keyword">null</span>,<span class="keyword">null</span>,<span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果新建结点失败，则返回。</span></span><br><span class="line">    <span class="keyword">if</span> (node != <span class="keyword">null</span>)</span><br><span class="line">        insert(node);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>内部接口</strong> – insert(node)的作用是将&quot;node&quot;节点插入到红黑树中。<br>
-<strong>外部接口</strong> – insert(key)的作用是将&quot;key&quot;添加到红黑树中。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 红黑树插入修正函数</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 在向红黑树中插入节点之后(失去平衡)，再调用该函数；</span></span><br><span class="line"><span class="comment"> * 目的是将它重新塑造成一颗红黑树。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 参数说明：</span></span><br><span class="line"><span class="comment"> *     node 插入的结点        // 对应《算法导论》中的z</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">insertFixUp</span><span class="params">(RBTNode&lt;T&gt; node)</span> </span>&#123;</span><br><span class="line">    RBTNode&lt;T&gt; parent, gparent;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 若“父节点存在，并且父节点的颜色是红色”</span></span><br><span class="line">    <span class="keyword">while</span> (((parent = parentOf(node))!=<span class="keyword">null</span>) &amp;&amp; isRed(parent)) &#123;</span><br><span class="line">        gparent = parentOf(parent);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//若“父节点”是“祖父节点的左孩子”</span></span><br><span class="line">        <span class="keyword">if</span> (parent == gparent.left) &#123;</span><br><span class="line">            <span class="comment">// Case 1条件：叔叔节点是红色</span></span><br><span class="line">            RBTNode&lt;T&gt; uncle = gparent.right;</span><br><span class="line">            <span class="keyword">if</span> ((uncle!=<span class="keyword">null</span>) &amp;&amp; isRed(uncle)) &#123;</span><br><span class="line">                setBlack(uncle);</span><br><span class="line">                setBlack(parent);</span><br><span class="line">                setRed(gparent);</span><br><span class="line">                node = gparent;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Case 2条件：叔叔是黑色，且当前节点是右孩子</span></span><br><span class="line">            <span class="keyword">if</span> (parent.right == node) &#123;</span><br><span class="line">                RBTNode&lt;T&gt; tmp;</span><br><span class="line">                leftRotate(parent);</span><br><span class="line">                tmp = parent;</span><br><span class="line">                parent = node;</span><br><span class="line">                node = tmp;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Case 3条件：叔叔是黑色，且当前节点是左孩子。</span></span><br><span class="line">            setBlack(parent);</span><br><span class="line">            setRed(gparent);</span><br><span class="line">            rightRotate(gparent);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;    <span class="comment">//若“z的父节点”是“z的祖父节点的右孩子”</span></span><br><span class="line">            <span class="comment">// Case 1条件：叔叔节点是红色</span></span><br><span class="line">            RBTNode&lt;T&gt; uncle = gparent.left;</span><br><span class="line">            <span class="keyword">if</span> ((uncle!=<span class="keyword">null</span>) &amp;&amp; isRed(uncle)) &#123;</span><br><span class="line">                setBlack(uncle);</span><br><span class="line">                setBlack(parent);</span><br><span class="line">                setRed(gparent);</span><br><span class="line">                node = gparent;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Case 2条件：叔叔是黑色，且当前节点是左孩子</span></span><br><span class="line">            <span class="keyword">if</span> (parent.left == node) &#123;</span><br><span class="line">                RBTNode&lt;T&gt; tmp;</span><br><span class="line">                rightRotate(parent);</span><br><span class="line">                tmp = parent;</span><br><span class="line">                parent = node;</span><br><span class="line">                node = tmp;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Case 3条件：叔叔是黑色，且当前节点是右孩子。</span></span><br><span class="line">            setBlack(parent);</span><br><span class="line">            setRed(gparent);</span><br><span class="line">            leftRotate(gparent);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将根节点设为黑色</span></span><br><span class="line">    setBlack(<span class="keyword">this</span>.mRoot);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>insertFixUp(node)的作用是对应&quot;上面所讲的第三步&quot;。它是一个内部接口。</p>
-<p><strong>5. 删除操作</strong></p>
-<p>将红黑树内的某一个节点删除。需要执行的操作依次是：首先，将红黑树当作一颗二叉查找树，将该节点从二叉查找树中删除；然后，通过&quot;旋转和重新着色&quot;等一系列来修正该树，使之重新成为一棵红黑树。详细描述如下：<br>
-<strong>第一步：将红黑树当作一颗二叉查找树，将节点删除。</strong><br>
-​       这和&quot;删除常规二叉查找树中删除节点的方法是一样的&quot;。分3种情况：<br>
-① 被删除节点没有儿子，即为叶节点。那么，直接将该节点删除就OK了。<br>
-② 被删除节点只有一个儿子。那么，直接删除该节点，并用该节点的唯一子节点顶替它的位置。<br>
-③ 被删除节点有两个儿子。那么，先找出它的后继节点；然后把“它的后继节点的内容”复制给“该节点的内容”；之后，删除“它的后继节点”。在这里，后继节点相当于替身，在将后继节点的内容复制给&quot;被删除节点&quot;之后，再将后继节点删除。这样就巧妙的将问题转换为&quot;删除后继节点&quot;的情况了，下面就考虑后继节点。 在&quot;被删除节点&quot;有两个非空子节点的情况下，它的后继节点不可能是双子非空。既然&quot;的后继节点&quot;不可能双子都非空，就意味着&quot;该节点的后继节点&quot;要么没有儿子，要么只有一个儿子。若没有儿子，则按&quot;情况① &quot;进行处理；若只有一个儿子，则按&quot;情况② &quot;进行处理。</p>
-<p><strong>第二步：通过&quot;旋转和重新着色&quot;等一系列来修正该树，使之重新成为一棵红黑树。</strong><br>
-​        因为&quot;第一步&quot;中删除节点之后，可能会违背红黑树的特性。所以需要通过&quot;旋转和重新着色&quot;来修正该树，使之重新成为一棵红黑树。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * 删除结点(node)，并返回被删除的结点</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 参数说明：</span></span><br><span class="line"><span class="comment"> *     node 删除的结点</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(RBTNode&lt;T&gt; node)</span> </span>&#123;</span><br><span class="line">    RBTNode&lt;T&gt; child, parent;</span><br><span class="line">    <span class="keyword">boolean</span> color;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 被删除节点的"左右孩子都不为空"的情况。</span></span><br><span class="line">    <span class="keyword">if</span> ( (node.left!=<span class="keyword">null</span>) &amp;&amp; (node.right!=<span class="keyword">null</span>) ) &#123;</span><br><span class="line">        <span class="comment">// 被删节点的后继节点。(称为"取代节点")</span></span><br><span class="line">        <span class="comment">// 用它来取代"被删节点"的位置，然后再将"被删节点"去掉。</span></span><br><span class="line">        RBTNode&lt;T&gt; replace = node;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取后继节点</span></span><br><span class="line">        replace = replace.right;</span><br><span class="line">        <span class="keyword">while</span> (replace.left != <span class="keyword">null</span>)</span><br><span class="line">            replace = replace.left;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// "node节点"不是根节点(只有根节点不存在父节点)</span></span><br><span class="line">        <span class="keyword">if</span> (parentOf(node)!=<span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (parentOf(node).left == node)</span><br><span class="line">                parentOf(node).left = replace;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                parentOf(node).right = replace;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// "node节点"是根节点，更新根节点。</span></span><br><span class="line">            <span class="keyword">this</span>.mRoot = replace;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// child是"取代节点"的右孩子，也是需要"调整的节点"。</span></span><br><span class="line">        <span class="comment">// "取代节点"肯定不存在左孩子！因为它是一个后继节点。</span></span><br><span class="line">        child = replace.right;</span><br><span class="line">        parent = parentOf(replace);</span><br><span class="line">        <span class="comment">// 保存"取代节点"的颜色</span></span><br><span class="line">        color = colorOf(replace);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// "被删除节点"是"它的后继节点的父节点"</span></span><br><span class="line">        <span class="keyword">if</span> (parent == node) &#123;</span><br><span class="line">            parent = replace;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// child不为空</span></span><br><span class="line">            <span class="keyword">if</span> (child!=<span class="keyword">null</span>)</span><br><span class="line">                setParent(child, parent);</span><br><span class="line">            parent.left = child;</span><br><span class="line"></span><br><span class="line">            replace.right = node.right;</span><br><span class="line">            setParent(node.right, replace);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        replace.parent = node.parent;</span><br><span class="line">        replace.color = node.color;</span><br><span class="line">        replace.left = node.left;</span><br><span class="line">        node.left.parent = replace;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (color == BLACK)</span><br><span class="line">            removeFixUp(child, parent);</span><br><span class="line"></span><br><span class="line">        node = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (node.left !=<span class="keyword">null</span>) &#123;</span><br><span class="line">        child = node.left;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        child = node.right;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    parent = node.parent;</span><br><span class="line">    <span class="comment">// 保存"取代节点"的颜色</span></span><br><span class="line">    color = node.color;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (child!=<span class="keyword">null</span>)</span><br><span class="line">        child.parent = parent;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// "node节点"不是根节点</span></span><br><span class="line">    <span class="keyword">if</span> (parent!=<span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (parent.left == node)</span><br><span class="line">            parent.left = child;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            parent.right = child;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.mRoot = child;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (color == BLACK)</span><br><span class="line">        removeFixUp(child, parent);</span><br><span class="line">    node = <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * 删除结点(z)，并返回被删除的结点</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 参数说明：</span></span><br><span class="line"><span class="comment"> *     tree 红黑树的根结点</span></span><br><span class="line"><span class="comment"> *     z 删除的结点</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(T key)</span> </span>&#123;</span><br><span class="line">    RBTNode&lt;T&gt; node; </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ((node = search(mRoot, key)) != <span class="keyword">null</span>)</span><br><span class="line">        remove(node);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>内部接口</strong> – remove(node)的作用是将&quot;node&quot;节点插入到红黑树中。<br>
-<strong>外部接口</strong> – remove(key)删除红黑树中键值为key的节点。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 红黑树删除修正函数</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 在从红黑树中删除插入节点之后(红黑树失去平衡)，再调用该函数；</span></span><br><span class="line"><span class="comment"> * 目的是将它重新塑造成一颗红黑树。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 参数说明：</span></span><br><span class="line"><span class="comment"> *     node 待修正的节点</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">removeFixUp</span><span class="params">(RBTNode&lt;T&gt; node, RBTNode&lt;T&gt; parent)</span> </span>&#123;</span><br><span class="line">    RBTNode&lt;T&gt; other;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> ((node==<span class="keyword">null</span> || isBlack(node)) &amp;&amp; (node != <span class="keyword">this</span>.mRoot)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (parent.left == node) &#123;</span><br><span class="line">            other = parent.right;</span><br><span class="line">            <span class="keyword">if</span> (isRed(other)) &#123;</span><br><span class="line">                <span class="comment">// Case 1: x的兄弟w是红色的  </span></span><br><span class="line">                setBlack(other);</span><br><span class="line">                setRed(parent);</span><br><span class="line">                leftRotate(parent);</span><br><span class="line">                other = parent.right;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> ((other.left==<span class="keyword">null</span> || isBlack(other.left)) &amp;&amp;</span><br><span class="line">                (other.right==<span class="keyword">null</span> || isBlack(other.right))) &#123;</span><br><span class="line">                <span class="comment">// Case 2: x的兄弟w是黑色，且w的俩个孩子也都是黑色的  </span></span><br><span class="line">                setRed(other);</span><br><span class="line">                node = parent;</span><br><span class="line">                parent = parentOf(node);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (other.right==<span class="keyword">null</span> || isBlack(other.right)) &#123;</span><br><span class="line">                    <span class="comment">// Case 3: x的兄弟w是黑色的，并且w的左孩子是红色，右孩子为黑色。  </span></span><br><span class="line">                    setBlack(other.left);</span><br><span class="line">                    setRed(other);</span><br><span class="line">                    rightRotate(other);</span><br><span class="line">                    other = parent.right;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// Case 4: x的兄弟w是黑色的；并且w的右孩子是红色的，左孩子任意颜色。</span></span><br><span class="line">                setColor(other, colorOf(parent));</span><br><span class="line">                setBlack(parent);</span><br><span class="line">                setBlack(other.right);</span><br><span class="line">                leftRotate(parent);</span><br><span class="line">                node = <span class="keyword">this</span>.mRoot;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">            other = parent.left;</span><br><span class="line">            <span class="keyword">if</span> (isRed(other)) &#123;</span><br><span class="line">                <span class="comment">// Case 1: x的兄弟w是红色的  </span></span><br><span class="line">                setBlack(other);</span><br><span class="line">                setRed(parent);</span><br><span class="line">                rightRotate(parent);</span><br><span class="line">                other = parent.left;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> ((other.left==<span class="keyword">null</span> || isBlack(other.left)) &amp;&amp;</span><br><span class="line">                (other.right==<span class="keyword">null</span> || isBlack(other.right))) &#123;</span><br><span class="line">                <span class="comment">// Case 2: x的兄弟w是黑色，且w的俩个孩子也都是黑色的  </span></span><br><span class="line">                setRed(other);</span><br><span class="line">                node = parent;</span><br><span class="line">                parent = parentOf(node);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (other.left==<span class="keyword">null</span> || isBlack(other.left)) &#123;</span><br><span class="line">                    <span class="comment">// Case 3: x的兄弟w是黑色的，并且w的左孩子是红色，右孩子为黑色。  </span></span><br><span class="line">                    setBlack(other.right);</span><br><span class="line">                    setRed(other);</span><br><span class="line">                    leftRotate(other);</span><br><span class="line">                    other = parent.left;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// Case 4: x的兄弟w是黑色的；并且w的右孩子是红色的，左孩子任意颜色。</span></span><br><span class="line">                setColor(other, colorOf(parent));</span><br><span class="line">                setBlack(parent);</span><br><span class="line">                setBlack(other.left);</span><br><span class="line">                rightRotate(parent);</span><br><span class="line">                node = <span class="keyword">this</span>.mRoot;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (node!=<span class="keyword">null</span>)</span><br><span class="line">        setBlack(node);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="堆heap"><a class="markdownIt-Anchor" href="#堆heap"></a> 堆(heap)</h2>
-<p>堆是一颗完全二叉树，在这棵树中，所有父节点都满足大于等于其子节点的堆叫大根堆，所有父节点都满足小于等于其子节点的堆叫小根堆。堆虽然是一颗树，但是通常存放在一个数组中，父节点和孩子节点的父子关系通过数组下标来确定。如下图的小根堆及存储它的数组：</p>
-<p><img src="https://segmentfault.com/img/bVPgRV?w=469&amp;h=276" alt="clipboard.png"></p>
-<p>值： 7,8,9,12,13,11</p>
-<p>数组索引： 0,1,2,3, 4, 5</p>
-<p>通过一个节点在数组中的索引怎么计算出它的父节点及左右孩子节点的索引：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">left</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">return</span> (i + <span class="number">1</span>) * <span class="number">2</span> - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">right</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (i + <span class="number">1</span>) * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">parent</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// i为根结点</span></span><br><span class="line">    <span class="keyword">if</span> (i == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (i - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>维护大根堆的性质：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">heapify</span><span class="params">(T[] a, <span class="keyword">int</span> i, <span class="keyword">int</span> heapLength)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l = left(i);</span><br><span class="line">    <span class="keyword">int</span> r = right(i);</span><br><span class="line">    <span class="keyword">int</span> largest = -<span class="number">1</span>;</span><br><span class="line">    <span class="comment">//寻找根节点及其左右子节点，三个元素中的最大值</span></span><br><span class="line">    <span class="keyword">if</span> (l &lt; heapLength &amp;&amp; a[i].compareTo(a[l]) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        largest = l;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        largest = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (r &lt; heapLength &amp;&amp; a[largest].compareTo(a[r]) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        largest = r;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 如果i处元素不是最大的，就把i处的元素与最大处元素交换，使得i处元素变为最大的</span></span><br><span class="line">    <span class="keyword">if</span> (i != largest) &#123;</span><br><span class="line">        T temp = a[i];</span><br><span class="line">        a[i] = a[largest];</span><br><span class="line">        a[largest] = temp;</span><br><span class="line">        <span class="comment">// 交换元素后，以a[i]为根的树可能不在满足大根堆性质，于是递归调用该方法</span></span><br><span class="line">        heapify(a, largest, heapLength);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>构造堆：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">buildHeap</span><span class="params">(T[] a, <span class="keyword">int</span> heapLength)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//从后往前看lengthParent处的元素是第一个有子节点的元素，所以从它开始，进行堆得维护</span></span><br><span class="line">    <span class="keyword">int</span> lengthParent = parent(heapLength - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = lengthParent; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">        heapify(a, i, heapLength);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>堆的用途：堆排序，优先级队列。此外由于调整代价较小，也适合实时类型的排序与变更。</p>
+                <p>date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32
+date: 2019-09-19 11:12:32</p>
 
                 
 
@@ -428,12 +1272,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/article/kubernetes核心技术/" data-toggle="tooltip" data-placement="top" title="kubernetes核心技术">&larr; Previous Post</a>
+                            <a href="/article/Leetcode面试精选题解-5/" data-toggle="tooltip" data-placement="top" title="">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/article/Leetcode面试精选题解-2/" data-toggle="tooltip" data-placement="top" title="Leetcode面试精选题解-2">Next Post &rarr;</a>
+                            <a href="/article/Leetcode面试精选题解-4/" data-toggle="tooltip" data-placement="top" title="">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -477,24 +1321,6 @@
             <!-- Tabe of Content -->
             <!-- Table of Contents -->
 
-  
-    <style>
-      span.toc-nav-number{
-        display: none
-      }
-    </style>
-  
-    
-      <aside id="sidebar">
-        <div id="toc" class="toc-article">
-        <strong class="toc-title">Contents</strong>
-        
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#解密java常见的数据结构与算法"><span class="toc-nav-number">1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x89E3;&#x5BC6;java&#x5E38;&#x89C1;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x4E0E;&#x7B97;&#x6CD5;"></a> &#x89E3;&#x5BC6;Java&#x5E38;&#x89C1;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x4E0E;&#x7B97;&#x6CD5;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#前言"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x524D;&#x8A00;"></a> &#x524D;&#x8A00;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#集合框架的继承结构"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x96C6;&#x5408;&#x6846;&#x67B6;&#x7684;&#x7EE7;&#x627F;&#x7ED3;&#x6784;"></a> &#x96C6;&#x5408;&#x6846;&#x67B6;&#x7684;&#x7EE7;&#x627F;&#x7ED3;&#x6784;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#数组"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x6570;&#x7EC4;"></a> &#x6570;&#x7EC4;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#链表"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x94FE;&#x8868;"></a> &#x94FE;&#x8868;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#队列"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x961F;&#x5217;"></a> &#x961F;&#x5217;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#栈"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x6808;"></a> &#x6808;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#集合"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x96C6;&#x5408;"></a> &#x96C6;&#x5408;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#散列表"><span class="toc-nav-number">1.8.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x6563;&#x5217;&#x8868;"></a> &#x6563;&#x5217;&#x8868;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#树"><span class="toc-nav-number">1.9.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x6811;"></a> &#x6811;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二叉树"><span class="toc-nav-number">1.10.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E8C;&#x53C9;&#x6811;"></a> &#x4E8C;&#x53C9;&#x6811;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#满二叉树-完全二叉树"><span class="toc-nav-number">1.11.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x6EE1;&#x4E8C;&#x53C9;&#x6811;-&#x5B8C;&#x5168;&#x4E8C;&#x53C9;&#x6811;"></a> &#x6EE1;&#x4E8C;&#x53C9;&#x6811;&#x3001;&#x5B8C;&#x5168;&#x4E8C;&#x53C9;&#x6811;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#重要二叉搜索树"><span class="toc-nav-number">1.12.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x91CD;&#x8981;&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;"></a> (&#x91CD;&#x8981;)&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#平衡二叉树"><span class="toc-nav-number">1.13.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x5E73;&#x8861;&#x4E8C;&#x53C9;&#x6811;"></a> &#x5E73;&#x8861;&#x4E8C;&#x53C9;&#x6811;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#红黑树r-b-tree"><span class="toc-nav-number">1.14.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x7EA2;&#x9ED1;&#x6811;r-b-tree"></a> &#x7EA2;&#x9ED1;&#x6811;(R-B Tree)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#堆heap"><span class="toc-nav-number">1.15.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x5806;heap"></a> &#x5806;(heap)</span></a></li></ol></li></ol>
-        
-        </div>
-      </aside>
-    
-
                 
             <!-- Sidebar Container -->
             <div class="
@@ -509,8 +1335,6 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#java" title="java">java</a>
-                        
                     </div>
                 </section>
                 
