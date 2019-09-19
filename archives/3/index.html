@@ -136,13 +136,6 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -151,6 +144,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -213,18 +213,18 @@
 
 <div class="post-preview">
 
-    <a href="/article/java常见IO重点知识清点/">
+    <a href="/article/java多线程核心概念/">
         <h2 class="post-title">
-            java常见IO重点知识清点
+            Java多线程核心概念
         </h2>
         <h3 class="post-subtitle">
-            IO流模型详解
+            多线程重要知识清点
         </h3>
         <div class="post-content-preview">
-             java常见IO重点知识清点
- 磁盘操作
-使用File类进行操作,File表示文件和目录的基本信息,并不表示真正的操作,通过磁盘操作可以实现一些文件级别的控制程序,如文件管理程序
-123456789101112public static void listAllFiles(File dir) &#123;    if (dir == null || !dir.exists()) &#123......
+             java多线程核心概念
+ 线程的优先级
+1.线程的优先级与代码执行顺序是无关的,这意味的代码先执行的线程不一定先被调度
+123456789101112public class Run &#123;   public static void main(String[] args)&#123;       for (int i = 0 ;i &lt; 5; i++)&#123;        ......
         </div>
     </a>
     
@@ -244,30 +244,19 @@
 
 <div class="post-preview">
 
-    <a href="/article/java虚拟机核心概念/">
+    <a href="/article/java内置的数据结构与经典算法/">
         <h2 class="post-title">
-            java虚拟机核心概念
+            java内置的数据结构与经典算法
         </h2>
         <h3 class="post-subtitle">
-            详解java运行时数据区
+            java数据结构算法详解
         </h3>
         <div class="post-content-preview">
-             java虚拟机核心概念
-
-特别鸣谢CS-NOTE作者提供的美观图片
-
- 一. 运行时数据区
-Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区进行协作,从而为java带来生命
-
-
-需要注意的是,运行时常量池是位于方法区内部的
-
-划分成为思维导图,便于理解与记忆
-
- 二. 垃圾回收(GC)
-垃圾收集器主要是针对于线程共享的区域(堆,方法区)进行工作。
-垃圾收集主要有两部分的工作:
-......
+             解密Java常见的数据结构与算法
+ 前言
+本博文针对java程序设计语言以及java.util包中的各种集合类型,融汇数据结构与算法知识,将内部原理,设计思想进行系统的讲解概括,为面试,学习提供参考
+ 集合框架的继承结构
+123圆点虚线框：接口类，如List、Set、Map。加长虚线框：抽象类，如AbstractCollection、AbstractList。实线框（加粗和正常）：实现类，......
         </div>
     </a>
     
@@ -287,22 +276,22 @@ Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区
 
 <div class="post-preview">
 
-    <a href="/article/Leetcode面试精选题解-2/">
+    <a href="/article/Leetcode面试精选题解-5/">
         <h2 class="post-title">
-            Leetcode面试精选题解-2
+            Leetcode面试精选题解-5
         </h2>
         <h3 class="post-subtitle">
-            字符串专题
+            链表专题
         </h3>
         <div class="post-content-preview">
-             Leetcode面试精选题解-字符串专题
- 1.验证回文串
-给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。
-**说明：**本题中，我们将空字符串定义为有效的回文串。
-示例 1:
-12输入: &quot;A man, a plan, a canal: Panama&quot;输出: true
-示例 2:
-12输入: &quot;race a car&quot......
+             Leetcode面试精选题解-链表专题
+ 题号24:两两交换链表中的节点
+给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
+你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
+示例:
+1给定 1-&gt;2-&gt;3-&gt;4, 你应该返回 2-&gt;1-&gt;4-&gt;3.
+解答:
+此题的核心思想是额外记录前一个位置的指针,注意判断边界条件,随后循环交换位......
         </div>
     </a>
     
@@ -322,52 +311,20 @@ Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes核心技术/">
+    <a href="/article/python函数式编程/">
         <h2 class="post-title">
-            kubernetes核心技术
-        </h2>
-        <h3 class="post-subtitle">
-            详解kubernetes原理与应用
-        </h3>
-        <div class="post-content-preview">
-             kubernetes核心技术
- 一. 概念
- 1.1 kubernates
-kubernetes是谷歌推出的开源容器编排系统。Kubernetes 用于协调高度可用的计算机集群，这些计算机群集被连接作为单个单元工作,提供高度抽象的视角来实现统一的集群管理调度与容器编排。
-Kubernetes 是一个 开源 平台，可满足生产环境的需要。
- 1.2 kubernates cluster
-Kub......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-09-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#kubernetes" title="kubernetes">kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/python的for循环迭代/">
-        <h2 class="post-title">
-            python学习笔记(1)
+            python学习笔记(2)
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-             python学习笔记(1)
- python的for循环迭代
- Interator
-12345678表示迭代器,使用生成器可以生成一个迭代器,生成器的基本用法和生成式很像ex:#生成器:(与list生成器的区别是[]改为())g = (x * x for x in range(10))#判断类型是迭代器from collections import Iterableisinstance((x......
+             python学习笔记(2)
+ python函数式编程
+ 定义：
+什么是函数式编程?
+函数是Python内建支持的一种封装，我们通过把大段代码拆成函数，通过一层一层的函数调用，就可以把复杂任务分解成简单的任务，这种分解可以称之为面向过程的程序设计。函数就是面向过程的程序设计的基本单元。
+而函数式编程（请注意多了一个“式”字）——Functional Programming，虽然也可以归结到面......
         </div>
     </a>
     
@@ -411,6 +368,40 @@ Python内建了map()和reduce()函数。
         <div class="tags">
             
               <a href="/tags/#python程序设计" title="python程序设计">python程序设计</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes核心技术/">
+        <h2 class="post-title">
+            kubernetes核心技术
+        </h2>
+        <h3 class="post-subtitle">
+            详解kubernetes原理与应用
+        </h3>
+        <div class="post-content-preview">
+             kubernetes核心技术
+ 一. 概念
+ 1.1 kubernates
+kubernetes是谷歌推出的开源容器编排系统。Kubernetes 用于协调高度可用的计算机集群，这些计算机群集被连接作为单个单元工作,提供高度抽象的视角来实现统一的集群管理调度与容器编排。
+Kubernetes 是一个 开源 平台，可满足生产环境的需要。
+ 1.2 kubernates cluster
+Kub......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-09-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#kubernetes" title="kubernetes">kubernetes</a>
             
         </div>
     
@@ -463,19 +454,19 @@ Python内建了map()和reduce()函数。
     <div class="tags">
         
             
-            <a href="/tags/#算法" title="算法" rel="6">算法</a>
-            
-        
-            
             <a href="/tags/#java" title="java" rel="5">java</a>
             
         
             
-            <a href="/tags/#MySQL" title="MySQL" rel="1">MySQL</a>
+            <a href="/tags/#算法" title="算法" rel="6">算法</a>
             
         
             
             <a href="/tags/#go" title="go" rel="1">go</a>
+            
+        
+            
+            <a href="/tags/#MySQL" title="MySQL" rel="1">MySQL</a>
             
         
             
@@ -499,6 +490,14 @@ Python内建了map()和reduce()函数。
             
         
             
+            <a href="/tags/#计算机网络原理" title="计算机网络原理" rel="1">计算机网络原理</a>
+            
+        
+            
+            <a href="/tags/#linux" title="linux" rel="1">linux</a>
+            
+        
+            
             <a href="/tags/#数据库" title="数据库" rel="1">数据库</a>
             
         
@@ -508,14 +507,6 @@ Python内建了map()和reduce()函数。
         
             
             <a href="/tags/#软件工程" title="软件工程" rel="1">软件工程</a>
-            
-        
-            
-            <a href="/tags/#计算机网络原理" title="计算机网络原理" rel="1">计算机网络原理</a>
-            
-        
-            
-            <a href="/tags/#linux" title="linux" rel="1">linux</a>
             
         
     </div>
@@ -589,7 +580,11 @@ Python内建了map()和reduce()函数。
     <ul>
       
         <li>
-          <a href="/article/python函数式编程/">python学习笔记(2)</a>
+          <a href="/article/操作系统内存管理模型/">操作系统内存管理模型</a>
+        </li>
+      
+        <li>
+          <a href="/article/java常见IO重点知识清点/">java常见IO重点知识清点</a>
         </li>
       
         <li>
@@ -597,15 +592,11 @@ Python内建了map()和reduce()函数。
         </li>
       
         <li>
-          <a href="/article/Java基础核心概念/">Java基础核心概念</a>
+          <a href="/article/Leetcode面试精选题解-2/">Leetcode面试精选题解-2</a>
         </li>
       
         <li>
-          <a href="/article/MySQL联合索引与数据结构/">MySQL联合索引与数据结构</a>
-        </li>
-      
-        <li>
-          <a href="/article/Leetcode面试精选题解-5/">Leetcode面试精选题解-5</a>
+          <a href="/article/go并发编程技巧/">go并发编程技巧</a>
         </li>
       
     </ul>

@@ -144,13 +144,6 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -159,6 +152,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -262,7 +262,7 @@
 <h3 id="22-分页内存管理"><a class="markdownIt-Anchor" href="#22-分页内存管理"></a> 2.2 分页内存管理</h3>
 <p>规定<strong>固定大小</strong>的页，将逻辑地址与物理地址进行分页，通过内存中的页表来映射物理地址与逻辑地址</p>
 <ul>
-<li>利用TLB进行缓存，首先从TLB中查找对应的页，否则再从内存的页表中查找</li>
+<li>利用TLB来进行缓存，首先从TLB中查找对应的页，否则再从内存的页表中查找</li>
 <li>若内存中有，则更新TLB</li>
 <li>若缺页，则进行缺页异常处理</li>
 </ul>
@@ -276,7 +276,7 @@
 </ol>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">start=>start: 开始
 end=>end: 结束
-date: 2019-09-19 12:04:55
+date: 2019-09-19 12:06:05
 pageInTLB=>condition: 页表项在TLB中？
 visitTLB=>operation: 直接访问TLB
 getAddressFromCache=>operation: 从TLB缓存中取得对应物理帧
@@ -284,26 +284,22 @@ visitPageTable=>operation: 访问页表
 computeAddress=>operation: CPU计算物理地址
 pageInMemory=>condition: 页表项在内存中？
 interruptHandle=>operation: 处理缺页中断
-date: 2019-09-19 12:04:55
+date: 2019-09-19 12:06:05
 
-date: 2019-09-19 12:04:55
+date: 2019-09-19 12:06:05
 pageInTLB(yes)->visitTLB->computeAddress->end
 pageInTLB(no)->visitPageTable->pageInMemory
-date: 2019-09-19 12:04:55
-date: 2019-09-19 12:04:55</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script>
+date: 2019-09-19 12:06:05
+date: 2019-09-19 12:06:05</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script>
                 
 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/python高阶函数式编程/" data-toggle="tooltip" data-placement="top" title="python学习笔记(3)">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/java内置的数据结构与经典算法/" data-toggle="tooltip" data-placement="top" title="java内置的数据结构与经典算法">Next Post &rarr;</a>
+                            <a href="/article/java常见IO重点知识清点/" data-toggle="tooltip" data-placement="top" title="java常见IO重点知识清点">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
