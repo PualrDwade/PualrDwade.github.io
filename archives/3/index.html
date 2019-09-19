@@ -221,10 +221,10 @@
             IO流模型详解
         </h3>
         <div class="post-content-preview">
-            java常见IO重点知识清点
-磁盘操作
+             java常见IO重点知识清点
+ 磁盘操作
 使用File类进行操作,File表示文件和目录的基本信息,并不表示真正的操作,通过磁盘操作可以实现一些文件级别的控制程序,如文件管理程序
-123456789101112public static void listAllFiles(File dir) &#123;    if (dir == null || !dir.exists()) &#123; ......
+123456789101112public static void listAllFiles(File dir) &#123;    if (dir == null || !dir.exists()) &#123......
         </div>
     </a>
     
@@ -244,49 +244,18 @@
 
 <div class="post-preview">
 
-    <a href="/article/go并发编程技巧/">
+    <a href="/article/java多线程核心概念/">
         <h2 class="post-title">
-            go并发编程技巧
+            Java多线程核心概念
         </h2>
         <h3 class="post-subtitle">
-            golang并发核心要点
+            多线程重要知识清点
         </h3>
         <div class="post-content-preview">
-            go并发编程技巧
-一. Goroutines
-在学习golang并发时,一开始不应该过多陷入于细节,可以直接把一个goroutine看作一个线程,其作为并发的基本执行单元,使得程序可以同时进行。使用关键字&quot;go&quot;启动一个函数开启一个goroutine。
-12345678910import "fmt"func main() &#123;    f()    go f()&#......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-09-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#go" title="go">go</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Java基础核心概念/">
-        <h2 class="post-title">
-            Java基础核心概念
-        </h2>
-        <h3 class="post-subtitle">
-            详解java重点概念
-        </h3>
-        <div class="post-content-preview">
-            Java基础核心概念总结
-重写equal()必须重写hashcode()
-为什么?首先从equals()函数讲起,equals()函数判断的是两个对象的内容是否相等,也就是两个对象是否等价
-1.在哈希表中,会利用一个对象的hashcode()将对象散列到bucket数组中,若两个对象是等价的,那么他理应被散列到同一个位置,同时与该位置上的其余具有相同hashcode的对象进行equals()......
+             java多线程核心概念
+ 线程的优先级
+1.线程的优先级与代码执行顺序是无关的,这意味的代码先执行的线程不一定先被调度
+123456789101112public class Run &#123;   public static void main(String[] args)&#123;       for (int i = 0 ;i &lt; 5; i++)&#123;        ......
         </div>
     </a>
     
@@ -297,41 +266,6 @@
         <div class="tags">
             
               <a href="/tags/#java" title="java">java</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Leetcode面试精选题解-2/">
-        <h2 class="post-title">
-            Leetcode面试精选题解-2
-        </h2>
-        <h3 class="post-subtitle">
-            字符串专题
-        </h3>
-        <div class="post-content-preview">
-            Leetcode面试精选题解-字符串专题
-1.验证回文串
-给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。
-**说明：**本题中，我们将空字符串定义为有效的回文串。
-示例 1:
-12输入: &quot;A man, a plan, a canal: Panama&quot;输出: true
-示例 2:
-12输入: &quot;race a car&quot;输......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-09-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#算法" title="算法">算法</a>
             
         </div>
     
@@ -349,10 +283,10 @@
             
         </h3>
         <div class="post-content-preview">
-            python学习笔记(1)
-python的for循环迭代
-Interator
-12345678表示迭代器,使用生成器可以生成一个迭代器,生成器的基本用法和生成式很像ex:#生成器:(与list生成器的区别是[]改为())g = (x * x for x in range(10))#判断类型是迭代器from collections import Iterableisinstance((x fo......
+             python学习笔记(1)
+ python的for循环迭代
+ Interator
+12345678表示迭代器,使用生成器可以生成一个迭代器,生成器的基本用法和生成式很像ex:#生成器:(与list生成器的区别是[]改为())g = (x * x for x in range(10))#判断类型是迭代器from collections import Iterableisinstance((x......
         </div>
     </a>
     
@@ -372,6 +306,73 @@ Interator
 
 <div class="post-preview">
 
+    <a href="/article/Leetcode面试精选题解-2/">
+        <h2 class="post-title">
+            Leetcode面试精选题解-2
+        </h2>
+        <h3 class="post-subtitle">
+            字符串专题
+        </h3>
+        <div class="post-content-preview">
+             Leetcode面试精选题解-字符串专题
+ 1.验证回文串
+给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。
+**说明：**本题中，我们将空字符串定义为有效的回文串。
+示例 1:
+12输入: &quot;A man, a plan, a canal: Panama&quot;输出: true
+示例 2:
+12输入: &quot;race a car&quot......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-09-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#算法" title="算法">算法</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/java内置的数据结构与经典算法/">
+        <h2 class="post-title">
+            java内置的数据结构与经典算法
+        </h2>
+        <h3 class="post-subtitle">
+            java数据结构算法详解
+        </h3>
+        <div class="post-content-preview">
+             解密Java常见的数据结构与算法
+ 前言
+本博文针对java程序设计语言以及java.util包中的各种集合类型,融汇数据结构与算法知识,将内部原理,设计思想进行系统的讲解概括,为面试,学习提供参考
+ 集合框架的继承结构
+123圆点虚线框：接口类，如List、Set、Map。加长虚线框：抽象类，如AbstractCollection、AbstractList。实线框（加粗和正常）：实现类，......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-09-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#java" title="java">java</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/article/python函数式编程/">
         <h2 class="post-title">
             python学习笔记(2)
@@ -380,12 +381,12 @@ Interator
             
         </h3>
         <div class="post-content-preview">
-            python学习笔记(2)
-python函数式编程
-定义：
+             python学习笔记(2)
+ python函数式编程
+ 定义：
 什么是函数式编程?
 函数是Python内建支持的一种封装，我们通过把大段代码拆成函数，通过一层一层的函数调用，就可以把复杂任务分解成简单的任务，这种分解可以称之为面向过程的程序设计。函数就是面向过程的程序设计的基本单元。
-而函数式编程（请注意多了一个“式”字）——Functional Programming，虽然也可以归结到面向过程......
+而函数式编程（请注意多了一个“式”字）——Functional Programming，虽然也可以归结到面......
         </div>
     </a>
     
@@ -480,19 +481,15 @@ python函数式编程
             
         
             
-            <a href="/tags/#操作系统" title="操作系统" rel="3">操作系统</a>
-            
-        
-            
             <a href="/tags/#数据结构" title="数据结构" rel="2">数据结构</a>
             
         
             
-            <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
+            <a href="/tags/#操作系统" title="操作系统" rel="3">操作系统</a>
             
         
             
-            <a href="/tags/#软件工程" title="软件工程" rel="1">软件工程</a>
+            <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
             
         
             
@@ -501,6 +498,10 @@ python函数式编程
         
             
             <a href="/tags/#计算机网络原理" title="计算机网络原理" rel="1">计算机网络原理</a>
+            
+        
+            
+            <a href="/tags/#软件工程" title="软件工程" rel="1">软件工程</a>
             
         
     </div>
@@ -574,15 +575,15 @@ python函数式编程
     <ul>
       
         <li>
-          <a href="/article/java虚拟机核心概念/">java虚拟机核心概念</a>
+          <a href="/article/kubernetes核心技术/">kubernetes核心技术</a>
         </li>
       
         <li>
-          <a href="/article/java内置的数据结构与经典算法/">java内置的数据结构与经典算法</a>
+          <a href="/article/Java基础核心概念/">Java基础核心概念</a>
         </li>
       
         <li>
-          <a href="/article/Leetcode面试精选题解-1/">Leetcode面试精选题解-1</a>
+          <a href="/article/Leetcode面试精选题解-5/">Leetcode面试精选题解-5</a>
         </li>
       
         <li>
@@ -590,7 +591,7 @@ python函数式编程
         </li>
       
         <li>
-          <a href="/article/Leetcode面试精选题解-5/">Leetcode面试精选题解-5</a>
+          <a href="/article/Leetcode面试精选题解-1/">Leetcode面试精选题解-1</a>
         </li>
       
     </ul>

@@ -214,57 +214,57 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="数据库原理详解">数据库原理详解</h1>
-<h2 id="一-什么是acid">一. 什么是ACID?</h2>
-<h3 id="11-原子性atomicity">1.1 原子性:(Atomicity)</h3>
+                <h1 id="数据库原理详解"><a class="markdownIt-Anchor" href="#数据库原理详解"></a> 数据库原理详解</h1>
+<h2 id="一-什么是acid"><a class="markdownIt-Anchor" href="#一-什么是acid"></a> 一. 什么是ACID?</h2>
+<h3 id="11-原子性atomicity"><a class="markdownIt-Anchor" href="#11-原子性atomicity"></a> 1.1 原子性:(Atomicity)</h3>
 <p>不可分割的最小单元,要么全部执行成功提交,要么失败回滚,回滚通过redo日志实现,记录执行过的语句,回滚时反向执行。</p>
-<h3 id="12-一致性consistency">1.2 一致性:(Consistency)</h3>
+<h3 id="12-一致性consistency"><a class="markdownIt-Anchor" href="#12-一致性consistency"></a> 1.2 一致性:(Consistency)</h3>
 <p>在一致性状态下,同一时间所有事务对数据读取的结果应该是相同的。</p>
-<h3 id="13-隔离性isolation">1.3 隔离性:(ISolation)</h3>
+<h3 id="13-隔离性isolation"><a class="markdownIt-Anchor" href="#13-隔离性isolation"></a> 1.3 隔离性:(ISolation)</h3>
 <p>一个事务所做的修改在最终提交以前，对其它事务是不可见的。</p>
-<h3 id="14-持久性durability">1.4 持久性:(Durability)</h3>
+<h3 id="14-持久性durability"><a class="markdownIt-Anchor" href="#14-持久性durability"></a> 1.4 持久性:(Durability)</h3>
 <p>一旦事务提交，则其所做的修改将会永远保存到数据库中。即使系统发生崩溃，事务执行的结果也不能丢失。</p>
 <p>使用重做日志来保证持久性。</p>
 <blockquote>
 <p>满足一致性,首先必须要满足原子性,而在并行环境下,多个事务同时进行,还需要满足隔离性。</p>
 </blockquote>
-<h2 id="二-什么是事务">二. 什么是事务?</h2>
+<h2 id="二-什么是事务"><a class="markdownIt-Anchor" href="#二-什么是事务"></a> 二. 什么是事务?</h2>
 <p>事务就是满足ACID的一系列操作,事务从开始事务起,数据进入中间状态,从提交事务结束,数据进入一致性状态,这个过程应该要对其他事务不可见,事务可以回滚,通过重做日志实现。</p>
 <p><img src="https://i.loli.net/2019/03/31/5ca01acff3928.png" alt=""></p>
 <blockquote>
 <p>MySQL 默认采用自动提交模式。也就是说，如果不显式使用<code>START TRANSACTION</code>语句来开始一个事务，那么每个查询都会被当做一个事务自动提交。</p>
 </blockquote>
-<h2 id="三-并发一致性问题">三. 并发一致性问题</h2>
+<h2 id="三-并发一致性问题"><a class="markdownIt-Anchor" href="#三-并发一致性问题"></a> 三. 并发一致性问题</h2>
 <p>上面已经提到了,在并发环境下,要满足一致性,则要在满足原子性的前提下,还要满足事务间的隔离性,但是在并发环境下，<strong>事务的隔离性很难保证</strong>，因此会出现很多并发一致性问题。</p>
 <p>在讨论这个问题之前,我们首先追根溯源一下,为什么会出现并发一致性,这里我们可以把数据库中的一行数据,一张表想象成一个临界资源,而通常导致一致性问题都是因为<strong>读取-修改-写入</strong>这个过程导致的,数据在事务开始之后,进入中间状态,它在并发环境下是可以被修改-读取的,很容易产生不一致的状态。</p>
 <p>因此,我们可以很自然的想到二种情况:一边读一边写导致问题、一起写导致问题。</p>
 <p>势必会出现<strong>重复写覆盖</strong>导致丢失修改与<strong>重复读不一致</strong>这两个常见问题,这是由于事务间的各理性没有得到保证,对临界资源没有好好保护而导致的必然问题!</p>
 <p>其实,除了我们可以想到的上面这两种之外,数据库由于本身<strong>可回滚</strong>的特性,还会有其他一致性问题。比如<strong>读取到了脏数据</strong>,这是一个事务读取到了一个已经要<strong>回滚</strong>的数据导致的,这个数据实际上是无效的,也就是说这个数据是&quot;脏&quot;的。</p>
-<h3 id="31-丢失修改重复写覆盖">3.1 丢失修改(重复写覆盖)</h3>
+<h3 id="31-丢失修改重复写覆盖"><a class="markdownIt-Anchor" href="#31-丢失修改重复写覆盖"></a> 3.1 丢失修改(重复写覆盖)</h3>
 <p>T1 和 T2 两个事务都对一个数据进行修改，T1 先修改，T2 随后修改，T2 的修改覆盖了 T1 的修改。</p>
 <p><img src="https://i.loli.net/2019/03/31/5ca020df3e65e.png" alt=""></p>
-<h3 id="32-不可重复读">3.2 不可重复读</h3>
+<h3 id="32-不可重复读"><a class="markdownIt-Anchor" href="#32-不可重复读"></a> 3.2 不可重复读</h3>
 <p>T1读取一个数据,T2对这个数据修改,T1再次读取,产生不一致</p>
 <p><img src="https://i.loli.net/2019/03/31/5ca0205fd5cd4.png" alt=""></p>
-<h3 id="33-读脏数据">3.3 读脏数据</h3>
+<h3 id="33-读脏数据"><a class="markdownIt-Anchor" href="#33-读脏数据"></a> 3.3 读脏数据</h3>
 <p>T2修改一个数据但是没有提交事务,T1读取到这个数据,T2由于出现问题对这个数据进行回滚并提交事务,导致T1的数据失效,读到了脏数据</p>
 <p><img src="https://i.loli.net/2019/03/31/5ca020d4c23ed.png" alt=""></p>
-<h3 id="34-幻影读">3.4 幻影读</h3>
-<p>date: 2019-09-19 11:04:07</p>
+<h3 id="34-幻影读"><a class="markdownIt-Anchor" href="#34-幻影读"></a> 3.4 幻影读</h3>
+<p>date: 2019-09-19 11:05:34</p>
 <p>和不可重复读相同,都是由于一边在读一边在写导致的不一致问题,T1 读取某个范围的数据，T2 在这个范围内插入新的数据，T1 再次读取这个范围的数据，此时读取的结果和和第一次读取的结果不同。</p>
 <p><img src="https://i.loli.net/2019/03/31/5ca0211d49dc5.png" alt=""></p>
 <blockquote>
 <p>产生并发不一致性问题主要原因是破坏了事务的隔离性，解决方法是通过并发控制来保证隔离性。并发控制可以通过封锁来实现，但是封锁操作需要用户自己控制，相当复杂。数据库管理系统提供了事务的隔离级别，让用户以一种更轻松的方式处理并发一致性问题。</p>
 </blockquote>
-<h2 id="四-封锁">四. 封锁</h2>
-<h3 id="41-粒度">4.1 粒度</h3>
+<h2 id="四-封锁"><a class="markdownIt-Anchor" href="#四-封锁"></a> 四. 封锁</h2>
+<h3 id="41-粒度"><a class="markdownIt-Anchor" href="#41-粒度"></a> 4.1 粒度</h3>
 <p>MySQL 中提供了两种封锁粒度：行级锁以及表级锁。</p>
 <p>加锁粒度大-&gt;并发程度高,一致性高-&gt;频繁加锁解锁-&gt;低性能</p>
 <blockquote>
 <p>在选择封锁粒度时，需要在锁开销和并发程度之间做一个权衡。</p>
 </blockquote>
-<h3 id="42-封锁类型">4.2 封锁类型</h3>
-<h4 id="421-读写锁">4.2.1 读写锁</h4>
+<h3 id="42-封锁类型"><a class="markdownIt-Anchor" href="#42-封锁类型"></a> 4.2 封锁类型</h3>
+<h4 id="421-读写锁"><a class="markdownIt-Anchor" href="#421-读写锁"></a> 4.2.1 读写锁</h4>
 <ul>
 <li>排它锁（Exclusive），简写为 X 锁，又称写锁。</li>
 <li>共享锁（Shared），简写为 S 锁，又称读锁。</li>
@@ -304,7 +304,7 @@
 <blockquote>
 <p>意向不是真实,重点记住这句话!只是有这个意向</p>
 </blockquote>
-<h4 id="422-意向锁">4.2.2 意向锁</h4>
+<h4 id="422-意向锁"><a class="markdownIt-Anchor" href="#422-意向锁"></a> 4.2.2 意向锁</h4>
 <p>应对上述,数据库引入了意向锁的概念,用来提高加锁控制的粒度</p>
 <p>意向锁在原来的 X/S 锁之上引入了 IX/IS，IX/IS 都是表锁，用来表示一个事务想要在表中的某个数据行上加 X 锁或 S 锁。有以下两个规定：</p>
 <ul>
@@ -363,42 +363,42 @@
 <blockquote>
 <p>漂亮的女孩可以同时被很多男孩憧憬,但是于情于理同时只能和一个男孩在一起,如果你想追一个学校的女孩,你只需要打听她是不是有人追或者有男朋友了,而没有必要跑遍每个教室问,你们有人和这个女孩在一起了吗???QAQ</p>
 </blockquote>
-<h3 id="43-封锁协议">4.3 封锁协议</h3>
-<h4 id="431-一级封锁">4.3.1 一级封锁</h4>
+<h3 id="43-封锁协议"><a class="markdownIt-Anchor" href="#43-封锁协议"></a> 4.3 封锁协议</h3>
+<h4 id="431-一级封锁"><a class="markdownIt-Anchor" href="#431-一级封锁"></a> 4.3.1 一级封锁</h4>
 <p>写的时候必须加写锁,避免重复写覆盖的不一致问题</p>
-<h4 id="432-二级封锁">4.3.2 二级封锁</h4>
+<h4 id="432-二级封锁"><a class="markdownIt-Anchor" href="#432-二级封锁"></a> 4.3.2 二级封锁</h4>
 <p>读的时候必须加锁,读完释放锁,避免读脏数据-&gt;因为T2,读数据,T1是不能对数据进行回滚的,因此T2不会读到脏数据,但是这种程度还是会导致不可重复读的问题,因为读锁在读完就释放,这是其他事务还可以更改,下次再读还是会<strong>不一致</strong>。</p>
-<h4 id="433-三级封锁">4.3.3 三级封锁</h4>
+<h4 id="433-三级封锁"><a class="markdownIt-Anchor" href="#433-三级封锁"></a> 4.3.3 三级封锁</h4>
 <p>在二级的基础上，要求读取数据 A 时必须加 S 锁，直到事务结束了才能释放 S 锁。可以解决不可重复读的问题，因为读 A 时，其它事务不能对 A 加 X 锁，从而避免了在读的期间数据发生改变。</p>
 <blockquote>
 <p>首先写肯定是不能同时写,这个是一级保证,而后就是读之间的区别了,二级是读加锁,读完释放,在读期间保证数据一定有效。三级是读加锁,事务结束才释放读锁</p>
 </blockquote>
-<h3 id="44-两段锁协议">4.4 两段锁协议</h3>
+<h3 id="44-两段锁协议"><a class="markdownIt-Anchor" href="#44-两段锁协议"></a> 4.4 两段锁协议</h3>
 <p>加锁和解锁分为两个阶段进行。</p>
 <p>可串行化调度是指，通过并发控制，使得<strong>并发执行的事务结果与某个串行执行的事务结果相同</strong>。</p>
 <p>事务遵循两段锁协议是保证可串行化调度的充分条件。例如以下操作满足两段锁协议，它是可串行化调度。</p>
-<p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lock-x(A)...lock-s(B)...lock-s(C)...unlock(A)...unlock(C)...unlock(B)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lock-x(A)...lock-s(B)...lock-s(C)...unlock(A)...unlock(C)...unlock(B)</span><br></pre></td></tr></table></figure>
 <p>但不是必要条件，例如以下操作不满足两段锁协议，但是它还是可串行化调度。</p>
-<p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lock-x(A)...unlock(A)...lock-s(B)...unlock(B)...lock-s(C)...unlock(C)</span><br></pre></td></tr></table></figure></p>
-<h3 id="45-mysql隐式与显示锁定">4.5 MySQL隐式与显示锁定</h3>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lock-x(A)...unlock(A)...lock-s(B)...unlock(B)...lock-s(C)...unlock(C)</span><br></pre></td></tr></table></figure>
+<h3 id="45-mysql隐式与显示锁定"><a class="markdownIt-Anchor" href="#45-mysql隐式与显示锁定"></a> 4.5 MySQL隐式与显示锁定</h3>
 <p>MySQL 的 <code>InnoDB</code>存储引擎采用两段锁协议，会根据隔离级别在需要的时候自动加锁，并且所有的锁都是在同一时刻被释放，这被称为隐式锁定。</p>
 <p>InnoDB 也可以使用特定的语句进行显示锁定：</p>
-<p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ... <span class="keyword">LOCK</span> <span class="keyword">In</span> <span class="keyword">SHARE</span> <span class="keyword">MODE</span>;</span><br><span class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FOR</span> <span class="keyword">UPDATE</span>;</span><br></pre></td></tr></table></figure></p>
-<h2 id="五-事务隔离级别">五. 事务隔离级别</h2>
-<h3 id="51-不提交读">5.1 不提交读</h3>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ... <span class="keyword">LOCK</span> <span class="keyword">In</span> <span class="keyword">SHARE</span> <span class="keyword">MODE</span>;</span><br><span class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FOR</span> <span class="keyword">UPDATE</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="五-事务隔离级别"><a class="markdownIt-Anchor" href="#五-事务隔离级别"></a> 五. 事务隔离级别</h2>
+<h3 id="51-不提交读"><a class="markdownIt-Anchor" href="#51-不提交读"></a> 5.1 不提交读</h3>
 <p>级别最低,读到其他事务还没有提交的数据,<strong>所有一致性问题都有可能出现!</strong></p>
-<h3 id="52-提交读">5.2 提交读</h3>
+<h3 id="52-提交读"><a class="markdownIt-Anchor" href="#52-提交读"></a> 5.2 提交读</h3>
 <p>只能读已经提交的数据,从而避免了脏读,但是还是会有其他问题,因为这只是在别人修改的时候你不能读,但是你读的时候别人还可以修改</p>
-<h3 id="53-可重复读">5.3 可重复读</h3>
+<h3 id="53-可重复读"><a class="markdownIt-Anchor" href="#53-可重复读"></a> 5.3 可重复读</h3>
 <p>你读,别人修改无效,因此你可以重复读并且肯定一致,很好理解,MySQL默认事务隔离级别就是可重复读</p>
-<h3 id="54-可串行化">5.4 可串行化</h3>
+<h3 id="54-可串行化"><a class="markdownIt-Anchor" href="#54-可串行化"></a> 5.4 可串行化</h3>
 <p>上述三种,都不能解决幻影读的问题,why?你读数据通常是加<strong>行锁</strong>,而我对表进行插入操作是不受行锁限制的,所以你加了行的S锁来读取count(范围),我后来插入了一条,你会发现凭空多出了count,你怀疑见鬼了,这就是幻影读,解决幻影读的方法就是通过严格的两段封锁实现并发控制。</p>
-<h2 id="六-多版本并发控制mvcc">六. 多版本并发控制(MVCC)</h2>
+<h2 id="六-多版本并发控制mvcc"><a class="markdownIt-Anchor" href="#六-多版本并发控制mvcc"></a> 六. 多版本并发控制(MVCC)</h2>
 <p>多版本并发控制（Multi-Version Concurrency Control, MVCC）是 MySQL 的 <code>InnoDB</code>存储引擎实现隔离级别的一种具体方式，用于实现提交读和可重复读这两种隔离级别。而未提交读隔离级别总是读取最新的数据行，无需使用 MVCC。<strong>可串行化隔离级别需要对所有读取的行都加锁</strong>，单纯使用 MVCC 无法实现。</p>
 <blockquote>
 <p>多版本并发控制是为了解决非锁的读写并发问题的,而乐观锁(OCC)是用来解决非锁写-写问题的</p>
 </blockquote>
-<h3 id="61-实现方式">6.1 实现方式:</h3>
+<h3 id="61-实现方式"><a class="markdownIt-Anchor" href="#61-实现方式"></a> 6.1 实现方式:</h3>
 <p>引入两个概念:</p>
 <ul>
 <li>系统版本号：是一个递增的数字，每开始一个新的事务，系统版本号就会自动递增。</li>
@@ -418,7 +418,7 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/article/python高阶函数式编程/" data-toggle="tooltip" data-placement="top" title="python学习笔记(3)">&larr; Previous Post</a>
+                            <a href="/article/操作系统重点知识汇总/" data-toggle="tooltip" data-placement="top" title="操作系统重点知识汇总">&larr; Previous Post</a>
                         </li>
                     
                     
@@ -479,7 +479,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#数据库原理详解"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x6570;&#x636E;&#x5E93;&#x539F;&#x7406;&#x8BE6;&#x89E3;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一-什么是acid"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x4E00;. &#x4EC0;&#x4E48;&#x662F;ACID?</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#11-原子性atomicity"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">1.1 &#x539F;&#x5B50;&#x6027;:(Atomicity)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#12-一致性consistency"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text">1.2 &#x4E00;&#x81F4;&#x6027;:(Consistency)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#13-隔离性isolation"><span class="toc-nav-number">1.1.3.</span> <span class="toc-nav-text">1.3 &#x9694;&#x79BB;&#x6027;:(ISolation)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#14-持久性durability"><span class="toc-nav-number">1.1.4.</span> <span class="toc-nav-text">1.4 &#x6301;&#x4E45;&#x6027;:(Durability)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二-什么是事务"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x4E8C;. &#x4EC0;&#x4E48;&#x662F;&#x4E8B;&#x52A1;?</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#三-并发一致性问题"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">&#x4E09;. &#x5E76;&#x53D1;&#x4E00;&#x81F4;&#x6027;&#x95EE;&#x9898;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#31-丢失修改重复写覆盖"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">3.1 &#x4E22;&#x5931;&#x4FEE;&#x6539;(&#x91CD;&#x590D;&#x5199;&#x8986;&#x76D6;)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#32-不可重复读"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">3.2 &#x4E0D;&#x53EF;&#x91CD;&#x590D;&#x8BFB;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#33-读脏数据"><span class="toc-nav-number">1.3.3.</span> <span class="toc-nav-text">3.3 &#x8BFB;&#x810F;&#x6570;&#x636E;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#34-幻影读"><span class="toc-nav-number">1.3.4.</span> <span class="toc-nav-text">3.4 &#x5E7B;&#x5F71;&#x8BFB;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#四-封锁"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">&#x56DB;. &#x5C01;&#x9501;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#41-粒度"><span class="toc-nav-number">1.4.1.</span> <span class="toc-nav-text">4.1 &#x7C92;&#x5EA6;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#42-封锁类型"><span class="toc-nav-number">1.4.2.</span> <span class="toc-nav-text">4.2 &#x5C01;&#x9501;&#x7C7B;&#x578B;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#421-读写锁"><span class="toc-nav-number">1.4.2.1.</span> <span class="toc-nav-text">4.2.1 &#x8BFB;&#x5199;&#x9501;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#422-意向锁"><span class="toc-nav-number">1.4.2.2.</span> <span class="toc-nav-text">4.2.2 &#x610F;&#x5411;&#x9501;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#43-封锁协议"><span class="toc-nav-number">1.4.3.</span> <span class="toc-nav-text">4.3 &#x5C01;&#x9501;&#x534F;&#x8BAE;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#431-一级封锁"><span class="toc-nav-number">1.4.3.1.</span> <span class="toc-nav-text">4.3.1 &#x4E00;&#x7EA7;&#x5C01;&#x9501;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#432-二级封锁"><span class="toc-nav-number">1.4.3.2.</span> <span class="toc-nav-text">4.3.2 &#x4E8C;&#x7EA7;&#x5C01;&#x9501;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#433-三级封锁"><span class="toc-nav-number">1.4.3.3.</span> <span class="toc-nav-text">4.3.3 &#x4E09;&#x7EA7;&#x5C01;&#x9501;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#44-两段锁协议"><span class="toc-nav-number">1.4.4.</span> <span class="toc-nav-text">4.4 &#x4E24;&#x6BB5;&#x9501;&#x534F;&#x8BAE;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#45-mysql隐式与显示锁定"><span class="toc-nav-number">1.4.5.</span> <span class="toc-nav-text">4.5 MySQL&#x9690;&#x5F0F;&#x4E0E;&#x663E;&#x793A;&#x9501;&#x5B9A;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#五-事务隔离级别"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">&#x4E94;. &#x4E8B;&#x52A1;&#x9694;&#x79BB;&#x7EA7;&#x522B;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#51-不提交读"><span class="toc-nav-number">1.5.1.</span> <span class="toc-nav-text">5.1 &#x4E0D;&#x63D0;&#x4EA4;&#x8BFB;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#52-提交读"><span class="toc-nav-number">1.5.2.</span> <span class="toc-nav-text">5.2 &#x63D0;&#x4EA4;&#x8BFB;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#53-可重复读"><span class="toc-nav-number">1.5.3.</span> <span class="toc-nav-text">5.3 &#x53EF;&#x91CD;&#x590D;&#x8BFB;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#54-可串行化"><span class="toc-nav-number">1.5.4.</span> <span class="toc-nav-text">5.4 &#x53EF;&#x4E32;&#x884C;&#x5316;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#六-多版本并发控制mvcc"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">&#x516D;. &#x591A;&#x7248;&#x672C;&#x5E76;&#x53D1;&#x63A7;&#x5236;(MVCC)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#61-实现方式"><span class="toc-nav-number">1.6.1.</span> <span class="toc-nav-text">6.1 &#x5B9E;&#x73B0;&#x65B9;&#x5F0F;:</span></a></li></ol></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#数据库原理详解"><span class="toc-nav-number">1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x6570;&#x636E;&#x5E93;&#x539F;&#x7406;&#x8BE6;&#x89E3;"></a> &#x6570;&#x636E;&#x5E93;&#x539F;&#x7406;&#x8BE6;&#x89E3;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一-什么是acid"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E00;-&#x4EC0;&#x4E48;&#x662F;acid"></a> &#x4E00;. &#x4EC0;&#x4E48;&#x662F;ACID?</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#11-原子性atomicity"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#11-&#x539F;&#x5B50;&#x6027;atomicity"></a> 1.1 &#x539F;&#x5B50;&#x6027;:(Atomicity)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#12-一致性consistency"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#12-&#x4E00;&#x81F4;&#x6027;consistency"></a> 1.2 &#x4E00;&#x81F4;&#x6027;:(Consistency)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#13-隔离性isolation"><span class="toc-nav-number">1.1.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#13-&#x9694;&#x79BB;&#x6027;isolation"></a> 1.3 &#x9694;&#x79BB;&#x6027;:(ISolation)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#14-持久性durability"><span class="toc-nav-number">1.1.4.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#14-&#x6301;&#x4E45;&#x6027;durability"></a> 1.4 &#x6301;&#x4E45;&#x6027;:(Durability)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二-什么是事务"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E8C;-&#x4EC0;&#x4E48;&#x662F;&#x4E8B;&#x52A1;"></a> &#x4E8C;. &#x4EC0;&#x4E48;&#x662F;&#x4E8B;&#x52A1;?</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#三-并发一致性问题"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E09;-&#x5E76;&#x53D1;&#x4E00;&#x81F4;&#x6027;&#x95EE;&#x9898;"></a> &#x4E09;. &#x5E76;&#x53D1;&#x4E00;&#x81F4;&#x6027;&#x95EE;&#x9898;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#31-丢失修改重复写覆盖"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#31-&#x4E22;&#x5931;&#x4FEE;&#x6539;&#x91CD;&#x590D;&#x5199;&#x8986;&#x76D6;"></a> 3.1 &#x4E22;&#x5931;&#x4FEE;&#x6539;(&#x91CD;&#x590D;&#x5199;&#x8986;&#x76D6;)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#32-不可重复读"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#32-&#x4E0D;&#x53EF;&#x91CD;&#x590D;&#x8BFB;"></a> 3.2 &#x4E0D;&#x53EF;&#x91CD;&#x590D;&#x8BFB;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#33-读脏数据"><span class="toc-nav-number">1.3.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#33-&#x8BFB;&#x810F;&#x6570;&#x636E;"></a> 3.3 &#x8BFB;&#x810F;&#x6570;&#x636E;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#34-幻影读"><span class="toc-nav-number">1.3.4.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#34-&#x5E7B;&#x5F71;&#x8BFB;"></a> 3.4 &#x5E7B;&#x5F71;&#x8BFB;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#四-封锁"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x56DB;-&#x5C01;&#x9501;"></a> &#x56DB;. &#x5C01;&#x9501;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#41-粒度"><span class="toc-nav-number">1.4.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#41-&#x7C92;&#x5EA6;"></a> 4.1 &#x7C92;&#x5EA6;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#42-封锁类型"><span class="toc-nav-number">1.4.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#42-&#x5C01;&#x9501;&#x7C7B;&#x578B;"></a> 4.2 &#x5C01;&#x9501;&#x7C7B;&#x578B;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#421-读写锁"><span class="toc-nav-number">1.4.2.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#421-&#x8BFB;&#x5199;&#x9501;"></a> 4.2.1 &#x8BFB;&#x5199;&#x9501;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#422-意向锁"><span class="toc-nav-number">1.4.2.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#422-&#x610F;&#x5411;&#x9501;"></a> 4.2.2 &#x610F;&#x5411;&#x9501;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#43-封锁协议"><span class="toc-nav-number">1.4.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#43-&#x5C01;&#x9501;&#x534F;&#x8BAE;"></a> 4.3 &#x5C01;&#x9501;&#x534F;&#x8BAE;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#431-一级封锁"><span class="toc-nav-number">1.4.3.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#431-&#x4E00;&#x7EA7;&#x5C01;&#x9501;"></a> 4.3.1 &#x4E00;&#x7EA7;&#x5C01;&#x9501;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#432-二级封锁"><span class="toc-nav-number">1.4.3.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#432-&#x4E8C;&#x7EA7;&#x5C01;&#x9501;"></a> 4.3.2 &#x4E8C;&#x7EA7;&#x5C01;&#x9501;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#433-三级封锁"><span class="toc-nav-number">1.4.3.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#433-&#x4E09;&#x7EA7;&#x5C01;&#x9501;"></a> 4.3.3 &#x4E09;&#x7EA7;&#x5C01;&#x9501;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#44-两段锁协议"><span class="toc-nav-number">1.4.4.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#44-&#x4E24;&#x6BB5;&#x9501;&#x534F;&#x8BAE;"></a> 4.4 &#x4E24;&#x6BB5;&#x9501;&#x534F;&#x8BAE;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#45-mysql隐式与显示锁定"><span class="toc-nav-number">1.4.5.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#45-mysql&#x9690;&#x5F0F;&#x4E0E;&#x663E;&#x793A;&#x9501;&#x5B9A;"></a> 4.5 MySQL&#x9690;&#x5F0F;&#x4E0E;&#x663E;&#x793A;&#x9501;&#x5B9A;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#五-事务隔离级别"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E94;-&#x4E8B;&#x52A1;&#x9694;&#x79BB;&#x7EA7;&#x522B;"></a> &#x4E94;. &#x4E8B;&#x52A1;&#x9694;&#x79BB;&#x7EA7;&#x522B;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#51-不提交读"><span class="toc-nav-number">1.5.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#51-&#x4E0D;&#x63D0;&#x4EA4;&#x8BFB;"></a> 5.1 &#x4E0D;&#x63D0;&#x4EA4;&#x8BFB;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#52-提交读"><span class="toc-nav-number">1.5.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#52-&#x63D0;&#x4EA4;&#x8BFB;"></a> 5.2 &#x63D0;&#x4EA4;&#x8BFB;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#53-可重复读"><span class="toc-nav-number">1.5.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#53-&#x53EF;&#x91CD;&#x590D;&#x8BFB;"></a> 5.3 &#x53EF;&#x91CD;&#x590D;&#x8BFB;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#54-可串行化"><span class="toc-nav-number">1.5.4.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#54-&#x53EF;&#x4E32;&#x884C;&#x5316;"></a> 5.4 &#x53EF;&#x4E32;&#x884C;&#x5316;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#六-多版本并发控制mvcc"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x516D;-&#x591A;&#x7248;&#x672C;&#x5E76;&#x53D1;&#x63A7;&#x5236;mvcc"></a> &#x516D;. &#x591A;&#x7248;&#x672C;&#x5E76;&#x53D1;&#x63A7;&#x5236;(MVCC)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#61-实现方式"><span class="toc-nav-number">1.6.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#61-&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;"></a> 6.1 &#x5B9E;&#x73B0;&#x65B9;&#x5F0F;:</span></a></li></ol></li></ol></li></ol>
         
         </div>
       </aside>

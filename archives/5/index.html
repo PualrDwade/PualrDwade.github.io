@@ -221,18 +221,13 @@
             机器学习基本原理与算法
         </h3>
         <div class="post-content-preview">
-            机器学习算法
-一. 线性回归
-1.1 单变量线性回归
-$$
-f(x) = \beta_0 + \beta_1x
-$$
-1.2 多元线性回归
-$$
-y = \beta_0+\beta_1x_1+\beta_2x_2+\beta_3x_3+\beta_4x_4+..+\beta_nx_n
-$$
-1.2.1 特征缩放
-损失函数对于不同的β,在进行梯度下降过程中,步长可能会不一致,导致计算变慢,需要......
+             机器学习算法
+ 一. 线性回归
+ 1.1 单变量线性回归
+f(x)=β0+β1xf(x) = \beta_0 + \beta_1x
+f(x)=β​0​​+β​1​​x
+ 1.2 多元线性回归
+y=β0+β1x1+β2x2+β3x3+β4x4+..+βnxny = \beta_0+\beta_1x_1+\beta_2x_2+\beta_3x_3+\beta_4x_4+..+\beta_nx_......
         </div>
     </a>
     
@@ -252,69 +247,6 @@ $$
 
 <div class="post-preview">
 
-    <a href="/article/详解数据结构-广义表/">
-        <h2 class="post-title">
-            详解数据结构-广义表
-        </h2>
-        <h3 class="post-subtitle">
-            广义表结构
-        </h3>
-        <div class="post-content-preview">
-            详解数据结构-广义表
-在学习使用线性存储结构来表示一元n次多项式时,我们分别学习到了使用两种顺序结构与一种链式结构的表示方法,这里我们首先回顾这两种表示方法。(这里使用golang进行描述,但是只使用了golang极少特性)
-一. 顺序结构表示
-1.1 简单版
-可以使用数组来进行表示,数组下标可以表示该项的指数,而数组的元素则可以表示该项的系数大小
-1234type Polynomial s......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-09-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#数据结构" title="数据结构">数据结构</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/行为驱动开发实践/">
-        <h2 class="post-title">
-            行为驱动开发实践
-        </h2>
-        <h3 class="post-subtitle">
-            基于Cucumber的行为驱动开发
-        </h3>
-        <div class="post-content-preview">
-            行为驱动开发
-引言
-成功的软件开发项目要求正确的开发正确的软件。在传统的软件开发流程中,测试总是放在后面的阶段进行，从而只能起到查漏补缺的作用。测试驱动开发(*test-driven development*)要求测试先行,开发中首先根据需求写测试,然后再编写实现代码。最终,通过不断修正实现代码来通过测试,交付可靠代码。然而，软件开发涉及到多人紧密协作的团队。高质量的沟通对于整个团队来说至关......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-09-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#软件工程" title="软件工程">软件工程</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/article/详解LinuxI-O模式/">
         <h2 class="post-title">
             详解LinuxI/O模式
@@ -323,14 +255,14 @@ $$
             poll select epoll揭秘
         </h3>
         <div class="post-content-preview">
-            Linux I/O模型
-一. 缓冲区拷贝
+             Linux I/O模型
+ 一. 缓冲区拷贝
 一个网络输入操作有两部分:
 
 等待输入数据准备好:从网卡到系统内核缓冲区:data-&gt;kernel buf
 内核拷贝到进程:内核缓冲区-&gt;进程缓冲区kernel buf-&gt;user buf
 
-对于一个套接字上的输入操作，第一步通常涉及等待数据从网络中到达。当所等待数据到达时，它被复制到内核中的某个缓冲区。第二步就是把数据从内核缓冲区......
+对于一个套接字上的输入操作，第一步通常涉及等待数据从网络中到达。当所等待数据到达时，它被复制到内核中的某个缓冲区。第二步就是把数据从内核缓......
         </div>
     </a>
     
@@ -350,6 +282,84 @@ $$
 
 <div class="post-preview">
 
+    <a href="/article/详解数据结构-广义表/">
+        <h2 class="post-title">
+            详解数据结构-广义表
+        </h2>
+        <h3 class="post-subtitle">
+            广义表结构
+        </h3>
+        <div class="post-content-preview">
+             详解数据结构-广义表
+在学习使用线性存储结构来表示一元n次多项式时,我们分别学习到了使用两种顺序结构与一种链式结构的表示方法,这里我们首先回顾这两种表示方法。(这里使用golang进行描述,但是只使用了golang极少特性)
+ 一. 顺序结构表示
+ 1.1 简单版
+可以使用数组来进行表示,数组下标可以表示该项的指数,而数组的元素则可以表示该项的系数大小
+1234type Polynomia......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-09-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#数据结构" title="数据结构">数据结构</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/计算机网络重要知识点/">
+        <h2 class="post-title">
+            计算机网络重要知识点
+        </h2>
+        <h3 class="post-subtitle">
+            一文清点计算机网络重点知识
+        </h3>
+        <div class="post-content-preview">
+             计算机网络重要知识点
+
+本文图片来自github的CS-NOTE,在此感谢作者CYC的开源精神
+
+ 一. 互联网
+ 1.1 基本概念
+网络是多个终端(主机)互相连接起来,而互联网则是将网络联系起来,互联网是网络的网络
+
+ 1.2 主机之间的常见通信方式:
+
+客户机服务器模式:(C/S),拓扑结构呈放射状
+
+
+
+点对点模式(不区分客户机和服务器,公平通信)😦P2P),拓扑结构呈网状
+
+
+ ......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-09-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#计算机网络原理" title="计算机网络原理">计算机网络原理</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/article/详解进程间通信IPC原理/">
         <h2 class="post-title">
             详解进程间通信IPC原理
@@ -358,12 +368,12 @@ $$
             一文提炼重点
         </h3>
         <div class="post-content-preview">
-            进程间通信IPC (InterProcess Communication)
-一、进程间通信的概念
+             进程间通信IPC (InterProcess Communication)
+ 一、进程间通信的概念
 每个进程各自有不同的用户地址空间，任何一个进程的全局变量在另一个进程中都看不到，所以进程之间要交换数据必须通过内核，在内核中开辟一块缓冲区，进程1把数据从用户空间拷到内核缓冲区，进程2再从内核缓冲区把数据读走，内核提供的这种机制称为进程间通信（IPC)
 
-二、进程间通信的7种方式
-第一类:传统的......
+ 二、进程间通信的7种方式
+第一类:......
         </div>
     </a>
     
@@ -383,32 +393,17 @@ $$
 
 <div class="post-preview">
 
-    <a href="/article/计算机网络重要知识点/">
+    <a href="/article/行为驱动开发实践/">
         <h2 class="post-title">
-            计算机网络重要知识点
+            行为驱动开发实践
         </h2>
         <h3 class="post-subtitle">
-            一文清点计算机网络重点知识
+            基于Cucumber的行为驱动开发
         </h3>
         <div class="post-content-preview">
-            计算机网络重要知识点
-
-本文图片来自github的CS-NOTE,在此感谢作者CYC的开源精神
-
-一. 互联网
-1.1 基本概念
-网络是多个终端(主机)互相连接起来,而互联网则是将网络联系起来,互联网是网络的网络
-
-1.2 主机之间的常见通信方式:
-
-客户机服务器模式:(C/S),拓扑结构呈放射状
-
-
-
-点对点模式(不区分客户机和服务器,公平通信):(P2P),拓扑结构呈网状
-
-
-1.3 计......
+             行为驱动开发
+ 引言
+成功的软件开发项目要求正确的开发正确的软件。在传统的软件开发流程中,测试总是放在后面的阶段进行，从而只能起到查漏补缺的作用。测试驱动开发(*test-driven development*)要求测试先行,开发中首先根据需求写测试,然后再编写实现代码。最终,通过不断修正实现代码来通过测试,交付可靠代码。然而，软件开发涉及到多人紧密协作的团队。高质量的沟通对于整个团队来说......
         </div>
     </a>
     
@@ -418,7 +413,7 @@ $$
         </p>
         <div class="tags">
             
-              <a href="/tags/#计算机网络原理" title="计算机网络原理">计算机网络原理</a>
+              <a href="/tags/#软件工程" title="软件工程">软件工程</a>
             
         </div>
     
@@ -499,19 +494,15 @@ $$
             
         
             
-            <a href="/tags/#操作系统" title="操作系统" rel="3">操作系统</a>
-            
-        
-            
             <a href="/tags/#数据结构" title="数据结构" rel="2">数据结构</a>
             
         
             
-            <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
+            <a href="/tags/#操作系统" title="操作系统" rel="3">操作系统</a>
             
         
             
-            <a href="/tags/#软件工程" title="软件工程" rel="1">软件工程</a>
+            <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
             
         
             
@@ -520,6 +511,10 @@ $$
         
             
             <a href="/tags/#计算机网络原理" title="计算机网络原理" rel="1">计算机网络原理</a>
+            
+        
+            
+            <a href="/tags/#软件工程" title="软件工程" rel="1">软件工程</a>
             
         
     </div>
@@ -593,15 +588,15 @@ $$
     <ul>
       
         <li>
-          <a href="/article/java虚拟机核心概念/">java虚拟机核心概念</a>
+          <a href="/article/kubernetes核心技术/">kubernetes核心技术</a>
         </li>
       
         <li>
-          <a href="/article/java内置的数据结构与经典算法/">java内置的数据结构与经典算法</a>
+          <a href="/article/Java基础核心概念/">Java基础核心概念</a>
         </li>
       
         <li>
-          <a href="/article/Leetcode面试精选题解-1/">Leetcode面试精选题解-1</a>
+          <a href="/article/Leetcode面试精选题解-5/">Leetcode面试精选题解-5</a>
         </li>
       
         <li>
@@ -609,7 +604,7 @@ $$
         </li>
       
         <li>
-          <a href="/article/Leetcode面试精选题解-5/">Leetcode面试精选题解-5</a>
+          <a href="/article/Leetcode面试精选题解-1/">Leetcode面试精选题解-1</a>
         </li>
       
     </ul>

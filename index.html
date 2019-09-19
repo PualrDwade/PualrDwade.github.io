@@ -213,31 +213,52 @@
 
 <div class="post-preview">
 
-    <a href="/article/java虚拟机核心概念/">
+    <a href="/article/kubernetes核心技术/">
         <h2 class="post-title">
-            java虚拟机核心概念
+            kubernetes核心技术
         </h2>
         <h3 class="post-subtitle">
-            详解java运行时数据区
+            详解kubernetes原理与应用
         </h3>
         <div class="post-content-preview">
-            java虚拟机核心概念
+             kubernetes核心技术
+ 一. 概念
+ 1.1 kubernates
+kubernetes是谷歌推出的开源容器编排系统。Kubernetes 用于协调高度可用的计算机集群，这些计算机群集被连接作为单个单元工作,提供高度抽象的视角来实现统一的集群管理调度与容器编排。
+Kubernetes 是一个 开源 平台，可满足生产环境的需要。
+ 1.2 kubernates cluster
+Kub......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-09-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#kubernetes" title="kubernetes">kubernetes</a>
+            
+        </div>
+    
 
-特别鸣谢CS-NOTE作者提供的美观图片
+</div>
+<hr>
 
-一. 运行时数据区
-Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区进行协作,从而为java带来生命。
+<div class="post-preview">
 
-
-需要注意的是,运行时常量池是位于方法区内部的
-
-划分成为思维导图,便于理解与记忆
-
-二. 垃圾回收(GC)
-垃圾收集器主要是针对于线程共享的区域(堆,方法区)进行工作。
-垃圾收集主要有两部分的工作:
-
-判......
+    <a href="/article/Java基础核心概念/">
+        <h2 class="post-title">
+            Java基础核心概念
+        </h2>
+        <h3 class="post-subtitle">
+            详解java重点概念
+        </h3>
+        <div class="post-content-preview">
+             Java基础核心概念总结
+ 重写equal()必须重写hashcode()
+为什么?首先从equals()函数讲起,equals()函数判断的是两个对象的内容是否相等,也就是两个对象是否等价
+1.在哈希表中,会利用一个对象的hashcode()将对象散列到bucket数组中,若两个对象是等价的,那么他理应被散列到同一个位置,同时与该位置上的其余具有相同hashcode的对象进行equals......
         </div>
     </a>
     
@@ -257,62 +278,22 @@ Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区
 
 <div class="post-preview">
 
-    <a href="/article/java内置的数据结构与经典算法/">
+    <a href="/article/Leetcode面试精选题解-5/">
         <h2 class="post-title">
-            java内置的数据结构与经典算法
+            Leetcode面试精选题解-5
         </h2>
         <h3 class="post-subtitle">
-            java数据结构算法详解
+            链表专题
         </h3>
         <div class="post-content-preview">
-            解密Java常见的数据结构与算法
-前言
-本博文针对java程序设计语言以及java.util包中的各种集合类型,融汇数据结构与算法知识,将内部原理,设计思想进行系统的讲解概括,为面试,学习提供参考
-集合框架的继承结构
-123圆点虚线框：接口类，如List、Set、Map。加长虚线框：抽象类，如AbstractCollection、AbstractList。实线框（加粗和正常）：实现类，如Ar......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-09-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#java" title="java">java</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Leetcode面试精选题解-1/">
-        <h2 class="post-title">
-            Leetcode面试精选题解-1
-        </h2>
-        <h3 class="post-subtitle">
-            热身题
-        </h3>
-        <div class="post-content-preview">
-            Leetcode面试精选题解-热身题
-互联网公司面试常见考点:
-
-面试主题考点总结:
-算法 - Algorithms
-
-排序算法：快速排序、归并排序、计数排序
-搜索算法：回溯、递归、剪枝技巧
-图论：最短路、最小生成树、网络流建模
-动态规划：背包问题、最长子序列、计数问题
-基础技巧：分治、倍增、二分、贪心
-
-数据结构 - Data Structures
-
-数组与链表：单 / 双向链表、跳舞链
-......
+             Leetcode面试精选题解-链表专题
+ 题号24:两两交换链表中的节点
+给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
+你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
+示例:
+1给定 1-&gt;2-&gt;3-&gt;4, 你应该返回 2-&gt;1-&gt;4-&gt;3.
+解答:
+此题的核心思想是额外记录前一个位置的指针,注意判断边界条件,随后循环交换位......
         </div>
     </a>
     
@@ -340,18 +321,18 @@ Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区
             位运算专题
         </h3>
         <div class="post-content-preview">
-            Leetcode面试精选题解-位运算详解
-1.按位取与（&amp;）
+             Leetcode面试精选题解-位运算详解
+ 1.按位取与（&amp;）
 两值按二进制位进行 “与”运算
 规则：0&amp;0=0；0&amp;1=0；1&amp;0=0；1&amp;1=1
 举个栗子： a = 5  ,b = 3
 a：0101
 b：0011
 r：0001
-2.按位取或（|）
+ 2.按位取或（|）
 两值按二进制位进行 “或”运算
 规则：0|0=0；0|1=1；1|0=1；1|1=1
-举个栗子： a =......
+举个栗子： ......
         </div>
     </a>
     
@@ -371,22 +352,29 @@ r：0001
 
 <div class="post-preview">
 
-    <a href="/article/Leetcode面试精选题解-5/">
+    <a href="/article/Leetcode面试精选题解-1/">
         <h2 class="post-title">
-            Leetcode面试精选题解-5
+            Leetcode面试精选题解-1
         </h2>
         <h3 class="post-subtitle">
-            链表专题
+            热身题
         </h3>
         <div class="post-content-preview">
-            Leetcode面试精选题解-链表专题
-题号24:两两交换链表中的节点
-给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
-你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
-示例:
-1给定 1-&gt;2-&gt;3-&gt;4, 你应该返回 2-&gt;1-&gt;4-&gt;3.
-解答:
-此题的核心思想是额外记录前一个位置的指针,注意判断边界条件,随后循环交换位置便......
+             Leetcode面试精选题解-热身题
+互联网公司面试常见考点:
+
+面试主题考点总结:
+ 算法 - Algorithms
+
+排序算法：快速排序、归并排序、计数排序
+搜索算法：回溯、递归、剪枝技巧
+图论：最短路、最小生成树、网络流建模
+动态规划：背包问题、最长子序列、计数问题
+基础技巧：分治、倍增、二分、贪心
+
+ 数据结构 - Data Structures
+
+数组与链表：单 / 双向链表、跳......
         </div>
     </a>
     
@@ -414,13 +402,13 @@ r：0001
             数组专题
         </h3>
         <div class="post-content-preview">
-            Leetcode面试精选题解-数组专题
-题号27:移除元素
+             Leetcode面试精选题解-数组专题
+ 题号27:移除元素
 给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。
 不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。
 元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
 示例 1:
-12345给定 nums = [3,2,2,3], va......
+12345给定 nums = [3,2,2,3], ......
         </div>
     </a>
     
@@ -511,19 +499,15 @@ r：0001
             
         
             
-            <a href="/tags/#操作系统" title="操作系统" rel="3">操作系统</a>
-            
-        
-            
             <a href="/tags/#数据结构" title="数据结构" rel="2">数据结构</a>
             
         
             
-            <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
+            <a href="/tags/#操作系统" title="操作系统" rel="3">操作系统</a>
             
         
             
-            <a href="/tags/#软件工程" title="软件工程" rel="1">软件工程</a>
+            <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
             
         
             
@@ -532,6 +516,10 @@ r：0001
         
             
             <a href="/tags/#计算机网络原理" title="计算机网络原理" rel="1">计算机网络原理</a>
+            
+        
+            
+            <a href="/tags/#软件工程" title="软件工程" rel="1">软件工程</a>
             
         
     </div>
@@ -605,15 +593,15 @@ r：0001
     <ul>
       
         <li>
-          <a href="/article/java虚拟机核心概念/">java虚拟机核心概念</a>
+          <a href="/article/kubernetes核心技术/">kubernetes核心技术</a>
         </li>
       
         <li>
-          <a href="/article/java内置的数据结构与经典算法/">java内置的数据结构与经典算法</a>
+          <a href="/article/Java基础核心概念/">Java基础核心概念</a>
         </li>
       
         <li>
-          <a href="/article/Leetcode面试精选题解-1/">Leetcode面试精选题解-1</a>
+          <a href="/article/Leetcode面试精选题解-5/">Leetcode面试精选题解-5</a>
         </li>
       
         <li>
@@ -621,7 +609,7 @@ r：0001
         </li>
       
         <li>
-          <a href="/article/Leetcode面试精选题解-5/">Leetcode面试精选题解-5</a>
+          <a href="/article/Leetcode面试精选题解-1/">Leetcode面试精选题解-1</a>
         </li>
       
     </ul>

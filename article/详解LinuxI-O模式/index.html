@@ -214,23 +214,23 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="linux-io模型">Linux I/O模型</h1>
-<h2 id="一-缓冲区拷贝">一. 缓冲区拷贝</h2>
+                <h1 id="linux-io模型"><a class="markdownIt-Anchor" href="#linux-io模型"></a> Linux I/O模型</h1>
+<h2 id="一-缓冲区拷贝"><a class="markdownIt-Anchor" href="#一-缓冲区拷贝"></a> 一. 缓冲区拷贝</h2>
 <p>一个网络输入操作有两部分:</p>
 <ol>
 <li>等待输入数据准备好:从网卡到系统内核缓冲区:data-&gt;kernel buf</li>
 <li>内核拷贝到进程:内核缓冲区-&gt;进程缓冲区kernel buf-&gt;user buf</li>
 </ol>
 <p>对于一个套接字上的输入操作，第一步通常涉及等待数据从网络中到达。当所等待数据到达时，它被复制到内核中的某个缓冲区。第二步就是把<strong>数据从内核缓冲区复制到应用进程缓冲区</strong>。</p>
-<h2 id="二-阻塞式iobio">二. 阻塞式I/O(BIO)</h2>
+<h2 id="二-阻塞式iobio"><a class="markdownIt-Anchor" href="#二-阻塞式iobio"></a> 二. 阻塞式I/O(BIO)</h2>
 <blockquote>
 <p>阻塞I/O阻塞的就是第一步:网卡data-&gt;kernel buf-&gt;data ready,没有系统缓冲区没有数据就一直等,阻塞</p>
 </blockquote>
 <p>应用进程被阻塞，直到数据从内核缓冲区复制到应用进程缓冲区中才返回。在这个过程中,这个进程无法做其他的事情,也就是&quot;干等&quot;。在等待的过程中,CPU是空闲的,可以用来调度其他的进程。</p>
 <p>使用recvfrom() 用于接收 Socket 传来的数据，并复制到应用进程的缓冲区 buf 中。这里把 recvfrom() 当成系统调用。</p>
-<p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ssize_t</span> recvfrom(<span class="keyword">int</span> sockfd, <span class="keyword">void</span> *buf, <span class="keyword">size_t</span> len, <span class="keyword">int</span> flags, struct sockaddr *src_addr, <span class="keyword">socklen_t</span> *addrlen);</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ssize_t</span> recvfrom(<span class="keyword">int</span> sockfd, <span class="keyword">void</span> *buf, <span class="keyword">size_t</span> len, <span class="keyword">int</span> flags, struct sockaddr *src_addr, <span class="keyword">socklen_t</span> *addrlen);</span><br></pre></td></tr></table></figure>
 <p><img src="https://i.loli.net/2019/04/08/5caab484d8330.png" alt="linux缓冲区拷贝"></p>
-<h2 id="三-非阻塞式ionio">三. 非阻塞式I/O(NIO)</h2>
+<h2 id="三-非阻塞式ionio"><a class="markdownIt-Anchor" href="#三-非阻塞式ionio"></a> 三. 非阻塞式I/O(NIO)</h2>
 <blockquote>
 <p>非阻塞I/O就是第一步非阻塞</p>
 </blockquote>
@@ -238,13 +238,13 @@
 <p>**具体实现:**应用进程执行系统调用之后，IO没有完成,内核返回一个错误码。应用进程可以继续执行，但是需要不断的执行系统调用来获知 I/O 是否完成，这种方式称为轮询（polling）。</p>
 <p>由于 CPU 要处理更多的系统调用，因此这种模型的 CPU 利用率比较低。</p>
 <p><img src="https://i.loli.net/2019/04/08/5caab7727b9df.png" alt=""></p>
-<h2 id="四-io多路复用">四. I/O多路复用</h2>
+<h2 id="四-io多路复用"><a class="markdownIt-Anchor" href="#四-io多路复用"></a> 四. I/O多路复用</h2>
 <p>利用非阻塞式I/O,我们可以实现I/O多路复用,具体方式是:在多个套接字I/O中进行轮询,判断是否有数据可读/可写,若内核返回错误码,则询问下一个,直到某一个套接字可读/可写,触发对应的事件,使用 recvfrom 把数据从内核复制到进程中(或者是从进程中写入内核缓冲区)。这样一个线程便可以同时负责多个套接字的I/O处理,实现I/O的多路复用。由于是基于事件的,它可以让单个进程具有处理多个 I/O 事件的能力。又被称为 Event Driven I/O，即事件驱动 I/O。在操作系统底层是<strong>select调用</strong>提供了这样的接口,调用select,会阻塞线程,直到某一个套接字上的I/O事件发生,随后会返回这个套接字,便可以使用recvfrom读取数据,具体如下图所示:</p>
 <p><img src="https://i.loli.net/2019/04/08/5caab976294d8.png" alt=""></p>
 <blockquote>
 <p>select是核心,是桥梁,是I/O多路复用的关键,select使得一个线程可以负责多个套接字的I/O,是基于事件的</p>
 </blockquote>
-<h2 id="五-信号驱动iosio">五. 信号驱动I/O(SIO)</h2>
+<h2 id="五-信号驱动iosio"><a class="markdownIt-Anchor" href="#五-信号驱动iosio"></a> 五. 信号驱动I/O(SIO)</h2>
 <blockquote>
 <p>信号驱动可以理解为非阻塞I/O的增强版,有效减少进程轮询次数,提高CPU效率</p>
 </blockquote>
@@ -252,12 +252,12 @@
 <p>相比于非阻塞式 I/O 的轮询方式，信号驱动 I/O 的 CPU 利用率更高。</p>
 <p><img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/1492929553651_7.png" alt="img"></p>
 <p>不难发现,信号驱动的特点就是标记(<code>mark</code>)机制,在<code>线程/进程</code>第一次请求套接字IO时,对套接字进行标记然后立即返回,线程便可以继续执行其他的事情,而系统内核继续等待,直到<strong>套接字数据已经拷贝到了系统缓冲区</strong>之后,对线程<strong>发送信号</strong>,(和轮询不同,这里是系统给进程发信号,正因如此,进程才可以专心做别的事情!CPU利用率高!)告诉线程某个套接字已经可读,随后进程再调用recvfrom进行I/O</p>
-<h2 id="六-异步ioaio">六. 异步I/O(AIO)</h2>
+<h2 id="六-异步ioaio"><a class="markdownIt-Anchor" href="#六-异步ioaio"></a> 六. 异步I/O(AIO)</h2>
 <p>不同于上述IO,不管他们第一步是否阻塞,第二步(也就是真正IO发生)肯定都是阻塞的,异步IO第二步也是<strong>非阻塞的</strong></p>
 <p>应用进程执行 aio_read 系统调用会立即返回，应用进程可以继续执行，不会被阻塞，内核会在<strong>所有操作完成</strong>之后向应用进程发送信号。</p>
 <p>异步 I/O 与信号驱动 I/O 的区别在于，<strong>异步 I/O 的信号是通知应用进程 I/O 完成，而信号驱动 I/O 的信号是通知应用进程可以开始 I/O。</strong></p>
 <p><img src="https://i.loli.net/2019/04/08/5caabe6740a24.png" alt=""></p>
-<h2 id="七-五大io模型比较">七. 五大IO模型比较</h2>
+<h2 id="七-五大io模型比较"><a class="markdownIt-Anchor" href="#七-五大io模型比较"></a> 七. 五大IO模型比较</h2>
 <ul>
 <li>同步 I/O：将数据从内核缓冲区复制到应用进程缓冲区的阶段，应用进程会阻塞。</li>
 <li>异步 I/O：不会阻塞。</li>
@@ -274,12 +274,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/article/行为驱动开发实践/" data-toggle="tooltip" data-placement="top" title="行为驱动开发实践">&larr; Previous Post</a>
+                            <a href="/article/机器学习算法/" data-toggle="tooltip" data-placement="top" title="机器学习算法">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/article/详解进程间通信IPC原理/" data-toggle="tooltip" data-placement="top" title="详解进程间通信IPC原理">Next Post &rarr;</a>
+                            <a href="/article/详解数据结构-广义表/" data-toggle="tooltip" data-placement="top" title="详解数据结构-广义表">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -335,7 +335,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#linux-io模型"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Linux I/O&#x6A21;&#x578B;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一-缓冲区拷贝"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x4E00;. &#x7F13;&#x51B2;&#x533A;&#x62F7;&#x8D1D;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二-阻塞式iobio"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x4E8C;. &#x963B;&#x585E;&#x5F0F;I/O(BIO)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#三-非阻塞式ionio"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">&#x4E09;. &#x975E;&#x963B;&#x585E;&#x5F0F;I/O(NIO)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#四-io多路复用"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">&#x56DB;. I/O&#x591A;&#x8DEF;&#x590D;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#五-信号驱动iosio"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">&#x4E94;. &#x4FE1;&#x53F7;&#x9A71;&#x52A8;I/O(SIO)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#六-异步ioaio"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">&#x516D;. &#x5F02;&#x6B65;I/O(AIO)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#七-五大io模型比较"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">&#x4E03;. &#x4E94;&#x5927;IO&#x6A21;&#x578B;&#x6BD4;&#x8F83;</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#linux-io模型"><span class="toc-nav-number">1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#linux-io&#x6A21;&#x578B;"></a> Linux I/O&#x6A21;&#x578B;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一-缓冲区拷贝"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E00;-&#x7F13;&#x51B2;&#x533A;&#x62F7;&#x8D1D;"></a> &#x4E00;. &#x7F13;&#x51B2;&#x533A;&#x62F7;&#x8D1D;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二-阻塞式iobio"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E8C;-&#x963B;&#x585E;&#x5F0F;iobio"></a> &#x4E8C;. &#x963B;&#x585E;&#x5F0F;I/O(BIO)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#三-非阻塞式ionio"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E09;-&#x975E;&#x963B;&#x585E;&#x5F0F;ionio"></a> &#x4E09;. &#x975E;&#x963B;&#x585E;&#x5F0F;I/O(NIO)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#四-io多路复用"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x56DB;-io&#x591A;&#x8DEF;&#x590D;&#x7528;"></a> &#x56DB;. I/O&#x591A;&#x8DEF;&#x590D;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#五-信号驱动iosio"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E94;-&#x4FE1;&#x53F7;&#x9A71;&#x52A8;iosio"></a> &#x4E94;. &#x4FE1;&#x53F7;&#x9A71;&#x52A8;I/O(SIO)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#六-异步ioaio"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x516D;-&#x5F02;&#x6B65;ioaio"></a> &#x516D;. &#x5F02;&#x6B65;I/O(AIO)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#七-五大io模型比较"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E03;-&#x4E94;&#x5927;io&#x6A21;&#x578B;&#x6BD4;&#x8F83;"></a> &#x4E03;. &#x4E94;&#x5927;IO&#x6A21;&#x578B;&#x6BD4;&#x8F83;</span></a></li></ol></li></ol>
         
         </div>
       </aside>
