@@ -213,18 +213,21 @@
 
 <div class="post-preview">
 
-    <a href="/article/java多线程核心概念/">
+    <a href="/article/kubernetes核心技术/">
         <h2 class="post-title">
-            Java多线程核心概念
+            kubernetes核心技术
         </h2>
         <h3 class="post-subtitle">
-            多线程重要知识清点
+            详解kubernetes原理与应用
         </h3>
         <div class="post-content-preview">
-             java多线程核心概念
- 线程的优先级
-1.线程的优先级与代码执行顺序是无关的,这意味的代码先执行的线程不一定先被调度
-123456789101112public class Run &#123;   public static void main(String[] args)&#123;       for (int i = 0 ;i &lt; 5; i++)&#123;        ......
+             kubernetes核心技术
+ 一. 概念
+ 1.1 kubernates
+kubernetes是谷歌推出的开源容器编排系统。Kubernetes 用于协调高度可用的计算机集群，这些计算机群集被连接作为单个单元工作,提供高度抽象的视角来实现统一的集群管理调度与容器编排。
+Kubernetes 是一个 开源 平台，可满足生产环境的需要。
+ 1.2 kubernates cluster
+Kub......
         </div>
     </a>
     
@@ -234,7 +237,7 @@
         </p>
         <div class="tags">
             
-              <a href="/tags/#java" title="java">java</a>
+              <a href="/tags/#kubernetes" title="kubernetes">kubernetes</a>
             
         </div>
     
@@ -287,69 +290,6 @@ Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区
 
 <div class="post-preview">
 
-    <a href="/article/java内置的数据结构与经典算法/">
-        <h2 class="post-title">
-            java内置的数据结构与经典算法
-        </h2>
-        <h3 class="post-subtitle">
-            java数据结构算法详解
-        </h3>
-        <div class="post-content-preview">
-             解密Java常见的数据结构与算法
- 前言
-本博文针对java程序设计语言以及java.util包中的各种集合类型,融汇数据结构与算法知识,将内部原理,设计思想进行系统的讲解概括,为面试,学习提供参考
- 集合框架的继承结构
-123圆点虚线框：接口类，如List、Set、Map。加长虚线框：抽象类，如AbstractCollection、AbstractList。实线框（加粗和正常）：实现类，......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-09-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#java" title="java">java</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Java基础核心概念/">
-        <h2 class="post-title">
-            Java基础核心概念
-        </h2>
-        <h3 class="post-subtitle">
-            详解java重点概念
-        </h3>
-        <div class="post-content-preview">
-             Java基础核心概念总结
- 重写equal()必须重写hashcode()
-为什么?首先从equals()函数讲起,equals()函数判断的是两个对象的内容是否相等,也就是两个对象是否等价
-1.在哈希表中,会利用一个对象的hashcode()将对象散列到bucket数组中,若两个对象是等价的,那么他理应被散列到同一个位置,同时与该位置上的其余具有相同hashcode的对象进行equals......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-09-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#java" title="java">java</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/article/python函数式编程/">
         <h2 class="post-title">
             python学习笔记(2)
@@ -383,6 +323,40 @@ Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区
 
 <div class="post-preview">
 
+    <a href="/article/Leetcode面试精选题解-3/">
+        <h2 class="post-title">
+            Leetcode面试精选题解-3
+        </h2>
+        <h3 class="post-subtitle">
+            数组专题
+        </h3>
+        <div class="post-content-preview">
+             Leetcode面试精选题解-数组专题
+ 题号27:移除元素
+给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。
+不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。
+元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
+示例 1:
+12345给定 nums = [3,2,2,3], ......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-09-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#算法" title="算法">算法</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/article/python高阶函数式编程/">
         <h2 class="post-title">
             python学习笔记(3)
@@ -407,6 +381,44 @@ Python内建了map()和reduce()函数。
         <div class="tags">
             
               <a href="/tags/#python程序设计" title="python程序设计">python程序设计</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/数据结构内部原理-1/">
+        <h2 class="post-title">
+            数据结构内部原理(1)-哈希表
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+             哈希表
+ 1.概念
+哈希表是使用哈希函数组织的数据结构,能够支持快速的查找和插入操作.
+哈希表通常有两种:
+
+1.哈希集合:java的util包中提供了HashSet的实现
+
+
+2.哈希映射:java的util包中提供了HashMap的实现
+
+12Set&lt;?&gt; set = new HashSet&lt;&gt;();Map&lt;?,?&gt; map = new HashMa......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-09-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#数据结构" title="数据结构">数据结构</a>
             
         </div>
     
@@ -459,11 +471,11 @@ Python内建了map()和reduce()函数。
     <div class="tags">
         
             
-            <a href="/tags/#算法" title="算法" rel="7">算法</a>
+            <a href="/tags/#java" title="java" rel="5">java</a>
             
         
             
-            <a href="/tags/#java" title="java" rel="5">java</a>
+            <a href="/tags/#算法" title="算法" rel="7">算法</a>
             
         
             
@@ -487,15 +499,11 @@ Python内建了map()和reduce()函数。
             
         
             
-            <a href="/tags/#操作系统" title="操作系统" rel="3">操作系统</a>
-            
-        
-            
             <a href="/tags/#数据结构" title="数据结构" rel="2">数据结构</a>
             
         
             
-            <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
+            <a href="/tags/#操作系统" title="操作系统" rel="3">操作系统</a>
             
         
             
@@ -507,11 +515,15 @@ Python内建了map()和reduce()函数。
             
         
             
-            <a href="/tags/#计算机网络原理" title="计算机网络原理" rel="1">计算机网络原理</a>
+            <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
             
         
             
             <a href="/tags/#linux" title="linux" rel="1">linux</a>
+            
+        
+            
+            <a href="/tags/#计算机网络原理" title="计算机网络原理" rel="1">计算机网络原理</a>
             
         
     </div>
@@ -593,15 +605,15 @@ Python内建了map()和reduce()函数。
         </li>
       
         <li>
-          <a href="/article/kubernetes核心技术/">kubernetes核心技术</a>
+          <a href="/article/java多线程核心概念/">Java多线程核心概念</a>
         </li>
       
         <li>
-          <a href="/article/Leetcode面试精选题解-2/">Leetcode面试精选题解-2</a>
+          <a href="/article/Leetcode面试精选题解-4/">Leetcode面试精选题解-4</a>
         </li>
       
         <li>
-          <a href="/article/Leetcode面试精选题解-5/">Leetcode面试精选题解-5</a>
+          <a href="/article/Leetcode面试精选题解-1/">Leetcode面试精选题解-1</a>
         </li>
       
     </ul>

@@ -213,41 +213,6 @@
 
 <div class="post-preview">
 
-    <a href="/article/数据库原理详解/">
-        <h2 class="post-title">
-            数据库原理详解
-        </h2>
-        <h3 class="post-subtitle">
-            一文清点数据库原理
-        </h3>
-        <div class="post-content-preview">
-             数据库原理详解
- 一. 什么是ACID?
- 1.1 原子性:(Atomicity)
-不可分割的最小单元,要么全部执行成功提交,要么失败回滚,回滚通过redo日志实现,记录执行过的语句,回滚时反向执行。
- 1.2 一致性:(Consistency)
-在一致性状态下,同一时间所有事务对数据读取的结果应该是相同的。
- 1.3 隔离性:(ISolation)
-一个事务所做的修改在最终提交以前，对其......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-09-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#数据库" title="数据库">数据库</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/article/行为驱动开发实践/">
         <h2 class="post-title">
             行为驱动开发实践
@@ -269,6 +234,108 @@
         <div class="tags">
             
               <a href="/tags/#软件工程" title="软件工程">软件工程</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/机器学习算法/">
+        <h2 class="post-title">
+            机器学习算法
+        </h2>
+        <h3 class="post-subtitle">
+            机器学习基本原理与算法
+        </h3>
+        <div class="post-content-preview">
+             机器学习算法
+ 一. 线性回归
+ 1.1 单变量线性回归
+f(x)=β0+β1xf(x) = \beta_0 + \beta_1x
+f(x)=β​0​​+β​1​​x
+ 1.2 多元线性回归
+y=β0+β1x1+β2x2+β3x3+β4x4+..+βnxny = \beta_0+\beta_1x_1+\beta_2x_2+\beta_3x_3+\beta_4x_4+..+\beta_nx_......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-09-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/详解LinuxI-O模式/">
+        <h2 class="post-title">
+            详解LinuxI/O模式
+        </h2>
+        <h3 class="post-subtitle">
+            poll select epoll揭秘
+        </h3>
+        <div class="post-content-preview">
+             Linux I/O模型
+ 一. 缓冲区拷贝
+一个网络输入操作有两部分:
+
+等待输入数据准备好:从网卡到系统内核缓冲区:data-&gt;kernel buf
+内核拷贝到进程:内核缓冲区-&gt;进程缓冲区kernel buf-&gt;user buf
+
+对于一个套接字上的输入操作，第一步通常涉及等待数据从网络中到达。当所等待数据到达时，它被复制到内核中的某个缓冲区。第二步就是把数据从内核缓......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-09-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#linux" title="linux">linux</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/详解数据结构-广义表/">
+        <h2 class="post-title">
+            详解数据结构-广义表
+        </h2>
+        <h3 class="post-subtitle">
+            广义表结构
+        </h3>
+        <div class="post-content-preview">
+             详解数据结构-广义表
+在学习使用线性存储结构来表示一元n次多项式时,我们分别学习到了使用两种顺序结构与一种链式结构的表示方法,这里我们首先回顾这两种表示方法。(这里使用golang进行描述,但是只使用了golang极少特性)
+ 一. 顺序结构表示
+ 1.1 简单版
+可以使用数组来进行表示,数组下标可以表示该项的指数,而数组的元素则可以表示该项的系数大小
+1234type Polynomia......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-09-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#数据结构" title="数据结构">数据结构</a>
             
         </div>
     
@@ -323,41 +390,6 @@
 
 <div class="post-preview">
 
-    <a href="/article/详解LinuxI-O模式/">
-        <h2 class="post-title">
-            详解LinuxI/O模式
-        </h2>
-        <h3 class="post-subtitle">
-            poll select epoll揭秘
-        </h3>
-        <div class="post-content-preview">
-             Linux I/O模型
- 一. 缓冲区拷贝
-一个网络输入操作有两部分:
-
-等待输入数据准备好:从网卡到系统内核缓冲区:data-&gt;kernel buf
-内核拷贝到进程:内核缓冲区-&gt;进程缓冲区kernel buf-&gt;user buf
-
-对于一个套接字上的输入操作，第一步通常涉及等待数据从网络中到达。当所等待数据到达时，它被复制到内核中的某个缓冲区。第二步就是把数据从内核缓......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-09-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#linux" title="linux">linux</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/article/详解进程间通信IPC原理/">
         <h2 class="post-title">
             详解进程间通信IPC原理
@@ -382,39 +414,6 @@
         <div class="tags">
             
               <a href="/tags/#操作系统" title="操作系统">操作系统</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/详解数据结构-广义表/">
-        <h2 class="post-title">
-            详解数据结构-广义表
-        </h2>
-        <h3 class="post-subtitle">
-            广义表结构
-        </h3>
-        <div class="post-content-preview">
-             详解数据结构-广义表
-在学习使用线性存储结构来表示一元n次多项式时,我们分别学习到了使用两种顺序结构与一种链式结构的表示方法,这里我们首先回顾这两种表示方法。(这里使用golang进行描述,但是只使用了golang极少特性)
- 一. 顺序结构表示
- 1.1 简单版
-可以使用数组来进行表示,数组下标可以表示该项的指数,而数组的元素则可以表示该项的系数大小
-1234type Polynomia......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-09-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#数据结构" title="数据结构">数据结构</a>
             
         </div>
     
@@ -463,11 +462,11 @@
     <div class="tags">
         
             
-            <a href="/tags/#算法" title="算法" rel="7">算法</a>
+            <a href="/tags/#java" title="java" rel="5">java</a>
             
         
             
-            <a href="/tags/#java" title="java" rel="5">java</a>
+            <a href="/tags/#算法" title="算法" rel="7">算法</a>
             
         
             
@@ -491,15 +490,11 @@
             
         
             
-            <a href="/tags/#操作系统" title="操作系统" rel="3">操作系统</a>
-            
-        
-            
             <a href="/tags/#数据结构" title="数据结构" rel="2">数据结构</a>
             
         
             
-            <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
+            <a href="/tags/#操作系统" title="操作系统" rel="3">操作系统</a>
             
         
             
@@ -511,11 +506,15 @@
             
         
             
-            <a href="/tags/#计算机网络原理" title="计算机网络原理" rel="1">计算机网络原理</a>
+            <a href="/tags/#机器学习" title="机器学习" rel="1">机器学习</a>
             
         
             
             <a href="/tags/#linux" title="linux" rel="1">linux</a>
+            
+        
+            
+            <a href="/tags/#计算机网络原理" title="计算机网络原理" rel="1">计算机网络原理</a>
             
         
     </div>
@@ -597,15 +596,15 @@
         </li>
       
         <li>
-          <a href="/article/kubernetes核心技术/">kubernetes核心技术</a>
+          <a href="/article/java多线程核心概念/">Java多线程核心概念</a>
         </li>
       
         <li>
-          <a href="/article/Leetcode面试精选题解-2/">Leetcode面试精选题解-2</a>
+          <a href="/article/Leetcode面试精选题解-4/">Leetcode面试精选题解-4</a>
         </li>
       
         <li>
-          <a href="/article/Leetcode面试精选题解-5/">Leetcode面试精选题解-5</a>
+          <a href="/article/Leetcode面试精选题解-1/">Leetcode面试精选题解-1</a>
         </li>
       
     </ul>
