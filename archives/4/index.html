@@ -136,13 +136,6 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -151,6 +144,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -213,20 +213,18 @@
 
 <div class="post-preview">
 
-    <a href="/article/python高阶函数式编程/">
+    <a href="/article/python的for循环迭代/">
         <h2 class="post-title">
-            python学习笔记(3)
+            python学习笔记(1)
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-             python学习笔记(3)
- python高阶函数式编程
-Python内建了map()和reduce()函数。
- map()函数
-如果你读过Google的那篇大名鼎鼎的论文“MapReduce: Simplified Data Processing on Large Clusters”，你就能大概明白map/reduce的概念。
-我们先看map。map()函数接收两个参数，一个是函数，一个......
+             python学习笔记(1)
+ python的for循环迭代
+ Interator
+12345678表示迭代器,使用生成器可以生成一个迭代器,生成器的基本用法和生成式很像ex:#生成器:(与list生成器的区别是[]改为())g = (x * x for x in range(10))#判断类型是迭代器from collections import Iterableisinstance((x......
         </div>
     </a>
     
@@ -246,18 +244,29 @@ Python内建了map()和reduce()函数。
 
 <div class="post-preview">
 
-    <a href="/article/Java基础核心概念/">
+    <a href="/article/Leetcode面试精选题解-1/">
         <h2 class="post-title">
-            Java基础核心概念
+            Leetcode面试精选题解-1
         </h2>
         <h3 class="post-subtitle">
-            详解java重点概念
+            热身题
         </h3>
         <div class="post-content-preview">
-             Java基础核心概念总结
- 重写equal()必须重写hashcode()
-为什么?首先从equals()函数讲起,equals()函数判断的是两个对象的内容是否相等,也就是两个对象是否等价
-1.在哈希表中,会利用一个对象的hashcode()将对象散列到bucket数组中,若两个对象是等价的,那么他理应被散列到同一个位置,同时与该位置上的其余具有相同hashcode的对象进行equals......
+             Leetcode面试精选题解-热身题
+互联网公司面试常见考点:
+
+面试主题考点总结:
+ 算法 - Algorithms
+
+排序算法：快速排序、归并排序、计数排序
+搜索算法：回溯、递归、剪枝技巧
+图论：最短路、最小生成树、网络流建模
+动态规划：背包问题、最长子序列、计数问题
+基础技巧：分治、倍增、二分、贪心
+
+ 数据结构 - Data Structures
+
+数组与链表：单 / 双向链表、跳......
         </div>
     </a>
     
@@ -267,7 +276,7 @@ Python内建了map()和reduce()函数。
         </p>
         <div class="tags">
             
-              <a href="/tags/#java" title="java">java</a>
+              <a href="/tags/#算法" title="算法">算法</a>
             
         </div>
     
@@ -277,22 +286,26 @@ Python内建了map()和reduce()函数。
 
 <div class="post-preview">
 
-    <a href="/article/操作系统重点知识汇总/">
+    <a href="/article/Leetcode面试精选题解-4/">
         <h2 class="post-title">
-            操作系统重点知识汇总
+            Leetcode面试精选题解-4
         </h2>
         <h3 class="post-subtitle">
-            一文清点操作系统
+            位运算专题
         </h3>
         <div class="post-content-preview">
-             操作系统重点知识汇总
- 一、操作系统基本特性
- 1. 并发
-1.进程和线程:线程是CPU调度的基本单位,进程是系统资源分配的基本单位,一个进程可以包含多个线程
-2.并行与并发:并发是宏观概念,计算机同时运行多个程序,并行是指同一时刻可以运行多个指令,并行需要硬件的支持
-3.操作系统引入了线程和进程的概念,加上调度算法,使得程序能在系统中并发运行
- 2. 共享
-1.共享是指资源可以被多个并发......
+             Leetcode面试精选题解-位运算详解
+ 1.按位取与（&amp;）
+两值按二进制位进行 “与”运算
+规则：0&amp;0=0；0&amp;1=0；1&amp;0=0；1&amp;1=1
+举个栗子： a = 5  ,b = 3
+a：0101
+b：0011
+r：0001
+ 2.按位取或（|）
+两值按二进制位进行 “或”运算
+规则：0|0=0；0|1=1；1|0=1；1|1=1
+举个栗子： ......
         </div>
     </a>
     
@@ -302,7 +315,7 @@ Python内建了map()和reduce()函数。
         </p>
         <div class="tags">
             
-              <a href="/tags/#操作系统" title="操作系统">操作系统</a>
+              <a href="/tags/#算法" title="算法">算法</a>
             
         </div>
     
@@ -350,6 +363,41 @@ Python内建了map()和reduce()函数。
 
 <div class="post-preview">
 
+    <a href="/article/操作系统重点知识汇总/">
+        <h2 class="post-title">
+            操作系统重点知识汇总
+        </h2>
+        <h3 class="post-subtitle">
+            一文清点操作系统
+        </h3>
+        <div class="post-content-preview">
+             操作系统重点知识汇总
+ 一、操作系统基本特性
+ 1. 并发
+1.进程和线程:线程是CPU调度的基本单位,进程是系统资源分配的基本单位,一个进程可以包含多个线程
+2.并行与并发:并发是宏观概念,计算机同时运行多个程序,并行是指同一时刻可以运行多个指令,并行需要硬件的支持
+3.操作系统引入了线程和进程的概念,加上调度算法,使得程序能在系统中并发运行
+ 2. 共享
+1.共享是指资源可以被多个并发......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-09-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#操作系统" title="操作系统">操作系统</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/article/机器学习算法/">
         <h2 class="post-title">
             机器学习算法
@@ -375,51 +423,6 @@ y=β0+β1x1+β2x2+β3x3+β4x4+..+βnxny = \beta_0+\beta_1x_1+\beta_2x_2+\beta_3x
         <div class="tags">
             
               <a href="/tags/#机器学习" title="机器学习">机器学习</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/计算机网络重要知识点/">
-        <h2 class="post-title">
-            计算机网络重要知识点
-        </h2>
-        <h3 class="post-subtitle">
-            一文清点计算机网络重点知识
-        </h3>
-        <div class="post-content-preview">
-             计算机网络重要知识点
-
-本文图片来自github的CS-NOTE,在此感谢作者CYC的开源精神
-
- 一. 互联网
- 1.1 基本概念
-网络是多个终端(主机)互相连接起来,而互联网则是将网络联系起来,互联网是网络的网络
-
- 1.2 主机之间的常见通信方式:
-
-客户机服务器模式:(C/S),拓扑结构呈放射状
-
-
-
-点对点模式(不区分客户机和服务器,公平通信)😦P2P),拓扑结构呈网状
-
-
- ......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-09-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#计算机网络原理" title="计算机网络原理">计算机网络原理</a>
             
         </div>
     
@@ -472,19 +475,19 @@ y=β0+β1x1+β2x2+β3x3+β4x4+..+βnxny = \beta_0+\beta_1x_1+\beta_2x_2+\beta_3x
     <div class="tags">
         
             
+            <a href="/tags/#算法" title="算法" rel="7">算法</a>
+            
+        
+            
             <a href="/tags/#java" title="java" rel="5">java</a>
             
         
             
-            <a href="/tags/#算法" title="算法" rel="6">算法</a>
+            <a href="/tags/#spring框架" title="spring框架" rel="2">spring框架</a>
             
         
             
             <a href="/tags/#MySQL" title="MySQL" rel="1">MySQL</a>
-            
-        
-            
-            <a href="/tags/#spring框架" title="spring框架" rel="2">spring框架</a>
             
         
             
@@ -512,7 +515,7 @@ y=β0+β1x1+β2x2+β3x3+β4x4+..+βnxny = \beta_0+\beta_1x_1+\beta_2x_2+\beta_3x
             
         
             
-            <a href="/tags/#计算机网络原理" title="计算机网络原理" rel="1">计算机网络原理</a>
+            <a href="/tags/#数据库" title="数据库" rel="1">数据库</a>
             
         
             
@@ -520,7 +523,7 @@ y=β0+β1x1+β2x2+β3x3+β4x4+..+βnxny = \beta_0+\beta_1x_1+\beta_2x_2+\beta_3x
             
         
             
-            <a href="/tags/#数据库" title="数据库" rel="1">数据库</a>
+            <a href="/tags/#计算机网络原理" title="计算机网络原理" rel="1">计算机网络原理</a>
             
         
             
@@ -598,11 +601,15 @@ y=β0+β1x1+β2x2+β3x3+β4x4+..+βnxny = \beta_0+\beta_1x_1+\beta_2x_2+\beta_3x
     <ul>
       
         <li>
+          <a href="/article/剑指offer题解/">剑指offer题解</a>
+        </li>
+      
+        <li>
           <a href="/article/操作系统内存管理模型/">操作系统内存管理模型</a>
         </li>
       
         <li>
-          <a href="/article/java虚拟机核心概念/">java虚拟机核心概念</a>
+          <a href="/article/kubernetes核心技术/">kubernetes核心技术</a>
         </li>
       
         <li>
@@ -610,11 +617,7 @@ y=β0+β1x1+β2x2+β3x3+β4x4+..+βnxny = \beta_0+\beta_1x_1+\beta_2x_2+\beta_3x
         </li>
       
         <li>
-          <a href="/article/Leetcode面试精选题解-6/">Leetcode面试精选题解-6</a>
-        </li>
-      
-        <li>
-          <a href="/article/Leetcode面试精选题解-4/">Leetcode面试精选题解-4</a>
+          <a href="/article/Leetcode面试精选题解-5/">Leetcode面试精选题解-5</a>
         </li>
       
     </ul>
@@ -629,7 +632,7 @@ y=β0+β1x1+β2x2+β3x3+β4x4+..+βnxny = \beta_0+\beta_1x_1+\beta_2x_2+\beta_3x
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">29</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">30</span></li></ul>
     </div>
 
         <hr>

@@ -136,13 +136,6 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -151,6 +144,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -213,21 +213,20 @@
 
 <div class="post-preview">
 
-    <a href="/article/Leetcode面试精选题解-3/">
+    <a href="/article/Spring沉思录-1/">
         <h2 class="post-title">
-            Leetcode面试精选题解-3
+            Spring沉思录(1)
         </h2>
         <h3 class="post-subtitle">
-            数组专题
+            理解Spring注解与配置
         </h3>
         <div class="post-content-preview">
-             Leetcode面试精选题解-数组专题
- 题号27:移除元素
-给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。
-不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。
-元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
-示例 1:
-12345给定 nums = [3,2,2,3], ......
+             Spring沉思录
+ 第一篇：XML还是@Configure注解？
+ 引言
+spring支持xml和注解同时进行配置，从耦合度程度来说，xml配置的耦合程度更低，但很多开发者都有固定的配置习惯，往往这种想法通过XML配置会导致配置文件难以维护
+这里有一段简单的故事：
+1234    曾经有段时间Java的生态圈走了极端，为了彻底的解耦，把“什么时候需要什么样的实现”这个问题的解决方案，写在......
         </div>
     </a>
     
@@ -237,7 +236,7 @@
         </p>
         <div class="tags">
             
-              <a href="/tags/#算法" title="算法">算法</a>
+              <a href="/tags/#spring框架" title="spring框架">spring框架</a>
             
         </div>
     
@@ -305,20 +304,25 @@ phone
 
 <div class="post-preview">
 
-    <a href="/article/Spring沉思录-1/">
+    <a href="/article/SpringMVC源码阅读-1/">
         <h2 class="post-title">
-            Spring沉思录(1)
+            SpringMVC源码阅读(1)
         </h2>
         <h3 class="post-subtitle">
-            理解Spring注解与配置
+            理解SpringMVC核心概念
         </h3>
         <div class="post-content-preview">
-             Spring沉思录
- 第一篇：XML还是@Configure注解？
- 引言
-spring支持xml和注解同时进行配置，从耦合度程度来说，xml配置的耦合程度更低，但很多开发者都有固定的配置习惯，往往这种想法通过XML配置会导致配置文件难以维护
-这里有一段简单的故事：
-1234    曾经有段时间Java的生态圈走了极端，为了彻底的解耦，把“什么时候需要什么样的实现”这个问题的解决方案，写在......
+             SpringMVC源码阅读(1)
+ 1. 阅读之前的思考
+ Web开发领域的表示层的几大共同核心课题
+
+URL到框架之间的映射
+HTTP请求的参数与框架的绑定
+HTTP响应的生成和输出
+
+ 2. 阅读笔记
+ 1. DispatcherServlet
+在SpringMVC的世界中，客户端对与浏览器发起的第一个请求，便是通过加载在web.xml配置文件中的DispatcherServlet标准......
         </div>
     </a>
     
@@ -329,6 +333,40 @@ spring支持xml和注解同时进行配置，从耦合度程度来说，xml配�
         <div class="tags">
             
               <a href="/tags/#spring框架" title="spring框架">spring框架</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/Leetcode面试精选题解-3/">
+        <h2 class="post-title">
+            Leetcode面试精选题解-3
+        </h2>
+        <h3 class="post-subtitle">
+            数组专题
+        </h3>
+        <div class="post-content-preview">
+             Leetcode面试精选题解-数组专题
+ 题号27:移除元素
+给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。
+不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。
+元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
+示例 1:
+12345给定 nums = [3,2,2,3], ......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by PualrDwade on
+            2019-09-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#算法" title="算法">算法</a>
             
         </div>
     
@@ -369,57 +407,18 @@ spring支持xml和注解同时进行配置，从耦合度程度来说，xml配�
 
 <div class="post-preview">
 
-    <a href="/article/SpringMVC源码阅读-1/">
+    <a href="/article/java常见IO重点知识清点/">
         <h2 class="post-title">
-            SpringMVC源码阅读(1)
+            java常见IO重点知识清点
         </h2>
         <h3 class="post-subtitle">
-            理解SpringMVC核心概念
+            IO流模型详解
         </h3>
         <div class="post-content-preview">
-             SpringMVC源码阅读(1)
- 1. 阅读之前的思考
- Web开发领域的表示层的几大共同核心课题
-
-URL到框架之间的映射
-HTTP请求的参数与框架的绑定
-HTTP响应的生成和输出
-
- 2. 阅读笔记
- 1. DispatcherServlet
-在SpringMVC的世界中，客户端对与浏览器发起的第一个请求，便是通过加载在web.xml配置文件中的DispatcherServlet标准......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by PualrDwade on
-            2019-09-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#spring框架" title="spring框架">spring框架</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/java内置的数据结构与经典算法/">
-        <h2 class="post-title">
-            java内置的数据结构与经典算法
-        </h2>
-        <h3 class="post-subtitle">
-            java数据结构算法详解
-        </h3>
-        <div class="post-content-preview">
-             解密Java常见的数据结构与算法
- 前言
-本博文针对java程序设计语言以及java.util包中的各种集合类型,融汇数据结构与算法知识,将内部原理,设计思想进行系统的讲解概括,为面试,学习提供参考
- 集合框架的继承结构
-123圆点虚线框：接口类，如List、Set、Map。加长虚线框：抽象类，如AbstractCollection、AbstractList。实线框（加粗和正常）：实现类，......
+             java常见IO重点知识清点
+ 磁盘操作
+使用File类进行操作,File表示文件和目录的基本信息,并不表示真正的操作,通过磁盘操作可以实现一些文件级别的控制程序,如文件管理程序
+123456789101112public static void listAllFiles(File dir) &#123;    if (dir == null || !dir.exists()) &#123......
         </div>
     </a>
     
@@ -482,19 +481,19 @@ HTTP响应的生成和输出
     <div class="tags">
         
             
+            <a href="/tags/#算法" title="算法" rel="7">算法</a>
+            
+        
+            
             <a href="/tags/#java" title="java" rel="5">java</a>
             
         
             
-            <a href="/tags/#算法" title="算法" rel="6">算法</a>
+            <a href="/tags/#spring框架" title="spring框架" rel="2">spring框架</a>
             
         
             
             <a href="/tags/#MySQL" title="MySQL" rel="1">MySQL</a>
-            
-        
-            
-            <a href="/tags/#spring框架" title="spring框架" rel="2">spring框架</a>
             
         
             
@@ -522,7 +521,7 @@ HTTP响应的生成和输出
             
         
             
-            <a href="/tags/#计算机网络原理" title="计算机网络原理" rel="1">计算机网络原理</a>
+            <a href="/tags/#数据库" title="数据库" rel="1">数据库</a>
             
         
             
@@ -530,7 +529,7 @@ HTTP响应的生成和输出
             
         
             
-            <a href="/tags/#数据库" title="数据库" rel="1">数据库</a>
+            <a href="/tags/#计算机网络原理" title="计算机网络原理" rel="1">计算机网络原理</a>
             
         
             
@@ -608,11 +607,15 @@ HTTP响应的生成和输出
     <ul>
       
         <li>
+          <a href="/article/剑指offer题解/">剑指offer题解</a>
+        </li>
+      
+        <li>
           <a href="/article/操作系统内存管理模型/">操作系统内存管理模型</a>
         </li>
       
         <li>
-          <a href="/article/java虚拟机核心概念/">java虚拟机核心概念</a>
+          <a href="/article/kubernetes核心技术/">kubernetes核心技术</a>
         </li>
       
         <li>
@@ -620,11 +623,7 @@ HTTP响应的生成和输出
         </li>
       
         <li>
-          <a href="/article/Leetcode面试精选题解-6/">Leetcode面试精选题解-6</a>
-        </li>
-      
-        <li>
-          <a href="/article/Leetcode面试精选题解-4/">Leetcode面试精选题解-4</a>
+          <a href="/article/Leetcode面试精选题解-5/">Leetcode面试精选题解-5</a>
         </li>
       
     </ul>
@@ -639,7 +638,7 @@ HTTP响应的生成和输出
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">29</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">30</span></li></ul>
     </div>
 
         <hr>
