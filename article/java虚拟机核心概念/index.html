@@ -144,6 +144,13 @@
 
                         
                         <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -152,13 +159,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -214,11 +214,11 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="java虚拟机核心概念"><a class="markdownIt-Anchor" href="#java虚拟机核心概念"></a> java虚拟机核心概念</h1>
+                <h1 id="java虚拟机核心概念">java虚拟机核心概念</h1>
 <blockquote>
 <p>特别鸣谢CS-NOTE作者提供的美观图片</p>
 </blockquote>
-<h2 id="一-运行时数据区"><a class="markdownIt-Anchor" href="#一-运行时数据区"></a> 一. 运行时数据区</h2>
+<h2 id="一-运行时数据区">一. 运行时数据区</h2>
 <p>Java虚拟机执行字节码指令,并且通过划分良好的运行时数据区进行协作,从而为java带来生命</p>
 <p><img src="https://i.loli.net/2019/03/15/5c8bb57d726d1.png" alt=""></p>
 <blockquote>
@@ -226,20 +226,20 @@
 </blockquote>
 <p><strong>划分成为思维导图,便于理解与记忆</strong></p>
 <p><img src="https://i.loli.net/2019/03/21/5c93234e55b28.png" alt=""></p>
-<h2 id="二-垃圾回收gc"><a class="markdownIt-Anchor" href="#二-垃圾回收gc"></a> 二. 垃圾回收(<code>GC</code>)</h2>
+<h2 id="二-垃圾回收gc">二. 垃圾回收(<code>GC</code>)</h2>
 <p>垃圾收集器主要是针对于线程共享的区域(堆,方法区)进行工作。</p>
 <p><strong>垃圾收集主要有两部分的工作:</strong></p>
 <ol>
 <li>判断对象是否可以被回收</li>
 <li>采用一定的策略对可回收对象进行回收操作</li>
 </ol>
-<h3 id="21-可回收性质判断"><a class="markdownIt-Anchor" href="#21-可回收性质判断"></a> 2.1 可回收性质判断</h3>
-<h4 id="211-引用计数法"><a class="markdownIt-Anchor" href="#211-引用计数法"></a> 2.1.1 引用计数法</h4>
+<h3 id="21-可回收性质判断">2.1 可回收性质判断</h3>
+<h4 id="211-引用计数法">2.1.1 引用计数法</h4>
 <p>为对象添加一个引用计数器，当对象增加一个引用时计数器加 1，引用失效时计数器减 1。引用计数为 0 的对象可被回收。</p>
 <p>在两个对象出现循环引用的情况下，此时引用计数器永远不为 0，导致无法对它们进行回收。正是因为循环引用的存在，因此 Java 虚拟机不使用引用计数算法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Object instance = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Test a = <span class="keyword">new</span> Test();</span><br><span class="line">        Test b = <span class="keyword">new</span> Test();</span><br><span class="line">        a.instance = b;</span><br><span class="line">        b.instance = a;</span><br><span class="line">        a = <span class="keyword">null</span>;</span><br><span class="line">        b = <span class="keyword">null</span>;</span><br><span class="line">        doSomething();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Object instance = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Test a = <span class="keyword">new</span> Test();</span><br><span class="line">        Test b = <span class="keyword">new</span> Test();</span><br><span class="line">        a.instance = b;</span><br><span class="line">        b.instance = a;</span><br><span class="line">        a = <span class="keyword">null</span>;</span><br><span class="line">        b = <span class="keyword">null</span>;</span><br><span class="line">        doSomething();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>在上述代码中,a与b引用的对象实例互相持有了对象的引用,因此当我们把对a对象与b对象的引用去除之后,由于两个对象还存在互相之间的引用,导致两个Test对象无法被回收。</p>
-<h4 id="212-可达性分析法"><a class="markdownIt-Anchor" href="#212-可达性分析法"></a> 2.1.2 可达性分析法</h4>
+<h4 id="212-可达性分析法">2.1.2 可达性分析法</h4>
 <p>以 GC Roots 为起始点进行搜索，可达的对象都是存活的，不可达的对象可被回收。</p>
 <p>Java 虚拟机使用该算法来判断对象是否可被回收，GC Roots 一般包含以下内容：</p>
 <ul>
@@ -249,7 +249,7 @@
 <li>方法区中的常量引用的对象</li>
 </ul>
 <p><img src="https://i.loli.net/2019/03/21/5c93283695887.png" alt=""></p>
-<h4 id="213-方法区的垃圾回收"><a class="markdownIt-Anchor" href="#213-方法区的垃圾回收"></a> 2.1.3 方法区的垃圾回收</h4>
+<h4 id="213-方法区的垃圾回收">2.1.3 方法区的垃圾回收</h4>
 <p>方法区被称为永久代,回收频率比较低,主要是进行常量的回收以及对类的<strong>卸载</strong></p>
 <blockquote>
 <p>大量使用反射与动态代理技术会产生很多临时使用的类,这是就要求虚拟机具备较好的类卸载效率</p>
@@ -263,26 +263,26 @@
 <blockquote>
 <p>简单来说:类的实例没了,类的加载器没了,类的Class对象任何引用都没了,这样才满足被回收的条件</p>
 </blockquote>
-<h3 id="22-引用类型与可回收判断关系"><a class="markdownIt-Anchor" href="#22-引用类型与可回收判断关系"></a> 2.2 引用类型与可回收判断关系</h3>
+<h3 id="22-引用类型与可回收判断关系">2.2 引用类型与可回收判断关系</h3>
 <p>无论是通过引用计数算法判断对象的引用数量，还是通过可达性分析算法判断对象是否可达，判定对象是否可被回收都与引用有关。</p>
 <p>Java 提供了四种强度不同的引用类型。</p>
-<h4 id="221-强引用"><a class="markdownIt-Anchor" href="#221-强引用"></a> 2.2.1 强引用</h4>
+<h4 id="221-强引用">2.2.1 强引用</h4>
 <p>被强引用的对象不会被回收</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object obj = <span class="keyword">new</span> Object();</span><br></pre></td></tr></table></figure>
-<h4 id="222-软引用"><a class="markdownIt-Anchor" href="#222-软引用"></a> 2.2.2 软引用</h4>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object obj = <span class="keyword">new</span> Object();</span><br></pre></td></tr></table></figure></p>
+<h4 id="222-软引用">2.2.2 软引用</h4>
 <p>软引用可以通过JDK提供的<code>SoftReference</code>类来创建,软引用在内存不足的时候会被回收</p>
 <blockquote>
 <p>软应用是手动GC不掉的</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SoftReferenceTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Object obj = <span class="keyword">new</span> Object();</span><br><span class="line">        SoftReference&lt;Object&gt; softReference = <span class="keyword">new</span> SoftReference&lt;&gt;(obj);</span><br><span class="line">        obj = <span class="keyword">null</span>;</span><br><span class="line">        System.out.println(softReference.get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="223-弱引用"><a class="markdownIt-Anchor" href="#223-弱引用"></a> 2.2.3 弱引用</h4>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SoftReferenceTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Object obj = <span class="keyword">new</span> Object();</span><br><span class="line">        SoftReference&lt;Object&gt; softReference = <span class="keyword">new</span> SoftReference&lt;&gt;(obj);</span><br><span class="line">        obj = <span class="keyword">null</span>;</span><br><span class="line">        System.out.println(softReference.get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="223-弱引用">2.2.3 弱引用</h4>
 <p>从名字就可以知道,与强引用是对应的</p>
 <p>被弱引用关联的对象一定会被回收，也就是说它只能存活到<strong>下一次垃圾回收发生之前</strong>。</p>
 <blockquote>
 <p>垃圾回收有专门的线程,有回收的周期,可以直接手动GC掉</p>
 </blockquote>
 <p>实验:使用 <code>WeakReference</code>类来创建弱引用。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Object obj = <span class="keyword">new</span> Object();</span><br><span class="line">WeakReference&lt;Object&gt; wf = <span class="keyword">new</span> WeakReference&lt;Object&gt;(obj);</span><br><span class="line">obj = <span class="keyword">null</span>;</span><br><span class="line"> <span class="comment">// 判断是否GC</span></span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">    System.out.println(weakReference.get());</span><br><span class="line">    Thread.sleep(<span class="number">300</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Object obj = <span class="keyword">new</span> Object();</span><br><span class="line">WeakReference&lt;Object&gt; wf = <span class="keyword">new</span> WeakReference&lt;Object&gt;(obj);</span><br><span class="line">obj = <span class="keyword">null</span>;</span><br><span class="line"> <span class="comment">// 判断是否GC</span></span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">    System.out.println(weakReference.get());</span><br><span class="line">    Thread.sleep(<span class="number">300</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><strong>控制台输出:</strong></p>
 <p><img src="https://i.loli.net/2019/03/21/5c9330f9d1594.png" alt=""></p>
 <p><strong>手动触发GC:使用<code>jconsole</code>命令打开进程控制面板</strong></p>
@@ -292,15 +292,15 @@
 <blockquote>
 <p>证明我们的论证是正确的,弱引用会保持对象可访问,直到下一次自动|手动GC</p>
 </blockquote>
-<h4 id="224-虚引用"><a class="markdownIt-Anchor" href="#224-虚引用"></a> 2.2.4 虚引用</h4>
+<h4 id="224-虚引用">2.2.4 虚引用</h4>
 <p>虚引用又称幻影引用或者幽灵引用</p>
 <p>又称为幽灵引用或者幻影引用，一个对象是否有虚引用的存在，不会对其生存时间造成影响，也<strong>无法通过虚引用得到一个对象。</strong></p>
 <p>为一个对象设置虚引用的唯一目的是能在这个对象被回收时收到一个系统通知。</p>
 <p>使用 <code>PhantomReference</code>来创建虚引用。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object obj = <span class="keyword">new</span> Object();</span><br><span class="line">PhantomReference&lt;Object&gt; pf = <span class="keyword">new</span> PhantomReference&lt;Object&gt;(obj,<span class="keyword">null</span>);</span><br><span class="line">obj = <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="23-垃圾回收算法"><a class="markdownIt-Anchor" href="#23-垃圾回收算法"></a> 2.3 垃圾回收算法</h3>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object obj = <span class="keyword">new</span> Object();</span><br><span class="line">PhantomReference&lt;Object&gt; pf = <span class="keyword">new</span> PhantomReference&lt;Object&gt;(obj,<span class="keyword">null</span>);</span><br><span class="line">obj = <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure></p>
+<h3 id="23-垃圾回收算法">2.3 垃圾回收算法</h3>
 <p>以下介绍一些虚拟机常用的回收算法</p>
-<h4 id="231-标记-清除算法"><a class="markdownIt-Anchor" href="#231-标记-清除算法"></a> 2.3.1 标记-清除算法</h4>
+<h4 id="231-标记-清除算法">2.3.1 标记-清除算法</h4>
 <p>标记清除算法很简单,判断可回收的时候打上标记,在回收的时候对标记位置进行回收即可</p>
 <p>不足：</p>
 <ul>
@@ -308,24 +308,24 @@
 <li>会产生大量不连续的内存碎片，导致无法给大对象分配内存。</li>
 </ul>
 <p><img src="https://i.loli.net/2019/03/21/5c9334e4c0934.png" alt=""></p>
-<h4 id="232-标记-整理算法"><a class="markdownIt-Anchor" href="#232-标记-整理算法"></a> 2.3.2 标记-整理算法</h4>
+<h4 id="232-标记-整理算法">2.3.2 标记-整理算法</h4>
 <p>让所有存活的对象都向一端移动，然后直接清理掉端边界以外的内存。</p>
 <p><img src="https://i.loli.net/2019/03/21/5c933562712c3.png" alt=""></p>
-<h4 id="233-复制算法主流"><a class="markdownIt-Anchor" href="#233-复制算法主流"></a> 2.3.3 复制算法(主流)</h4>
+<h4 id="233-复制算法主流">2.3.3 复制算法(主流)</h4>
 <p><img src="https://i.loli.net/2019/03/21/5c93386dac7da.png" alt=""></p>
 <p>将内存划分为大小相等的两块，每次只使用其中一块，当这一块内存用完了就将还存活的对象复制到另一块上面，然后再把使用过的内存空间进行一次清理。</p>
 <p>主要不足是只使用了内存的一半。</p>
 <p>现在的商业虚拟机都采用这种收集算法<strong>回收新生代</strong>，但是并不是划分为大小相等的两块，<strong>而是一块较大的 Eden 空间和两块较小的 Survivor 空间</strong>，每次使用 Eden 和其中一块 Survivor。在回收时，将 Eden 和 Survivor 中还存活着的对象全部复制到另一块 Survivor 上，最后清理 Eden 和使用过的那一块 Survivor。</p>
 <p><code>HotSpot</code>虚拟机的 Eden 和 Survivor 大小比例<strong>默认为 8:1，保证了内存的利用率达到 90%</strong>。如果每次回收有多于 10% 的对象存活，那么一块 Survivor 就不够用了，此时需要依赖于老年代进行空间分配担保，也就是<strong>借用老年代的空间存储放不下的对象。</strong></p>
 <p>###2.4 垃圾收集器</p>
-<h4 id="241-概览"><a class="markdownIt-Anchor" href="#241-概览"></a> 2.4.1 概览</h4>
+<h4 id="241-概览">2.4.1 概览</h4>
 <p><img src="https://i.loli.net/2019/03/24/5c96f9a55e0b8.png" alt=""></p>
 <p>以上是 HotSpot 虚拟机中的 7 个垃圾收集器，连线表示垃圾收集器可以配合使用。</p>
 <ul>
 <li>单线程与多线程：单线程指的是垃圾收集器只使用一个线程，而多线程使用多个线程；</li>
 <li>串行与并行：串行指的是垃圾收集器与用户程序交替执行，这意味着在执行垃圾收集的时候需要停顿用户程序；并行指的是垃圾收集器和用户程序同时执行。除了 CMS 和 G1 之外，其它垃圾收集器都是以串行的方式执行。</li>
 </ul>
-<h4 id="242-gc的停顿与cpu吞吐率"><a class="markdownIt-Anchor" href="#242-gc的停顿与cpu吞吐率"></a> 2.4.2 GC的停顿与CPU吞吐率</h4>
+<h4 id="242-gc的停顿与cpu吞吐率">2.4.2 GC的停顿与CPU吞吐率</h4>
 <p>垃圾回收相同数量的垃圾对象:</p>
 <ul>
 <li>若回收频率越高,则回收的停顿越低,用户交互越强,要求新生代空间越小越好,相对应的则CPU吞吐率下降(要频繁GC)</li>
@@ -334,16 +334,16 @@
 <blockquote>
 <p>缩短停顿时间是以牺牲吞吐量和新生代空间来换取的：新生代空间变小，垃圾回收变得频繁，导致吞吐量下降</p>
 </blockquote>
-<h2 id="三-内存分配与回收策略"><a class="markdownIt-Anchor" href="#三-内存分配与回收策略"></a> 三. 内存分配与回收策略</h2>
-<h3 id="31-minor-gc与full-gc"><a class="markdownIt-Anchor" href="#31-minor-gc与full-gc"></a> 3.1 Minor GC与Full GC</h3>
+<h2 id="三-内存分配与回收策略">三. 内存分配与回收策略</h2>
+<h3 id="31-minor-gc与full-gc">3.1 Minor GC与Full GC</h3>
 <ul>
 <li>Minor GC：回收新生代，因为新生代对象存活时间很短，因此 Minor GC 会频繁执行，执行的速度一般也会比较快。</li>
 <li>Full GC：回收老年代和新生代，老年代对象其存活时间长，因此 Full GC 很少执行，执行速度会比 Minor GC 慢很多。</li>
 </ul>
-<h3 id="32-内存分配策略"><a class="markdownIt-Anchor" href="#32-内存分配策略"></a> 3.2 内存分配策略</h3>
+<h3 id="32-内存分配策略">3.2 内存分配策略</h3>
 <ul>
 <li><strong>对象优先在Eden分配</strong>:Eden满则触发Minor回收</li>
-<li><strong>大对象直接进入老年代</strong>:大数组,长字符串…</li>
+<li><strong>大对象直接进入老年代</strong>:大数组,长字符串.....</li>
 <li><strong>长期存活进入老年代</strong>:每次经历过一次GC,年龄+1,达到规定值则转移到老年代</li>
 <li><strong>动态对象年龄判定</strong>:也不一定达到指定年龄,可以动态判断,找出一个年龄众数(大于一半),则超过此年龄也可以进入老年代</li>
 <li><strong>空间分配担保</strong>:由于Minor GC采用复制算法,需要把Eden+Servival1中存活对象复制到Servival2中,若Servival2分区空间不足以放下所有对象,则需要判断<strong>老年代</strong>分配额外空间是否能够担保,若能够保证放入新对象,则直接进行Minor GC,否则担保失败,出发Full GC。</li>
@@ -351,24 +351,24 @@
 <blockquote>
 <p>新生代的Minor GC执行时间短,适合生存时间短的对象,而Full GC则速度慢,回收存活比较久的,要频率尽可能低。总之:尽可能在新生代被回收,活得久再去老年代</p>
 </blockquote>
-<h3 id="33-full-gc触发条件"><a class="markdownIt-Anchor" href="#33-full-gc触发条件"></a> 3.3 Full GC触发条件</h3>
+<h3 id="33-full-gc触发条件">3.3 Full GC触发条件</h3>
 <p>对于 Minor GC，其触发条件非常简单，当 Eden 空间满时，就将触发一次 Minor GC。而 Full GC 则相对复杂，有以下条件:</p>
 <ul>
 <li><strong>调用<code>System.gc()</code></strong>:只是建议虚拟机执行 Full GC，但是虚拟机不一定真正去执行。<strong>不建议使用这种方式</strong>，而是让虚拟机管理内存。</li>
-<li><strong>老年代空间不足</strong>:<br>
+<li><strong>老年代空间不足</strong>:
 老年代空间不足的常见场景为前文所讲的大对象直接进入老年代、长期存活的对象进入老年代等。为了避免以上原因引起的 Full GC，应当尽量不要创建过大的对象以及数组。除此之外，可以通过 -Xmn 虚拟机参数调大新生代的大小，让对象尽量在新生代被回收掉，不进入老年代。还可以通过 -XX:MaxTenuringThreshold 调大对象进入老年代的年龄，让对象在新生代多存活一段时间。</li>
 <li><strong>空间分配担保失败</strong>:如上3.2</li>
 </ul>
-<h2 id="四-类加载机制"><a class="markdownIt-Anchor" href="#四-类加载机制"></a> 四. 类加载机制</h2>
-<h3 id="41-类加载的时机"><a class="markdownIt-Anchor" href="#41-类加载的时机"></a> 4.1 类加载的时机</h3>
+<h2 id="四-类加载机制">四. 类加载机制</h2>
+<h3 id="41-类加载的时机">4.1 类加载的时机</h3>
 <p>类是在运行期间第一次使用时动态加载的，而不是一次性加载所有类。因为如果一次性加载，那么会占用很多的内存</p>
 <blockquote>
 <p>使用一个类的静态常量字段不会触发类的初始化,因为静态常量在编译时期就会存入<strong>调用类</strong>的常量池中,而不会触发定义此常量的类</p>
 </blockquote>
-<h3 id="42-类加载过程"><a class="markdownIt-Anchor" href="#42-类加载过程"></a> 4.2 类加载过程</h3>
+<h3 id="42-类加载过程">4.2 类加载过程</h3>
 <p>类加载包括:<strong>加载-&gt;连接(验证-准备-解析-初始化)-&gt;使用-&gt;卸载</strong>这几个步骤</p>
 <p><img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/303873db-0d11-4683-a43c-f319b7aef2b6.jpg" alt="img"></p>
-<h4 id="421-加载"><a class="markdownIt-Anchor" href="#421-加载"></a> 4.2.1 加载</h4>
+<h4 id="421-加载">4.2.1 加载</h4>
 <blockquote>
 <p>加载是类加载的一个子过程,不要混淆</p>
 </blockquote>
@@ -378,39 +378,39 @@
 <li>类的静态存储结构-&gt;方法区的运行时存储结构</li>
 <li>在堆中生成此类的类实例(Class对象),作为该类方法区中各种数据的访问入口</li>
 </ul>
-<h4 id="422-验证"><a class="markdownIt-Anchor" href="#422-验证"></a> 4.2.2 验证</h4>
+<h4 id="422-验证">4.2.2 验证</h4>
 <p>验证阶段主要是确保Class字节流包含的信息等是合法的且不会危害虚拟机的安全</p>
-<h4 id="423-准备"><a class="markdownIt-Anchor" href="#423-准备"></a> 4.2.3 准备</h4>
+<h4 id="423-准备">4.2.3 准备</h4>
 <p>类变量是被 static 修饰的变量，准备阶段为类变量分配内存并设置初始值，使用的是方法区的内存。</p>
 <p>实例变量不会在这阶段分配内存，它会在对象实例化时随着对象一起被分配在堆中。应该注意到，实例化不是类加载的一个过程，类加载发生在所有实例化操作之前，并且类加载只进行一次，实例化可以进行多次。</p>
 <p>初始值一般为 0 值，例如下面的类变量 value 被初始化为 0 而不是 123。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> value = <span class="number">123</span>;</span><br></pre></td></tr></table></figure>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> value = <span class="number">123</span>;</span><br></pre></td></tr></table></figure></p>
 <p>如果类变量是常量，那么它将初始化为表达式所定义的值而不是 0。例如下面的常量 value 被初始化为 123 而不是 0。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> value = <span class="number">123</span>;</span><br></pre></td></tr></table></figure>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> value = <span class="number">123</span>;</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>准备是为类变量赋零值,真正的值需要在后面的阶段再赋予</p>
 </blockquote>
-<h4 id="424-解析"><a class="markdownIt-Anchor" href="#424-解析"></a> 4.2.4 解析</h4>
+<h4 id="424-解析">4.2.4 解析</h4>
 <p>将常量池的<strong>符号引用替换</strong>为<strong>直接引用</strong>的过程。</p>
 <p>其中解析过程在某些情况下可以在初始化阶段之后再开始，这是为了支持 Java 的动态绑定。</p>
 <blockquote>
 <p>整个过程是循序开始的,但是不是顺序工作的,也就是他们的周期可能是交错的!</p>
 </blockquote>
-<h4 id="425-初始化"><a class="markdownIt-Anchor" href="#425-初始化"></a> 4.2.5 初始化</h4>
+<h4 id="425-初始化">4.2.5 初始化</h4>
 <p>到了这一步才开始与我们自己写的代码有关了,包括我们编写的自定义类变量初值,静态代码块等等,初始化阶段是虚拟机执行类构造器 <code>&lt;clinit&gt;()</code> 方法的过程。在准备阶段，类变量已经赋过一次系统要求的初始值，<strong>而在初始化阶段，根据程序员通过程序制定的主观计划去初始化类变量和其它资源。</strong></p>
 <p>静态语句块只能访问到定义在它之前的类变量，定义在它之后的类变量只能赋值，不能访问。例如以下代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        i = <span class="number">0</span>;                <span class="comment">// 给变量赋值可以正常编译通过</span></span><br><span class="line">        System.out.print(i);  <span class="comment">// 这句编译器会提示“非法向前引用”</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>由于父类的 <clinit>() 方法先执行，也就意味着父类中定义的静态语句块的执行要优先于子类。例如以下代码：</clinit></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> A = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        A = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Sub</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> B = A;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">     System.out.println(Sub.B);  <span class="comment">// 2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        i = <span class="number">0</span>;                <span class="comment">// 给变量赋值可以正常编译通过</span></span><br><span class="line">        System.out.print(i);  <span class="comment">// 这句编译器会提示“非法向前引用”</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>由于父类的 &lt;clinit&gt;() 方法先执行，也就意味着父类中定义的静态语句块的执行要优先于子类。例如以下代码：</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> A = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        A = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Sub</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> B = A;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">     System.out.println(Sub.B);  <span class="comment">// 2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>接口中不可以使用静态语句块，但仍然有类变量初始化的赋值操作，因此接口与类一样都会生成<code>&lt;clinit&gt;()</code>方法。但接口与类不同的是，执行接口的 <code>&lt;clinit&gt;()</code>方法不需要先执行父接口的<code>&lt;clinit&gt;()</code>方法。<strong>只有当父接口中定义的变量使用时，父接口才会初始化</strong>。另外，接口的实现类在初始化时也一样不会执行接口的 <code>&lt;clinit&gt;()</code> 方法。</p>
 <p>虚拟机会保证一个类的<code>&lt;clinit&gt;()</code>方法在多线程环境下被正确的加锁和同步，如果多个线程同时初始化一个类，只会有一个线程执行这个类的 <code>&lt;clinit&gt;()</code> 方法，其它线程都会阻塞等待，直到活动线程执行 <code>&lt;clinit&gt;()</code>方法完毕。如果在一个类的<code>&lt;clinit&gt;()</code> 方法中有耗时的操作，就可能造成多个线程阻塞，在实际过程中此种阻塞很隐蔽。如下,在java中最好的单例实现方式:静态内部类,既保证了延迟初始化的好处,还有虚拟机保证了线程安全性</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingletonClass</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> SingletonClass&#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">InnerClassHolder</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> SingletonClass INSTANCE = <span class="keyword">new</span> SingletonClass();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonClass <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> InnerClassHolder.INSTANCE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingletonClass</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> SingletonClass&#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">InnerClassHolder</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> SingletonClass INSTANCE = <span class="keyword">new</span> SingletonClass();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonClass <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> InnerClassHolder.INSTANCE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>我们利用已学知识来解释这种单例模式为何具有这样的优点当客户端第一次这样调用时:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        SingletonClass instance = SingletonClass.getInstance();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        SingletonClass instance = SingletonClass.getInstance();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><code>SingletonClass</code>类在这之前还没有被加载,因此触发类加载事件,在最初的加载阶段,通过类的全限定名得到类的二进制字节流,完成类属性,方法的初始化,在这时,实例还没有初始化,因此具有延迟初始化的好处</p>
 <p>当我们调用方法时,在类加载时期方法<code>getInstance</code>的符号引用就已经直接解析到了内存引用,最终调用到<code>getInstance()</code>方法,在方法内部触发了静态内部类的初始化</p>
 <p>静态内部类含有静态类属性<code>INSTANCE</code>,在初始化阶段从堆中创建了<code>SingletonClass</code>的实例对象,并且赋值到到内部类的<code>INTANCE</code>字段,完成单例实例的创建,在这个阶段,虚拟机又保证内部类只会被初始化一次,而<code>INSTANCE</code>是在初始化阶段创建的,因此又可以保证单例线程安全</p>
-<h2 id="五-对象创建的顺序"><a class="markdownIt-Anchor" href="#五-对象创建的顺序"></a> 五. 对象创建的顺序</h2>
+<h2 id="五-对象创建的顺序">五. 对象创建的顺序</h2>
 <ol>
 <li>检查在方法区中是否存在对象的符号引用,若没有,则通过类全限名得到类的二进制字节流,检查类是否存在,若不存在则抛出异常,否则进行类加载</li>
 <li>类加载完成之后,从堆中划分出内存</li>
@@ -425,12 +425,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/article/kubernetes核心技术/" data-toggle="tooltip" data-placement="top" title="kubernetes核心技术">&larr; Previous Post</a>
+                            <a href="/article/Java基础核心概念/" data-toggle="tooltip" data-placement="top" title="Java基础核心概念">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/article/python函数式编程/" data-toggle="tooltip" data-placement="top" title="python学习笔记(2)">Next Post &rarr;</a>
+                            <a href="/article/python高阶函数式编程/" data-toggle="tooltip" data-placement="top" title="python学习笔记(3)">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -486,7 +486,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#java虚拟机核心概念"><span class="toc-nav-number">1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#java&#x865A;&#x62DF;&#x673A;&#x6838;&#x5FC3;&#x6982;&#x5FF5;"></a> java&#x865A;&#x62DF;&#x673A;&#x6838;&#x5FC3;&#x6982;&#x5FF5;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一-运行时数据区"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E00;-&#x8FD0;&#x884C;&#x65F6;&#x6570;&#x636E;&#x533A;"></a> &#x4E00;. &#x8FD0;&#x884C;&#x65F6;&#x6570;&#x636E;&#x533A;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二-垃圾回收gc"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E8C;-&#x5783;&#x573E;&#x56DE;&#x6536;gc"></a> &#x4E8C;. &#x5783;&#x573E;&#x56DE;&#x6536;(<code>GC</code>)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#21-可回收性质判断"><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#21-&#x53EF;&#x56DE;&#x6536;&#x6027;&#x8D28;&#x5224;&#x65AD;"></a> 2.1 &#x53EF;&#x56DE;&#x6536;&#x6027;&#x8D28;&#x5224;&#x65AD;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#211-引用计数法"><span class="toc-nav-number">1.2.1.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#211-&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x6CD5;"></a> 2.1.1 &#x5F15;&#x7528;&#x8BA1;&#x6570;&#x6CD5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#212-可达性分析法"><span class="toc-nav-number">1.2.1.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#212-&#x53EF;&#x8FBE;&#x6027;&#x5206;&#x6790;&#x6CD5;"></a> 2.1.2 &#x53EF;&#x8FBE;&#x6027;&#x5206;&#x6790;&#x6CD5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#213-方法区的垃圾回收"><span class="toc-nav-number">1.2.1.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#213-&#x65B9;&#x6CD5;&#x533A;&#x7684;&#x5783;&#x573E;&#x56DE;&#x6536;"></a> 2.1.3 &#x65B9;&#x6CD5;&#x533A;&#x7684;&#x5783;&#x573E;&#x56DE;&#x6536;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#22-引用类型与可回收判断关系"><span class="toc-nav-number">1.2.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#22-&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x4E0E;&#x53EF;&#x56DE;&#x6536;&#x5224;&#x65AD;&#x5173;&#x7CFB;"></a> 2.2 &#x5F15;&#x7528;&#x7C7B;&#x578B;&#x4E0E;&#x53EF;&#x56DE;&#x6536;&#x5224;&#x65AD;&#x5173;&#x7CFB;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#221-强引用"><span class="toc-nav-number">1.2.2.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#221-&#x5F3A;&#x5F15;&#x7528;"></a> 2.2.1 &#x5F3A;&#x5F15;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#222-软引用"><span class="toc-nav-number">1.2.2.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#222-&#x8F6F;&#x5F15;&#x7528;"></a> 2.2.2 &#x8F6F;&#x5F15;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#223-弱引用"><span class="toc-nav-number">1.2.2.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#223-&#x5F31;&#x5F15;&#x7528;"></a> 2.2.3 &#x5F31;&#x5F15;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#224-虚引用"><span class="toc-nav-number">1.2.2.4.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#224-&#x865A;&#x5F15;&#x7528;"></a> 2.2.4 &#x865A;&#x5F15;&#x7528;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#23-垃圾回收算法"><span class="toc-nav-number">1.2.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#23-&#x5783;&#x573E;&#x56DE;&#x6536;&#x7B97;&#x6CD5;"></a> 2.3 &#x5783;&#x573E;&#x56DE;&#x6536;&#x7B97;&#x6CD5;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#231-标记-清除算法"><span class="toc-nav-number">1.2.3.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#231-&#x6807;&#x8BB0;-&#x6E05;&#x9664;&#x7B97;&#x6CD5;"></a> 2.3.1 &#x6807;&#x8BB0;-&#x6E05;&#x9664;&#x7B97;&#x6CD5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#232-标记-整理算法"><span class="toc-nav-number">1.2.3.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#232-&#x6807;&#x8BB0;-&#x6574;&#x7406;&#x7B97;&#x6CD5;"></a> 2.3.2 &#x6807;&#x8BB0;-&#x6574;&#x7406;&#x7B97;&#x6CD5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#233-复制算法主流"><span class="toc-nav-number">1.2.3.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#233-&#x590D;&#x5236;&#x7B97;&#x6CD5;&#x4E3B;&#x6D41;"></a> 2.3.3 &#x590D;&#x5236;&#x7B97;&#x6CD5;(&#x4E3B;&#x6D41;)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#241-概览"><span class="toc-nav-number">1.2.3.4.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#241-&#x6982;&#x89C8;"></a> 2.4.1 &#x6982;&#x89C8;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#242-gc的停顿与cpu吞吐率"><span class="toc-nav-number">1.2.3.5.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#242-gc&#x7684;&#x505C;&#x987F;&#x4E0E;cpu&#x541E;&#x5410;&#x7387;"></a> 2.4.2 GC&#x7684;&#x505C;&#x987F;&#x4E0E;CPU&#x541E;&#x5410;&#x7387;</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#三-内存分配与回收策略"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E09;-&#x5185;&#x5B58;&#x5206;&#x914D;&#x4E0E;&#x56DE;&#x6536;&#x7B56;&#x7565;"></a> &#x4E09;. &#x5185;&#x5B58;&#x5206;&#x914D;&#x4E0E;&#x56DE;&#x6536;&#x7B56;&#x7565;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#31-minor-gc与full-gc"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#31-minor-gc&#x4E0E;full-gc"></a> 3.1 Minor GC&#x4E0E;Full GC</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#32-内存分配策略"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#32-&#x5185;&#x5B58;&#x5206;&#x914D;&#x7B56;&#x7565;"></a> 3.2 &#x5185;&#x5B58;&#x5206;&#x914D;&#x7B56;&#x7565;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#33-full-gc触发条件"><span class="toc-nav-number">1.3.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#33-full-gc&#x89E6;&#x53D1;&#x6761;&#x4EF6;"></a> 3.3 Full GC&#x89E6;&#x53D1;&#x6761;&#x4EF6;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#四-类加载机制"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x56DB;-&#x7C7B;&#x52A0;&#x8F7D;&#x673A;&#x5236;"></a> &#x56DB;. &#x7C7B;&#x52A0;&#x8F7D;&#x673A;&#x5236;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#41-类加载的时机"><span class="toc-nav-number">1.4.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#41-&#x7C7B;&#x52A0;&#x8F7D;&#x7684;&#x65F6;&#x673A;"></a> 4.1 &#x7C7B;&#x52A0;&#x8F7D;&#x7684;&#x65F6;&#x673A;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#42-类加载过程"><span class="toc-nav-number">1.4.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#42-&#x7C7B;&#x52A0;&#x8F7D;&#x8FC7;&#x7A0B;"></a> 4.2 &#x7C7B;&#x52A0;&#x8F7D;&#x8FC7;&#x7A0B;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#421-加载"><span class="toc-nav-number">1.4.2.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#421-&#x52A0;&#x8F7D;"></a> 4.2.1 &#x52A0;&#x8F7D;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#422-验证"><span class="toc-nav-number">1.4.2.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#422-&#x9A8C;&#x8BC1;"></a> 4.2.2 &#x9A8C;&#x8BC1;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#423-准备"><span class="toc-nav-number">1.4.2.3.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#423-&#x51C6;&#x5907;"></a> 4.2.3 &#x51C6;&#x5907;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#424-解析"><span class="toc-nav-number">1.4.2.4.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#424-&#x89E3;&#x6790;"></a> 4.2.4 &#x89E3;&#x6790;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#425-初始化"><span class="toc-nav-number">1.4.2.5.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#425-&#x521D;&#x59CB;&#x5316;"></a> 4.2.5 &#x521D;&#x59CB;&#x5316;</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#五-对象创建的顺序"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E94;-&#x5BF9;&#x8C61;&#x521B;&#x5EFA;&#x7684;&#x987A;&#x5E8F;"></a> &#x4E94;. &#x5BF9;&#x8C61;&#x521B;&#x5EFA;&#x7684;&#x987A;&#x5E8F;</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#java虚拟机核心概念"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">java&#x865A;&#x62DF;&#x673A;&#x6838;&#x5FC3;&#x6982;&#x5FF5;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一-运行时数据区"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x4E00;. &#x8FD0;&#x884C;&#x65F6;&#x6570;&#x636E;&#x533A;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二-垃圾回收gc"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x4E8C;. &#x5783;&#x573E;&#x56DE;&#x6536;(<code>GC</code>)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#21-可回收性质判断"><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text">2.1 &#x53EF;&#x56DE;&#x6536;&#x6027;&#x8D28;&#x5224;&#x65AD;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#211-引用计数法"><span class="toc-nav-number">1.2.1.1.</span> <span class="toc-nav-text">2.1.1 &#x5F15;&#x7528;&#x8BA1;&#x6570;&#x6CD5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#212-可达性分析法"><span class="toc-nav-number">1.2.1.2.</span> <span class="toc-nav-text">2.1.2 &#x53EF;&#x8FBE;&#x6027;&#x5206;&#x6790;&#x6CD5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#213-方法区的垃圾回收"><span class="toc-nav-number">1.2.1.3.</span> <span class="toc-nav-text">2.1.3 &#x65B9;&#x6CD5;&#x533A;&#x7684;&#x5783;&#x573E;&#x56DE;&#x6536;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#22-引用类型与可回收判断关系"><span class="toc-nav-number">1.2.2.</span> <span class="toc-nav-text">2.2 &#x5F15;&#x7528;&#x7C7B;&#x578B;&#x4E0E;&#x53EF;&#x56DE;&#x6536;&#x5224;&#x65AD;&#x5173;&#x7CFB;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#221-强引用"><span class="toc-nav-number">1.2.2.1.</span> <span class="toc-nav-text">2.2.1 &#x5F3A;&#x5F15;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#222-软引用"><span class="toc-nav-number">1.2.2.2.</span> <span class="toc-nav-text">2.2.2 &#x8F6F;&#x5F15;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#223-弱引用"><span class="toc-nav-number">1.2.2.3.</span> <span class="toc-nav-text">2.2.3 &#x5F31;&#x5F15;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#224-虚引用"><span class="toc-nav-number">1.2.2.4.</span> <span class="toc-nav-text">2.2.4 &#x865A;&#x5F15;&#x7528;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#23-垃圾回收算法"><span class="toc-nav-number">1.2.3.</span> <span class="toc-nav-text">2.3 &#x5783;&#x573E;&#x56DE;&#x6536;&#x7B97;&#x6CD5;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#231-标记-清除算法"><span class="toc-nav-number">1.2.3.1.</span> <span class="toc-nav-text">2.3.1 &#x6807;&#x8BB0;-&#x6E05;&#x9664;&#x7B97;&#x6CD5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#232-标记-整理算法"><span class="toc-nav-number">1.2.3.2.</span> <span class="toc-nav-text">2.3.2 &#x6807;&#x8BB0;-&#x6574;&#x7406;&#x7B97;&#x6CD5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#233-复制算法主流"><span class="toc-nav-number">1.2.3.3.</span> <span class="toc-nav-text">2.3.3 &#x590D;&#x5236;&#x7B97;&#x6CD5;(&#x4E3B;&#x6D41;)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#241-概览"><span class="toc-nav-number">1.2.3.4.</span> <span class="toc-nav-text">2.4.1 &#x6982;&#x89C8;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#242-gc的停顿与cpu吞吐率"><span class="toc-nav-number">1.2.3.5.</span> <span class="toc-nav-text">2.4.2 GC&#x7684;&#x505C;&#x987F;&#x4E0E;CPU&#x541E;&#x5410;&#x7387;</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#三-内存分配与回收策略"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">&#x4E09;. &#x5185;&#x5B58;&#x5206;&#x914D;&#x4E0E;&#x56DE;&#x6536;&#x7B56;&#x7565;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#31-minor-gc与full-gc"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">3.1 Minor GC&#x4E0E;Full GC</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#32-内存分配策略"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">3.2 &#x5185;&#x5B58;&#x5206;&#x914D;&#x7B56;&#x7565;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#33-full-gc触发条件"><span class="toc-nav-number">1.3.3.</span> <span class="toc-nav-text">3.3 Full GC&#x89E6;&#x53D1;&#x6761;&#x4EF6;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#四-类加载机制"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">&#x56DB;. &#x7C7B;&#x52A0;&#x8F7D;&#x673A;&#x5236;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#41-类加载的时机"><span class="toc-nav-number">1.4.1.</span> <span class="toc-nav-text">4.1 &#x7C7B;&#x52A0;&#x8F7D;&#x7684;&#x65F6;&#x673A;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#42-类加载过程"><span class="toc-nav-number">1.4.2.</span> <span class="toc-nav-text">4.2 &#x7C7B;&#x52A0;&#x8F7D;&#x8FC7;&#x7A0B;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#421-加载"><span class="toc-nav-number">1.4.2.1.</span> <span class="toc-nav-text">4.2.1 &#x52A0;&#x8F7D;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#422-验证"><span class="toc-nav-number">1.4.2.2.</span> <span class="toc-nav-text">4.2.2 &#x9A8C;&#x8BC1;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#423-准备"><span class="toc-nav-number">1.4.2.3.</span> <span class="toc-nav-text">4.2.3 &#x51C6;&#x5907;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#424-解析"><span class="toc-nav-number">1.4.2.4.</span> <span class="toc-nav-text">4.2.4 &#x89E3;&#x6790;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#425-初始化"><span class="toc-nav-number">1.4.2.5.</span> <span class="toc-nav-text">4.2.5 &#x521D;&#x59CB;&#x5316;</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#五-对象创建的顺序"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">&#x4E94;. &#x5BF9;&#x8C61;&#x521B;&#x5EFA;&#x7684;&#x987A;&#x5E8F;</span></a></li></ol></li></ol>
         
         </div>
       </aside>

@@ -16,14 +16,14 @@
     </url>
 
     <url>
-        <loc>http://www.xuanxuan.site/tags/spring%E6%A1%86%E6%9E%B6/</loc>
+        <loc>http://www.xuanxuan.site/tags/MySQL/</loc>
         <lastmod>2019-09-19T04:04:55.371Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.xuanxuan.site/tags/MySQL/</loc>
+        <loc>http://www.xuanxuan.site/tags/spring%E6%A1%86%E6%9E%B6/</loc>
         <lastmod>2019-09-19T04:04:55.371Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -44,7 +44,14 @@
     </url>
 
     <url>
-        <loc>http://www.xuanxuan.site/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+        <loc>http://www.xuanxuan.site/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
+        <lastmod>2019-09-19T04:04:55.387Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.xuanxuan.site/tags/linux/</loc>
         <lastmod>2019-09-19T04:04:55.387Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -58,21 +65,14 @@
     </url>
 
     <url>
+        <loc>http://www.xuanxuan.site/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+        <lastmod>2019-09-19T04:04:55.387Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://www.xuanxuan.site/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/</loc>
-        <lastmod>2019-09-19T04:04:55.387Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.xuanxuan.site/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
-        <lastmod>2019-09-19T04:04:55.387Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.xuanxuan.site/tags/linux/</loc>
         <lastmod>2019-09-19T04:04:55.387Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -94,7 +94,7 @@
 
     <url>
         <loc>http://www.xuanxuan.site/tags/%E7%AE%97%E6%B3%95/</loc>
-        <lastmod>2019-09-22T04:02:10.059Z</lastmod>
+        <lastmod>2019-09-24T02:01:21.854Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

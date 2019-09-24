@@ -144,6 +144,13 @@
 
                         
                         <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -152,13 +159,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -214,18 +214,18 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="go并发编程技巧"><a class="markdownIt-Anchor" href="#go并发编程技巧"></a> go并发编程技巧</h1>
-<h2 id="一-goroutines"><a class="markdownIt-Anchor" href="#一-goroutines"></a> 一. Goroutines</h2>
+                <h1 id="go并发编程技巧">go并发编程技巧</h1>
+<h2 id="一-goroutines">一. Goroutines</h2>
 <p>在学习golang并发时,一开始不应该过多陷入于细节,可以直接把一个goroutine看作一个线程,其作为并发的基本执行单元,使得程序可以同时进行。使用关键字&quot;<strong>go</strong>&quot;启动一个函数开启一个goroutine。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    f()</span><br><span class="line">    <span class="keyword">go</span> f()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">"hello world"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    f()</span><br><span class="line">    <span class="keyword">go</span> f()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">"hello world"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><strong>开始练习!</strong></p>
 <p>计算斐波那契数列通常需要很长时间,我们希望程序在计算的时候能够反馈点什么,由此可以利用开启额外的反馈goroutine与用户交互:</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">go</span> spinner()</span><br><span class="line">	<span class="keyword">const</span> n = <span class="number">45</span></span><br><span class="line">	fibN := fib(n)</span><br><span class="line">	fmt.Printf(<span class="string">"\rFibonacci(%d) = %d\n"</span>,n,fibN)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打印动画</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">spinner</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		<span class="keyword">for</span> _,char := <span class="keyword">range</span> <span class="string">`-\|/`</span> &#123;</span><br><span class="line">			fmt.Printf(<span class="string">"\r%c"</span>,char) <span class="comment">// "\r"表示覆盖</span></span><br><span class="line">			time.Sleep(<span class="number">100</span>*time.Millisecond)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算斐波那契数列</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">fib</span><span class="params">(n <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> n&lt;=<span class="number">2</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> n </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> fib(n<span class="number">-1</span>) + fib(n<span class="number">-2</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">go</span> spinner()</span><br><span class="line">	<span class="keyword">const</span> n = <span class="number">45</span></span><br><span class="line">	fibN := fib(n)</span><br><span class="line">	fmt.Printf(<span class="string">"\rFibonacci(%d) = %d\n"</span>,n,fibN)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打印动画</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">spinner</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		<span class="keyword">for</span> _,char := <span class="keyword">range</span> <span class="string">`-\|/`</span> &#123;</span><br><span class="line">			fmt.Printf(<span class="string">"\r%c"</span>,char) <span class="comment">// "\r"表示覆盖</span></span><br><span class="line">			time.Sleep(<span class="number">100</span>*time.Millisecond)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算斐波那契数列</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">fib</span><span class="params">(n <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> n&lt;=<span class="number">2</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> n </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> fib(n<span class="number">-1</span>) + fib(n<span class="number">-2</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>动画显示了几秒之后,调用fib(45)计算就会返回,主routine退出,其余routine也会跟着退出,控制台打印出的结果</p>
 <blockquote>
 <p>Fibonacci(45) = 1836311903</p>
 </blockquote>
-<h2 id="二-简单的服务器程序"><a class="markdownIt-Anchor" href="#二-简单的服务器程序"></a> 二. 简单的服务器程序</h2>
+<h2 id="二-简单的服务器程序">二. 简单的服务器程序</h2>
 
                 
 
@@ -234,12 +234,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/article/Spring沉思录-1/" data-toggle="tooltip" data-placement="top" title="Spring沉思录(1)">&larr; Previous Post</a>
+                            <a href="/article/java常见IO重点知识清点/" data-toggle="tooltip" data-placement="top" title="java常见IO重点知识清点">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/article/java常见IO重点知识清点/" data-toggle="tooltip" data-placement="top" title="java常见IO重点知识清点">Next Post &rarr;</a>
+                            <a href="/article/Spring沉思录-1/" data-toggle="tooltip" data-placement="top" title="Spring沉思录(1)">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -295,7 +295,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#go并发编程技巧"><span class="toc-nav-number">1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#go&#x5E76;&#x53D1;&#x7F16;&#x7A0B;&#x6280;&#x5DE7;"></a> go&#x5E76;&#x53D1;&#x7F16;&#x7A0B;&#x6280;&#x5DE7;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一-goroutines"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E00;-goroutines"></a> &#x4E00;. Goroutines</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二-简单的服务器程序"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text"><a class="markdownIt-Anchor" href="#&#x4E8C;-&#x7B80;&#x5355;&#x7684;&#x670D;&#x52A1;&#x5668;&#x7A0B;&#x5E8F;"></a> &#x4E8C;. &#x7B80;&#x5355;&#x7684;&#x670D;&#x52A1;&#x5668;&#x7A0B;&#x5E8F;</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#go并发编程技巧"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">go&#x5E76;&#x53D1;&#x7F16;&#x7A0B;&#x6280;&#x5DE7;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一-goroutines"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x4E00;. Goroutines</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二-简单的服务器程序"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x4E8C;. &#x7B80;&#x5355;&#x7684;&#x670D;&#x52A1;&#x5668;&#x7A0B;&#x5E8F;</span></a></li></ol></li></ol>
         
         </div>
       </aside>
